@@ -2,3 +2,42 @@ html,
 body {
     background-color: rgb(185, 117, 248, 0.5);
 }
+.main {
+    margin: 0 45%;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.audio {
+    margin-top: 80%;
+}
+.image {
+    display: none;
+    width: 108px;
+    height: 102px;
+    border-radius: 20%;
+} 
+.sound {
+    margin-top: 60%;
+    border-radius: 20%;
+}
+.list {
+    margin:30% 0;
+    display: block;
+}
+.words-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    justify-items: space-evenly;
+    position: relative;
+}
+.word {
+    text-decoration: none;
+    padding-right: 50px;
+}
+.button {
+    display: block;
+    margin: 70% 0;
+}
