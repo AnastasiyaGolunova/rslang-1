@@ -10,11 +10,11 @@ function getData(){
     let url = `${urlApi}?page=${getRandomInt(31)}`;
     fetch(url)
     .then((response) => {
-        let images = response.json();
-        return images;
+        let data = response.json();
+        return data;
     })
-    .then((images) => {
-        console.log(images);
+    .then((data) => {
+        console.log(data);
     }); 
 }
 function getRandomInt(max) {
