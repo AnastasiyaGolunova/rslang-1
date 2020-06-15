@@ -1,0 +1,290 @@
+body {
+    background-color: #81A4BB;
+    font-family: "Roboto";
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    padding: 15px 100px 15px 0;
+    list-style: none;
+    font-size: 36px;
+    text-decoration: none;
+    color: #000;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.rs-menu {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
+.rs-ul{
+    display: flex;
+    height: 100%;
+    margin: 0;
+    list-style: none;
+}
+
+.rs-li {
+    list-style: none;
+    padding: 25px 40px 10px 40px;
+    font-size: 20px;
+    font-weight: 700;
+    position: relative;
+}
+
+.rs-li a{
+    text-decoration: none;
+    color: #000;
+    margin: 0 auto;
+   }
+
+.services, .exit {
+    height: 30px;
+    width: 30px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.microphone, .puzzle, .tree, .headphones,
+.track, .dice, .update, .ticket, .translation,
+.about, .document, .hangouts, .answers, .trash,
+.solve, .picture, .bookmark, .forward {
+    height: 20px;
+    width: 20px;
+    padding-right: 7px;
+}
+
+.sort {
+    height: 18px;
+    width: 18px;
+}
+
+.rs-menu li:hover .ul-dropdown .li-dropdown {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    top: 0;
+    display: block;
+}
+
+.ul-dropdown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 0;
+    border-radius: 4px;
+}
+
+.settings {
+    width: 16vw;
+}
+
+.dictionary {
+    width: 10vw;
+}
+
+.games {
+    width: 85%;
+}
+
+.ul-dropdown li {
+   display: none;
+   position: relative;
+   width: 85%;
+}
+
+.ul-dropdown li:hover {
+    background-color: #f4f7f9;
+    margin: 0 auto;
+ }
+
+.rs-li:hover {
+    display: block;
+    background-color: #f4f7f9;
+} 
+
+.words-number, .cards-number {
+  left: 100%;
+  width: 25%;
+  top: 0;
+  text-align: center;
+}
+
+.words-number a, .cards-number a {
+  float: left;
+  color: black;
+  text-decoration: none;
+  font-size: 12px;
+  width: 23%;
+}
+
+.words-number a:hover, .cards-number a:hover {
+    background-color: #eee;
+  }
+
+.words:hover .words-number > li {
+    display: block;
+}
+
+.cards:hover .cards-number > li {
+    display: block;
+}
+
+.words-number li, .cards-number li {
+    padding: 5px;
+}
+.switcher {
+    position:relative; 
+    width: 23%; 
+    margin:-72px 0; 
+    top:50%; 
+    float: right;
+    padding-top: 49px;
+    display: none;
+}
+
+label { 
+    margin:1.5em auto 
+}
+
+input { 
+    position:absolute; 
+    left:-9999px 
+}
+
+.slider {
+    position: relative; display: block;
+    width: 2.5em; height: 1em;
+    cursor: pointer;
+    border-radius: 1em;
+    transition: 350ms;
+    background: #ddd;
+  }
+  
+  .slider::after {
+    position: absolute; content:'';
+    width: 1em; height: 1em;
+    top: 0; left: 0.2em;
+    border-radius: 1.5em;
+    transition:
+      width 200ms ease-out,
+      height 300ms 50ms ease-in,
+      top 300ms 50ms ease-in,
+      left 250ms 50ms ease-in,
+      background 300ms ease-in,
+      box-shadow 300ms ease-in;
+    background: #f2f2f2;
+    box-shadow: 0 0 0 1.5em #f2f2f2 inset;
+  }
+  
+  input:checked + .slider::after {
+    width: 1em; height: 1em;
+    top: 0; left: 1.3em;
+    box-shadow: 0 0 0 0 #f2f2f2 inset;
+  }
+
+  input:checked + .slider {
+    background: #4c6;
+  }
+
+  #card-container {
+    height: 250px;
+    width: 350px;
+    text-align: center;
+    border-radius: 20px;
+    background: #ffffff;  
+    box-shadow: -2px 0px 20px -6px rgba(0,0,0,1.1);
+    margin: 150px 50px 150px 535px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.card-name {
+    height: 45px;
+    width: 350px;
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 5px;
+    border-radius: 4px;
+}
+
+.learned {
+    background-color: #80A63F;
+}
+
+.day {
+    background-color: #DDD060;
+}
+
+.difficult {
+    background-color: #EB7055;
+}
+.word-count {
+    color: #939393;
+    font-size: 32px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-template-rows: 300px 300px;
+}
+
+.start {
+    border: none;
+    border-radius: 10px;
+    background-color: #FF5757;
+    width: 175px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.start:hover {
+    background-color: #ff6b6b;
+}
+
+progress[value] {
+    -webkit-appearance: none;
+}
+progress[value]::-webkit-progress-bar {
+    width: 250px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    margin: 30px 0 0 35px;
+  }
+
+.balance {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.progress {
+margin-bottom: 5px;
+}
