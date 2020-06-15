@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: #81A4BB;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-page {
+  background-color: #ffebcd;
+  width: 80%;
+  height: 50%;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.game-name {
+  background: #DDD060;
+  height: 10%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 0 0 ;
+}
+
+.game-icon {
+  height: 100px;
+  width: 100px;
+}
+
+.button-wrapper {
+  height: 10%;
+  margin-bottom: 30px;
+  min-width: 210px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rules-btn,
+.start-btn {
+  font-family: 'Helvetica', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  width: 100px;
+  height: 100%;
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.rules-btn {
+  background-color: #76C1F8 ;
+}
+
+.start-btn {
+  background-color: #80A63F;
+}
+
+.rules-btn:active,
+.start-btn:active {
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.rules-btn:hover,
+.start-btn:hover{
+  opacity: 0.8;
+}
+
+.game-rules {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  width: 85%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
