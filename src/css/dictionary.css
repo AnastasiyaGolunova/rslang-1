@@ -1,0 +1,53 @@
+.dictionary-list {
+    padding: 2em 11em;
+    display: flex;
+    flex-direction: column;
+}
+
+.dictionary-list .header {
+    flex-direction: row;
+}
+
+.dictionary-list.name h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    width: 7em;
+}
+.dictionary-list.filter {
+    background-color: #ffffff;
+    flex-direction: row;
+    opacity: 65%;
+    font-size: 18px;
+    font-weight: 700;
+    width: 35em;
+    height: 3em;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 1em;
+    z-index: 0;
+}
+.filter-item {
+    padding-right: 45px;
+    white-space: nowrap;
+}
+
+.filter-item span {
+    cursor: pointer;
+    color: #000000;
+}
+
+.filter-item span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.dictionary-list .word-list {
+    background-color: #ffffff;
+    opacity: 65%;
+    margin-left: 11em;
+    height: 32em;
+    border-radius: 4px;
+    width: 62em;
+}
