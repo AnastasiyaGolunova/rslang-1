@@ -1,43 +1,97 @@
-html,
-body {
-    background-color: rgb(185, 117, 248, 0.5);
-}
-.main {
-    margin: 0 45%;
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+:root {
+    --hue-neutral: 201;
+    --hue-wrong: 0;
+    --hue-correct: 100;
+  }
+  body {
+      font-family: 'Roboto', sans-serif;
+    --hue: var(--hue-neutral);
+    padding: 0;
+    margin: 0;
     display: flex;
-    justify-items: center;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(var(--hue), 45%, 75%);
+  }
+  
+.container {
+    --hue: var(--hue-correct);
+    width: 800px;
+  max-width: 80%;
+  background-color: hsl(var(--hue), 45%, 75%);
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px 2px;
 }
+  .description {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+  }
 .audio {
-    margin-top: 80%;
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
 }
 .image {
-    display: none;
     width: 108px;
     height: 102px;
     border-radius: 20%;
 } 
 .sound {
-    margin-top: 60%;
-    border-radius: 20%;
+    margin-top: 10%;
+    border-radius: 50%;
 }
-.list {
-    margin:30% 0;
-    display: block;
-}
-.words-list {
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .button {
+    --hue: var(--hue-correct);
+    border: 1px solid hsl(var(--hue), 100%, 30%);
+    background-color: hsl(var(--hue), 50%, 50%);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: black;
+    outline: none;
+  }
+  .button:hover {
+    border-color: black;
+    box-shadow: 0 0 10px 2px;;
+  }
+  
+  .button.correct {
+    --hue: var(--hue-correct);
+    color: black;
+  }
+  
+  .button.wrong {
+    --hue: var(--hue-wrong);
+  }
+  
+  .start-button, .next-button, .dont-know-button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+  }
+  
+  .controls {
     display: flex;
     justify-content: center;
-    width: 100%;
-    justify-items: space-evenly;
-    position: relative;
-}
-.word {
-    text-decoration: none;
-    padding-right: 50px;
-}
-.button {
-    display: block;
-    margin: 70% 0;
-}
+    align-items: center;
+  }
+  
+  .hide {
+    display: none;
+  }

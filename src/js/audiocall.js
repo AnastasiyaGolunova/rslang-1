@@ -6,6 +6,9 @@ let audio = {
     success: new Audio(''),
     failure: new Audio(''),
 };
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
 function getData(){
     let url = `${urlApi}?page=${getRandomInt(31)}`;
     fetch(url)
@@ -17,8 +20,6 @@ function getData(){
         console.log(data);
     }); 
 }
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+
 getData();
 

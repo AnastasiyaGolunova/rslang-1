@@ -3,27 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/audiocall.css"> 
   <title>Audiocall</title>
 </head>
 <body>
-    <main id="main" class="main">
+    <main id="main" class="container">
+        <div class="description" id="description">
+            <h3>AUDIO CALL</h3>
+            <p>The Audio Call training will help you to form the active listening skill.<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+            </p>
+        </div>
         <div class="audio">
-            <img src="" alt="correct word" class="image">
-            <img src="img/audio-button.jpg" alt="sound" class="sound">
+            <img src="img/leo.png" alt="leo" class="leo">
+            <img src="" alt="correct word" class="image hide">
+            <img src="img/green.png" alt="sound" class="sound hide">
         </div>
-        <div class="list">
-            <ol class="words-list">
-                <li class="word">Один</li>
-                <li class="word">Два</li>
-                <li class="word">Три</li>
-                <li class="word">Четыре</li>
-                <li class="word">Пять</li>
-            </ol>
+        <div  id="answer-buttons" class="button-grid">
+            <button class="button hide ">Answer 1</button>
+            <button class="button hide">Answer 2</button>
+            <button class="button hide">Answer 3</button>
+            <button class="button hide">Answer 4</button>
+            <button class="button hide">Answer 5</button>
         </div>
-        <div class="button">
-            <button class="next dont-know">Я не знаю</button>
-        </div>
+        <div class="controls">
+            <button id="start-button" class="start-btn button">Let's get started!</button>
+            <button id="next-button" class="next-btn button hide">Next</button>
+            <button id="next-button" class="dont-know-button button hide">I dont know</button>
+          </div>
     </main>
 <script src="js/audiocall.js"></script>  
 </body>
