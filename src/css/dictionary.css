@@ -1,36 +1,42 @@
 .dictionary-list {
-    padding: 2em 11em;
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
+    z-index: 0;
+    text-align: center;
+    align-items: center;
 }
 
-.dictionary-list .header {
-    flex-direction: row;
+ .header {
+    padding-top: 1em;
 }
-
+.dictionary-list.content {
+    padding: 1em;
+}
 .dictionary-list.name h2 {
     font-size: 26px;
     font-weight: 700;
     color: #ffffff;
-    width: 7em;
+    padding: 1em 8em 0 0;
+}
+.dictionary-list.name {
+    width: 35%;
+    white-space: nowrap;
 }
 .dictionary-list.filter {
     background-color: #ffffff;
     flex-direction: row;
     opacity: 65%;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-    width: 35em;
-    height: 3em;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 12px;
     border-radius: 4px;
     margin-top: 1em;
     z-index: 0;
 }
 .filter-item {
-    padding-right: 45px;
+    padding-right: 30px;
     white-space: nowrap;
 }
 
@@ -46,8 +52,46 @@
 .dictionary-list .word-list {
     background-color: #ffffff;
     opacity: 65%;
-    margin-left: 11em;
-    height: 32em;
     border-radius: 4px;
-    width: 62em;
+    padding: 0 36px;
+}
+.dictionary-list .word {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+.dictionary-list .icon {
+    padding: 0;
+}
+.dictionary-list .words {
+    padding: 0 150px 0 0;
+    margin-left: 10px;
+}
+.voice, .trash {
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.eng-word {
+    color: #EB7055;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0;
+}
+.ru-word {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0;
+}
+
+.start {
+    width: 145px;
+    align-self: flex-end;
+}
+.dictionary-list .button {
+    margin-top: 20px;
 }

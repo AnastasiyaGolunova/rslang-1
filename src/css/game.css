@@ -1,0 +1,79 @@
+.game-wrap {
+    display: flex;
+    flex-flow: column wrap;
+    background-color: #ffffff;
+    width: 70%;
+    align-self: center;
+    margin: 5% 6%;
+}
+.voice {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+.game-icon {
+    width: 70%;
+}
+.game-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 50px;
+}
+.game-spelling {
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+}
+.spelling-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+}
+.spelling-check {
+    padding-left: 25px !important;
+}
+.card-number {
+    font-size: 32px;
+    font-weight: 500;
+    color: #939393;
+}
+.delete {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+.game-close {
+    align-self: flex-end;
+    padding: 10px;
+}
+.word-example {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+}
+.example-translation {
+    color: #939393 !important;
+    font-weight: 500;
+}
+
+.game-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+}
+.answer-input {
+    background-color: #f0f0f0;
+    width: 15em;
+    border: none;
+    border-radius: 4px;
+    height: 3em;
+    color: #000000;
+    padding: 3px;
+    font-size: 14px;
+}
+.word-input {
+    margin-top: 25px;
+}
