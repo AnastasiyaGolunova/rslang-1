@@ -1,0 +1,37 @@
+*{
+    margin: 0 auto;
+    padding: 0 auto;
+}
+body,
+.wrap{
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(201, 45%, 75%);
+}
+.wrap{
+    background-color: white;
+}
+.title{
+    color: red;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+}
+.rule{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.start{
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 8px;
+}
+.block{
+    display: none;
+}
