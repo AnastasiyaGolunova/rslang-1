@@ -50,6 +50,9 @@
     margin-top: 10%;
     border-radius: 50%;
 }
+.audiocall {
+  cursor: pointer;
+}
 .button-grid {
     display: grid;
     grid-template-columns: repeat(5, auto);
@@ -68,7 +71,8 @@
   }
   .button:hover {
     border-color: black;
-    box-shadow: 0 0 10px 2px;;
+    box-shadow: 0 0 10px 2px;
+    cursor: pointer;
   }
   
   .button.correct {

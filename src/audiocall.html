@@ -15,21 +15,24 @@
             </p>
         </div>
         <div class="audio">
-            <img src="img/leo.png" alt="leo" class="leo">
-            <img src="" alt="correct word" class="image hide">
-            <img src="img/green.png" alt="sound" class="sound hide">
+            <img src="img/leo.png" alt="leo" class="leo" id="leo">
+            <img src="" alt="correct word" class="image hide" id="correct">
+            <img src="img/green.png" alt="sound" class="sound hide" id="sound">
+            <audio controls id="audio" class="audiocall hide" src="" preload="auto">
+                <!--<source src="">-->
+              </audio>
         </div>
-        <div  id="answer-buttons" class="button-grid">
-            <button class="button hide ">Answer 1</button>
-            <button class="button hide">Answer 2</button>
-            <button class="button hide">Answer 3</button>
-            <button class="button hide">Answer 4</button>
-            <button class="button hide">Answer 5</button>
+        <div  id="answer-buttons" class="button-grid hide" >
+            <button class="button  ">Answer 1</button>
+            <button class="button ">Answer 2</button>
+            <button class="button ">Answer 3</button>
+            <button class="button ">Answer 4</button>
+            <button class="button ">Answer 5</button>
         </div>
         <div class="controls">
             <button id="start-button" class="start-btn button">Let's get started!</button>
             <button id="next-button" class="next-btn button hide">Next</button>
-            <button id="next-button" class="dont-know-button button hide">I dont know</button>
+            <button id="dont-know-button" class="dont-know-button button hide">I dont know</button>
           </div>
     </main>
 <script src="js/audiocall.js"></script>  
