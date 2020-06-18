@@ -67,6 +67,7 @@
 .dictionary-list .words {
     padding: 0 150px 0 0;
     margin-left: 10px;
+    align-items: baseline;
 }
 .voice, .trash {
     height: 25px;
@@ -94,4 +95,50 @@
 }
 .dictionary-list .button {
     margin-top: 20px;
+}
+
+@media screen and (max-width: 320px) {
+
+.dictionary-list.filter {
+    font-size: 8px;
+    padding: 4px;
+    width: 85%;
+}
+.voice, .trash {
+    height: 15px;
+    width: 15px;
+}
+.content {
+    width: 100%;
+    padding: 1em 1em 0.5em 1em;
+}
+.word {
+    margin: 10px;
+}
+.words {
+    padding: 0 !important;
+    width: 100%;
+}
+.eng-word, .ru-word  {
+    font-size: 12px;
+}
+.word-list {
+    padding: 0 !important;
+}
+.dictionary-list {
+    align-items: unset !important;
+}
+.header {
+    margin-left: 10px;
+}
+.button {
+    margin-top: 0 !important;
+}
+.start {
+    align-self: flex-start;
+    font-size: 10px;
+    margin-left: 16px;
+    width: 100px;
+}
+
 }

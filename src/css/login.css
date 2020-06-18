@@ -225,3 +225,42 @@ input {
 .left-button {
     margin-right: 70px;
 }
+
+@media screen and (max-width: 320px) {
+.signup {
+	font-size: 24px;
+}
+button {
+	font-size: 7px;
+	padding: 7px 20px;
+	width: 90px;
+	overflow-wrap: break-word;
+}
+.right-greeting {
+	font-size: 24px;
+}
+.right {
+	font-size: 10px;
+}
+.right-button {
+	overflow-wrap: break-word;
+	width: 110px;
+	font-size: 8px;
+}
+.container {
+	width: 285px;
+	min-height: 375px;
+}
+input {
+	font-size: 12px;
+}
+.left-greeting {
+	font-size: 16px;
+}
+.left {
+	font-size: 10px;
+}
+h1 {
+	font-size: 24px;
+}
+}

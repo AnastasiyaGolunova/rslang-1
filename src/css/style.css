@@ -81,7 +81,7 @@ nav {
 .microphone, .puzzle, .tree, .headphones,
 .track, .dice, .update, .ticket, .translation,
 .about, .document, .hangouts, .answers, .trash,
-.solve, .picture, .bookmark {
+.solve, .image, .bookmark {
     height: 25px;
     width: 25px;
     margin-right: 7px;
@@ -118,7 +118,7 @@ nav {
 }
 
 .settings {
-    width: 200px;
+    width: 205px;
 }
 
 .settings li a {
@@ -187,7 +187,7 @@ nav {
     border-radius: 20px;
     background: #ffffff;  
     box-shadow: -2px 0px 20px -6px rgba(0,0,0,1.1);
-    margin: 2em 1em 1em 32em;
+    margin: 0 1em;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -224,10 +224,9 @@ nav {
 }
 
 .cards {
-    display: grid;
-    grid-template-columns: 400px 400px;
-    grid-template-rows: 250px 250px;
-    margin-right: 10em;
+    display: flex;
+    flex-direction: row;
+    padding: 10em 30em;
 }
 
 .start {
@@ -349,6 +348,21 @@ body {
 .navigation li{
     padding: 1em 2em;
 }
+
+#card-container {
+    margin: 2em 1em 1em 2em;
+    height: 12em;
+    width: 17em;
+}
+.card-name {
+    width: 9.7em;
+}
+.cards {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 0;
+    align-items: center;
+}
 }
 
 @media screen and (max-width: 320px) {
@@ -357,16 +371,20 @@ body {
 }
 .burger {
     display: block;
-    width: 80%;
-}
+    width: 25%;
+    }
+
 .navigation {
-    top: 13vh;
+    top: 12vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     transform: translateX(100%);
+}
+.navigation li{
+    padding: 0.2em 2em;
 }
 .rs-ul a{
     font-size: 10px;
@@ -375,7 +393,7 @@ body {
 .microphone, .puzzle, .tree, .headphones,
 .track, .dice, .update, .ticket, .translation,
 .about, .document, .hangouts, .answers, .trash,
-.solve, .picture, .bookmark {
+.solve, .image, .bookmark {
     height: 10px;
     width: 10px;
     margin-right: 5px;
