@@ -8,6 +8,8 @@ const audioCall = document.querySelector('#audio');
 const leoImage = document.querySelector('#leo');
 const description = document.querySelector('#description');
 const correctWord = document.querySelector('#correct');
+const select = document.querySelector('#select');
+const soundImage = document.querySelector('#sound');
 //let audio = {
   //  correct: new Audio(''),
     //errors: new Audio(''),
@@ -22,6 +24,8 @@ function startGame() {
     answerButtons.classList.remove('hide');
     audioCall.classList.remove('hide');
     dontKnowButton.classList.remove('hide');
+    soundImage.classList.remove('hide');
+    getData();
 }
 
 startButton.addEventListener('click', startGame);
@@ -30,7 +34,8 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 function getData(){
-    let url = `${urlApi}?page=${getRandomInt(31)}`;
+    let group = select.options[select.selectedIndex].value;
+    let url = `${urlApi}?page=${getRandomInt(31)}&group=${group}`;
     fetch(url)
     .then((response) => {
         let data = response.json();
@@ -51,7 +56,7 @@ function getData(){
         
     })
     ; 
-}
+};
 
-getData();
+
 

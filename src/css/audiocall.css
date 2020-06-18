@@ -46,9 +46,21 @@
     height: 102px;
     border-radius: 20%;
 } 
+
 .sound {
-    margin-top: 10%;
+    margin-top: 0;
     border-radius: 50%;
+    animation: radial-pulse 1s 0.5s;
+    
+}
+@keyframes radial-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(27, 88, 38, 0.61);
+  }
+ 
+  100% {
+    box-shadow: 0 0 0 40px rgba(27, 88, 38, 0);
+  }
 }
 .audiocall {
   cursor: pointer;

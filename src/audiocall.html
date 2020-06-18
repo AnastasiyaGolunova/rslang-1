@@ -13,12 +13,22 @@
             <h3>AUDIO CALL</h3>
             <p>The Audio Call training will help you to form the active listening skill.<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
             </p>
+            <p>Choose your level:</p>
+            <select id="select">
+                <option value="0" selected>Level 1 - Beginner</option>
+                <option value="1">Level 2 - Elementary</option>
+                <option value="2">Level 3 - Intermediate</option>
+                <option value="3">Level 4 - Upper-Intermediate</option>
+                <option value="4">Level 5 - Advanced</option>
+                <option value="5">Level 6 - Proficient</option>
+            </select>
+
         </div>
         <div class="audio">
             <img src="img/leo.png" alt="leo" class="leo" id="leo">
             <img src="" alt="correct word" class="image hide" id="correct">
             <img src="img/green.png" alt="sound" class="sound hide" id="sound">
-            <audio controls id="audio" class="audiocall hide" src="" preload="auto">
+            <audio id="audio" class="audiocall hide" src="" preload="auto">
                 <!--<source src="">-->
               </audio>
         </div>
