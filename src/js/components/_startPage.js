@@ -6,9 +6,21 @@ startPage.classList.add("page-wrapper");
 
 startPage.innerHTML = `<div class="start-page">
 <h2 class="header-block">Savannah</h2>
+<div class="levelSettings">
+            <p class="level__text">Select your level </p>
+            <select class="level radio-toolbar" id="level">
+                <option value="0">A1</option>
+                <option value="1">A2</option>
+                <option value="2">B1</option>
+                <option value="3">B2</option>
+                <option value="4">C1</option>
+                <option value="5">C2</option>
+            </select>
+        </div>
 <div class="body-block"><p>The Savannah training helps you build your vocabulary. <br> The more words you know, the more experience
 points
 you'll get.</p></div>
+
 <img class="game-icon" src="img/savannah-icon.svg"></img>
 <div class="button-wrapper">
 <button class="start-btn">start</button>
@@ -45,8 +57,7 @@ startBtn.addEventListener("click", () => {
       document.querySelector(".count").innerHTML = current;
       if (current == to) {
         clearInterval(timerId);
-        document.querySelector(".circle-timer").classList.toggle("hidden");
-        //loadGame();
+        startGame();
       }
       current--;
     }, 1000);
