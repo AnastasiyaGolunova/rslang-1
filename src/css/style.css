@@ -429,8 +429,8 @@ body {
 .game-page {
   background-image: url("/src/img/bg.png");
   background-size: cover;
-  width: 80%;
-  height: 50%;
+  width: 85%;
+  height: 70%;
   min-width: 220px;
   display: flex;
   flex-direction: column;
@@ -455,6 +455,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   font-family: "Helvetica", sans-serif;
   font-size: 14px;
   width: 85%;
@@ -500,6 +501,43 @@ body {
 =======
 
 .hidden {
+  display: none;
+}
+
+/* select level */
+.level.radio-toolbar {
+  position: relative;
+  bottom: 25%;
+}
+.radio-toolbar {
+  display: flex;
+}
+.level__text {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.level__label {
+  display: inline-block;
+  width: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: lavenderblush;
+  background: #80a63f;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+.level__label:hover {
+  transition: transform 0.2s;
+  transform: scale(1.1);
+}
+input[type="radio"]:hover {
+  transition: transform 0.2s;
+  transform: scale(1.1);
+}
+
+input[type="radio"] {
   display: none;
 }
 
@@ -637,4 +675,81 @@ body {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
+<<<<<<< HEAD
 >>>>>>> feat: add styles for timer & game background
+=======
+
+/* Heart */
+
+.wrap-game {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 112px 0 0 58px;
+}
+.rating {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 1020px;
+  height: 40px;
+  overflow-x: hidden;
+  line-height: 1.5;
+  font-size: 1.5em;
+  color: #ef7479;
+  margin-right: 10px;
+}
+.star-error,
+.star-success {
+  flex-shrink: 0;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+}
+.star-success {
+  background-image: url("/src/img/heart-win.svg");
+}
+.star-error {
+  background-image: url("/src/img/heart.svg");
+}
+
+.question {
+  position: absolute;
+
+  font-size: 3rem;
+  left: 45%;
+  color: rgb(237, 243, 235);
+}
+
+/* style for buttons */
+.item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 1.6rem;
+  align-items: stretch;
+}
+
+.item button {
+  position: relative;
+  top: 450px;
+  font-size: 1.6rem;
+  border-radius: 15px;
+  color: rgb(237, 243, 235);
+  width: 30%;
+  margin: 15px;
+  padding: 5px 8px;
+  animation: 0.4s ease-in-out both fade-in;
+  background: transparent;
+  outline: none;
+}
+
+.item button:hover {
+  background-color: rgba(94, 182, 68, 0.726);
+  cursor: pointer;
+  color: rgb(18, 19, 18);
+}
+>>>>>>> feat: add attempt block, images
