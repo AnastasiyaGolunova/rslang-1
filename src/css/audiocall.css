@@ -21,7 +21,7 @@
   
 .container {
     --hue: var(--hue-correct);
-    width: 800px;
+    width: 900px;
   max-width: 80%;
   background-color: hsl(var(--hue), 45%, 75%);
   border-radius: 5px;
@@ -50,7 +50,7 @@
 .sound {
     margin-top: 0;
     border-radius: 50%;
-    animation: radial-pulse 1s 0.5s;
+    animation: radial-pulse 1s 0.8s;
     
 }
 @keyframes radial-pulse {
@@ -96,7 +96,7 @@
     --hue: var(--hue-wrong);
   }
   
-  .start-button, .next-button, .dont-know-button {
+  .start-button, .next-button, .dont-know-button, .button {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
