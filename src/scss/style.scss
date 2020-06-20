@@ -1,0 +1,83 @@
+$background-color: #0465aa;
+$border: 2px solid #020c97;
+$text-color: #e1ffff;
+
+%buttons {
+    height: 30px;
+    color: $text-color;
+    text-transform: uppercase;
+    background-color: $background-color;
+    border: $border;
+    border-radius: 2rem;
+}
+
+%buttons:hover {
+    cursor: pointer;
+}
+
+body {
+    background-color: $background-color;
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 90vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    .logo-wrapper {
+        width: 100%;
+
+        .button-start {
+            width: 140px;
+            height: 40px;
+            font-size: 1.5rem;
+            @extend %buttons;
+        }
+
+        .description-text {
+            color: $text-color;
+            font-size: 1.2rem;
+        }
+    }
+
+    .game-wrapper {
+        width: 100%;
+
+        .level-page,
+        .hints {
+            width: 50%;
+            float: left;
+        }
+
+        button {
+            @extend %buttons;
+            margin: 0 10px 0 10px;
+        }
+
+        .img-puzzle {
+            width: 90vw;
+            height: 53.64vw;
+            background-image: url('./../img/1.jfif');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .img-sound,
+        select {
+            @extend %buttons;
+            border: unset;
+            margin: 0 10px 0 5px;
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
