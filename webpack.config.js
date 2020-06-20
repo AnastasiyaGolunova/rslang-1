@@ -129,7 +129,8 @@ const config = {
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
-      {from: './src/img', to: './img/'}
+      {from: './src/img', to: './img/'},
+      {from: './src/icons', to: './icons/'}
     ]),
   ],
 

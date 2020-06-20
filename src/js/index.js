@@ -1,4 +1,6 @@
 import '../css/index.css';
+import '../css/style.css';
+import '../css/game.css';
 
 const getWords = async (page, group) => {
     try {
@@ -119,10 +121,45 @@ const renderCard = async () => {
     //const data = await getWords(page, group);
     console.log(allCards)
 
-    let {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio} = allCards[count];
+    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio} = allCards[count];
     curentWord = word;
     console.log(textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate);
-    const card = `<span class="text-example">${textExample}</span>
+    
+    const card = `<div class="word-example">${textExample}</div>
+                  <div class="word-example example-translation">${textExampleTranslate}</div>
+                  <div class="word-input">
+                      <input type="text" class="answer-input input-word" style="width:${word.length * 6}px" autofocus>
+                  </div>
+                  <div class="word-example word-translation">${wordTranslate}</div>
+                  <div class="word-example word-transcription">${transcription}</div>
+                  <div class="word-example" id="picture">
+                      <img src="./img/feeling.png" alt="feeling">
+                  </div>
+                  <div class="meaning">
+                      <div class="answers-icon">
+                          <img class="answers" src="./icons/answers.png" alt="answers">
+                      </div>
+                      <div class="meaning-text">
+                          <div class="word-example meaning-name"><span>Значение:</span></div>
+                          <div class="word-example meaning-eng">${textMeaning}</div>
+                          <div class="word-example meaning-ru">${textMeaningTranslate}</div>
+                      </div>
+                  </div>
+                  <div class="word-example footer">
+                      <div class="delete-icon">
+                          <img class="trash" src="./icons/trash.png" alt="trash">
+                      </div>
+                      <div class="buttons">
+                          <button class="btn answer">Ответ</button>
+                          <button class="btn enter">Enter</button>
+                          <button class="btn next">Далее &#8594</button>
+                      </div>
+                  </div>
+    `
+    
+    
+    
+    const aaa = `<span class="text-example">${textExample}</span>
     <span class="text-example_translate">${textExampleTranslate}</span>
     <input class="input input-word" style="width:${word.length * 6}px" ></input>
     <span class="word-translate">${wordTranslate}</span>
@@ -131,7 +168,7 @@ const renderCard = async () => {
     <span class="text-meaning">${textMeaning}</span>
     <span class="text-meaning_translate">${textMeaningTranslate}</span>`
 
-    const CARD = document.querySelector('.card');
+    const CARD = document.querySelector('.game-content');
 
     CARD.innerHTML = card;
 
@@ -160,7 +197,10 @@ const audioPlay = (src) => {
 
 
 
-const BTN_CHECK = document.querySelector('.btn-check');
+const BTN_CHECK = document.querySelector('.about-team');
+const BTN_NEXT = document.querySelector('.next');
+const BTN_ANSWER = document.querySelector('.answer');
+const BTN_ENTER = document.querySelector('.enter');
 
 BTN_CHECK.addEventListener('click', async () => {
     receivedWords.length = 0;
@@ -168,4 +208,12 @@ BTN_CHECK.addEventListener('click', async () => {
     quantityCards();
     renderCard();
     //checkWord();
+});
+
+BTN_NEXT.addEventListener('click', () => {
+    console.log('next');
+});
+
+BTN_ANSWER.addEventListener('click', () => {
+    console.log('enter');
 });
