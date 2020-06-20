@@ -40,14 +40,30 @@
     display: flex;
     justify-content: center;
     justify-items: center;
+    flex-direction: column;
+}
+.audio h2 {
+  margin: 0 auto;
+  font-size: 1.5rem;
+  
 }
 .image {
-    width: 108px;
-    height: 102px;
-    border-radius: 20%;
+  margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 15%;
+    padding-top: 10px;
 } 
+.leo {
+  width: 270px;
+  height: 270px;
+  margin: 0 auto;
+}
 
 .sound {
+  width: 113px;
+  height: 113px;
+  margin: 0 auto;
     margin-top: 0;
     border-radius: 50%;
     animation: radial-pulse 1s 0.8s;
