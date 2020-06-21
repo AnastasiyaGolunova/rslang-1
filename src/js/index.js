@@ -23,7 +23,7 @@ let deleteWords = [];
 let page = 0;
 let group = 0;
 let receivedWords = [];
-const URL_DATA = 'https://raw.githubusercontent.com/irinainina/rslang-data/master/';
+const URL_DATA = 'https://raw.githubusercontent.com/omirbeck/rslang-data/master/';
 const QUANTITY_WORDS = document.querySelector('.quantity-words');
 const QUANTITY_CARDS = document.querySelector('.quantity-cards');
 const MAX_PAGE = 29;
@@ -115,17 +115,36 @@ const quantityCards = () => {
 
 }
 
+const findWordInText = (word, text) => {
+    const re = new RegExp(word, 'mi');
+    const wordReplace = text.replace(re, '[...]');
+    console.log(wordReplace);
+    return wordReplace;
+}
+
+const findRenderChecked = () => {
+    
+}
+
+const CHECKBOX = document.querySelectorAll('.checkbox');
+
+
+
+findWordInText('feeling','How long, must this feeling go on?');
 
 const renderCard = async () => {
 
     //const data = await getWords(page, group);
     console.log(allCards)
 
-    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio} = allCards[count];
+    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio,image} = allCards[count];
     curentWord = word;
     console.log(textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate);
     
-    const card = `<div class="word-example">${textExample}</div>
+    const replaceExample = findWordInText(word, textExample);
+    const replaceMeaning = findWordInText(word, textMeaning);
+
+    const card = `<div class="word-example">${replaceExample}</div>
                   <div class="word-example example-translation">${textExampleTranslate}</div>
                   <div class="word-input">
                       <input type="text" class="answer-input input-word" style="width:${word.length * 12}px" autofocus>
@@ -133,12 +152,12 @@ const renderCard = async () => {
                   <div class="word-example word-translation">${wordTranslate}</div>
                   <div class="word-example word-transcription">${transcription}</div>
                   <div class="word-example" id="picture">
-                      <img src="./img/feeling.png" alt="feeling">
+                      <img src="${URL_DATA}${image}" alt="${word}">
                   </div>
                   <div class="meaning">
                       <div class="meaning-text">
                           <div class="word-example meaning-name"><span>Значение:</span></div>
-                          <div class="word-example meaning-eng">${textMeaning}</div>
+                          <div class="word-example meaning-eng">${replaceMeaning}</div>
                           <div class="word-example meaning-ru">${textMeaningTranslate}</div>
                       </div>
                   </div>
@@ -188,10 +207,59 @@ const BTN_CHECK = document.querySelector('.about-team');
 const BTN_NEXT = document.querySelector('.next');
 const BTN_ANSWER = document.querySelector('.answer');
 const BTN_ENTER = document.querySelector('.enter');
-const CHECKBOX_ABOUT = document.querySelector('.checkbox-translate');
+const CHECKBOX_EXAMPLE = document.querySelector('.checkbox-example');
+const CHECKBOX_TRANSLATE = document.querySelector('.checkbox-word-translation');
+const CHECKBOX_TRANSCRIPT = document.querySelector('.checkbox-word-transcription');
+const CHECKBOX_ASSOCIATION = document.querySelector('.checkbox-association');
+const CHECKBOX_MEANING = document.querySelector('.checkbox-mean');
 
 
+const checked = (event) => {
+    const WORD_EXAMPLE = document.querySelectorAll('.word-example');
+    let eventClass = event.target.classList[1];
+    eventClass = eventClass.replace(/checkbox-/mi, '')
+    console.log(eventClass)
 
+    if(event.target.checked) {
+        WORD_EXAMPLE.forEach((element) => {
+            if (element.classList.contains(`${eventClass}`)) {
+                element.classList.remove('none');
+            }
+        });
+    } else {
+        WORD_EXAMPLE.forEach((element) => {
+            if (element.classList.contains(`${eventClass}`)) {
+                element.classList.add('none');
+            }
+        });;
+    }
+}
+
+CHECKBOX_EXAMPLE.addEventListener('change', (event) => {
+    const div = document.querySelector('.word-example');
+    checked(event);
+});
+
+CHECKBOX_TRANSLATE.addEventListener('change', (event) => {
+    const div = document.querySelector('.word-translation');
+    checked(event, div);
+
+});
+
+CHECKBOX_TRANSCRIPT.addEventListener('change', (event) => {
+    const div = document.querySelector('.word-transcription');
+    checked(event);
+});
+
+CHECKBOX_ASSOCIATION.addEventListener('change', (event) => {
+    const div = document.querySelector('#picture');
+    checked(event);
+}); 
+
+CHECKBOX_MEANING.addEventListener('change', (event) => {
+    const div = document.querySelector('.meaning-eng');
+    checked(event);
+});
 
 BTN_CHECK.addEventListener('click', async () => {
     receivedWords.length = 0;
@@ -206,5 +274,11 @@ BTN_NEXT.addEventListener('click', () => {
 });
 
 BTN_ANSWER.addEventListener('click', () => {
-    console.log('enter');
+    console.log('answer');
+    console.log(CHECKBOX);
+    CHECKBOX.forEach((element) => {
+        if (element.checked) {
+            console.log(element);
+        }
+    });
 });
