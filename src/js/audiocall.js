@@ -48,6 +48,9 @@ function getRandomInt(max) {
          element.classList.add('correct')
      } else {
          element.classList.add('wrong');
+         answerText.classList.remove('hide');
+         correctWordImage.classList.remove('hide');
+         soundImage.classList.add('hide');
      }
  }
   function selectAnswer(element) {
@@ -57,7 +60,8 @@ function getRandomInt(max) {
       Array.from(answerButtons.children).forEach(button => {
           setStatusClass(button, button.dataset.correct)
       })
-      
+      dontKnowButton.classList.add('hide'); 
+      nextButton.classList.remove('hide'); 
   }
   function setCorrectAnswer() {
     correctWordImage.classList.remove('hide');
@@ -71,6 +75,10 @@ function getRandomInt(max) {
 
 
 }
+
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
   
 function getData(){
     let group = select.options[select.selectedIndex].value;
@@ -109,6 +117,7 @@ function getData(){
             {text: `${forthWord}`, correct: false},
         ];
         currentAnswerIndex = 0;
+    shuffle(answers);
     answers.forEach(element => {
     const button = document.createElement('button');
     button.innerText = element.text;  
