@@ -53,8 +53,11 @@ function app (cards){
         const transcriptionTitle = document.createElement('p');
         transcriptionTitle.classList = 'transcriptionTitle';
         transcriptionTitle.innerHTML = transcription;
+        const button = document.createElement('button');
+        button.classList = 'fa fa-bullhorn';
         cardsWrap.appendChild(card);
         card.appendChild(wordTitle);
         card.appendChild(transcriptionTitle);
+        card.appendChild(button);
     });
 }
