@@ -135,7 +135,7 @@ const renderCard = async () => {
     const card = `<div class="word-example">${textExample}</div>
                   <div class="word-example example-translation">${textExampleTranslate}</div>
                   <div class="word-input">
-                      <input type="text" class="answer-input input-word" style="width:${word.length * 6}px" autofocus>
+                      <input type="text" class="answer-input input-word" style="width:${word.length * 12}px" autofocus>
                   </div>
                   <div class="word-example word-translation">${wordTranslate}</div>
                   <div class="word-example word-transcription">${transcription}</div>
@@ -143,23 +143,10 @@ const renderCard = async () => {
                       <img src="./img/feeling.png" alt="feeling">
                   </div>
                   <div class="meaning">
-                      <div class="answers-icon">
-                          <img class="answers" src="./icons/answers.png" alt="answers">
-                      </div>
                       <div class="meaning-text">
                           <div class="word-example meaning-name"><span>Значение:</span></div>
                           <div class="word-example meaning-eng">${textMeaning}</div>
                           <div class="word-example meaning-ru">${textMeaningTranslate}</div>
-                      </div>
-                  </div>
-                  <div class="word-example footer">
-                      <div class="delete-icon">
-                          <img class="trash" src="./icons/trash.png" alt="trash">
-                      </div>
-                      <div class="buttons">
-                          <button class="btn answer">Ответ</button>
-                          <button class="btn enter">Enter</button>
-                          <button class="btn next">Далее &#8594</button>
                       </div>
                   </div>
     `
@@ -208,6 +195,10 @@ const BTN_CHECK = document.querySelector('.about-team');
 const BTN_NEXT = document.querySelector('.next');
 const BTN_ANSWER = document.querySelector('.answer');
 const BTN_ENTER = document.querySelector('.enter');
+const CHECKBOX_ABOUT = document.querySelector('.checkbox-translate');
+
+
+
 
 BTN_CHECK.addEventListener('click', async () => {
     receivedWords.length = 0;
