@@ -158,6 +158,12 @@
             <div class="game-icon">
                 <img class="voice" src="../icons/voice.png" alt="voice">
             </div>
+            <div class="answers-icon">
+                <img class="answers" src="../icons/answers.png" alt="answers">
+            </div>
+            <div class="delete-icon">
+                <img class="trash" src="../icons/trash.png" alt="trash">
+            </div>
             <div class="game-spelling">
                 <input type="checkbox" id="switch" />
                 <label for="switch" class="spelling-check"></label>
@@ -167,40 +173,28 @@
                 <span>1/10</span>
             </div>
         </div>
+        <div class="word-input">
+            <input type="text" class="answer-input" autofocus>
+        </div>
         <div class="game-content">
-            <div class="word-example"><span>How long, must this feeling go on?</span></div>
-            <div class="word-example example-translation"><span>Как долго должно продолжаться это чувство?</span></div>
-            <div class="word-input">
-                <input type="text" class="answer-input" autofocus>
-            </div>
-            <div class="word-example word-translation"><span>чувство</span></div>
-            <div class="word-example word-transcription"><span>[ˈfilɪŋ]</span></div>
+            <div class="word-example">How long, must this feeling go on?</div>
+            <div class="word-example example-translation">Как долго должно продолжаться это чувство?</div>
+            <div class="word-example word-translation">чувство</div>
+            <div class="word-example word-transcription">[ˈfilɪŋ]</div>
             <div class="word-example" id="picture">
                 <img src="../img/feeling.png" alt="feeling">
             </div>
             <div class="meaning">
-                <div class="answers-icon">
-                    <img class="answers" src="../icons/answers.png" alt="answers">
-                </div>
-                <div class="meaning-text">
-                    <div class="word-example meaning-name"><span>Значение:</span></div>
-                    <div class="word-example meaning-eng"><span>An emotional state or reaction.</span></div>
-                    <div class="word-example meaning-ru"><span>Эмоциональное состояние или реакция.</span></div>
-                </div>
+                <div class="word-example meaning-name">Значение:</div>
+                <div class="word-example meaning-eng">An emotional state or reaction.</div>
+                <div class="word-example meaning-ru">Эмоциональное состояние или реакция.</div>
             </div>
-            <div class="word-example footer">
-                <div class="delete-icon">
-                    <img class="trash" src="../icons/trash.png" alt="trash">
-                </div>
-                <div class="buttons">
-                    <button class="btn answer">Ответ</button>
-                    <button class="btn enter">Enter</button>
-                    <button class="btn next">Далее &#8594</button>
-                </div>
-            </div>
-
         </div>
-
+        <div class="buttons">
+            <button class="btn answer">Ответ</button>
+            <button class="btn enter">Enter</button>
+            <button class="btn next">Далее &#8594</button>
+        </div>
     </div>
 
     <script src="../js/menu.js"></script>
