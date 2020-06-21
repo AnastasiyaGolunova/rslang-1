@@ -113,6 +113,7 @@ function loadGame() {
     this.startAnimation = function () {
       animationStartTime = Date.now();
       requestAnimationFrame(update);
+      if (res) cancelAnimationFrame(requestAnimationFrame(update));
     };
 
     function update() {
@@ -129,14 +130,15 @@ function loadGame() {
 
       if (positionInAnimation <= 1) {
         requestAnimationFrame(update);
+        res();
       }
 
-      if (positionInAnimation > 1) {
-        let elem = document.querySelector(".star-success");
-        if (elem) {
-          getIncorrectChoice();
-        }
-      }
+      //   if (positionInAnimation > 1) {
+      //     let elem = document.querySelector(".star-success");
+      //     if (elem) {
+      //       getIncorrectChoice();
+      //     }
+      //   }
     }
   }
   let box = new Box();
@@ -145,21 +147,24 @@ function loadGame() {
 
 //correct choice
 
-// function getCorrectChoice() {
-//   let right_translation = document.querySelector(".translation");
+//let stat = [];
+let stat = 0;
+function getCorrectChoice() {
+  let right_translation = document.querySelector(".translation");
 
-//   right_translation.onclick = function (event) {
-//     // play audio of correct click
-//     let audio = new Audio();
-//     audio.src = "/src/audio/correct.mp3";
-//     audio.autoplay = true;
+  right_translation.onclick = function (event) {
+    // play audio of correct click
+    let audio = new Audio();
+    audio.src = "/src/audio/correct.mp3";
+    audio.autoplay = true;
 
-//     // changeAnswersOrder();
-//     loadGame();
-// };
-//answers++;
-//}
-//getCorrectChoice();
+    // changeAnswersOrder();
+    loadGame();
+    stat++;
+  };
+
+  //answers++;
+}
 
 //incorrect choice
 function getIncorrectChoice() {
@@ -171,15 +176,46 @@ function getIncorrectChoice() {
   audio.src = "/src/audio/error.mp3";
   audio.autoplay = true;
 
-  if (elem) {
-    elem.remove();
-    rating.innerHTML += `<div class="star-error"></div>`;
-    //state.errors += 1;
+  elem.remove();
+  rating.innerHTML += `<div class="star-error"></div>`;
+  //state.errors += 1;
 
-    // changeAnswersOrder();
-    loadGame();
-  }
+  // changeAnswersOrder();
+
+  loadGame();
+
   //   else {
   //     alert("GAME OVER" + answers);
   //   }
 }
+
+function selectWrong2() {
+  document.querySelector(".translation2").onclick = function (event) {
+    getIncorrectChoice();
+  };
+}
+
+function selectWrong3() {
+  document.querySelector(".translation3").onclick = function (event) {
+    getIncorrectChoice();
+  };
+}
+
+function selectWrong4() {
+  document.querySelector(".translation4").onclick = function (event) {
+    getIncorrectChoice();
+  };
+}
+
+function res() {
+  let elem = document.querySelector(".star-success");
+  if (elem) {
+    getCorrectChoice();
+    selectWrong2();
+    selectWrong3();
+    selectWrong4();
+  } else {
+    alert("GAME OVER" + " Correct answers: " + stat);
+  }
+}
+res();
