@@ -13,7 +13,8 @@ const soundImage = document.querySelector('#sound');
 const correctWordImage = document.querySelector('#correct-image');
 const nextButton = document.querySelector('#next-button');
 const answerText = document.querySelector('#correct-answer');
-let shuffleAnswers, currentAnswerIndex;
+let roundNumber = 0;
+const statisticsPage = document.querySelector('#statistics');
 //let audio = {
   //  correct: new Audio(''),
     //errors: new Audio(''),
@@ -34,7 +35,7 @@ function startGame() {
 }
 
 startButton.addEventListener('click', startGame);
-
+ 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -116,11 +117,11 @@ function getData(){
             {text: `${thirdWord}`, correct: false},
             {text: `${forthWord}`, correct: false},
         ];
-        currentAnswerIndex = 0;
     shuffle(answers);
     answers.forEach(element => {
     const button = document.createElement('button');
-    button.innerText = element.text;  
+    button.innerText = element.text;
+    button.setAttribute('id','engbtn'); 
     button.classList.add('button')
     if (element.correct) {
         button.dataset.correct = element.correct;
@@ -146,7 +147,29 @@ function getData(){
     ; 
 };
 
-dontKnowButton.addEventListener('click', setCorrectAnswer)
+dontKnowButton.addEventListener('click', setCorrectAnswer);
+nextButton.onclick = () => {
+    for (let i = 0; i < 5; i++) {
+    let elem = document.getElementById('engbtn');
+    elem.parentNode.removeChild(elem);    
+    }
+    dontKnowButton.classList.remove('hide');
+    nextButton.classList.add('hide');
+    soundImage.classList.remove('hide');
+    correctWordImage.classList.add('hide');
+    answerText.classList.add('hide');
+    roundNumber ++;    
+    if (roundNumber === 10) {
+        statisticsPage.classList.remove('hide');
+        nextButton.classList.add('hide');
+        soundImage.classList.add('hide');
+        dontKnowButton.classList.add('hide');
+}
+    else {
+    getData();}
+}
+
+    
 
 
 
