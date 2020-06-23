@@ -15,6 +15,9 @@ const nextButton = document.querySelector('#next-button');
 const answerText = document.querySelector('#correct-answer');
 let roundNumber = 0;
 const statisticsPage = document.querySelector('#statistics');
+const userLevel = document.querySelector('#great');
+const userScore = document.querySelector('#score');
+const playAgain = [];
 let errorCount = 0;
 let correctAnswersCount = 0;
 //let audio = {
@@ -77,7 +80,6 @@ function getRandomInt(max) {
       }
   }
 
-
   function setCorrectAnswer() {
     correctWordImage.classList.remove('hide');
     nextButton.classList.remove('hide');
@@ -108,6 +110,7 @@ function getData(){
         let i = getRandomInt(20);
         console.log(i);
         let soundSrc = data[i].audio;
+        playAgain.push(soundSrc);
         let imageSrc = data[i].image;
         let correctAnswer = data[i].word;
         let answerTranscription = data[i].transcription;
@@ -159,7 +162,15 @@ function getData(){
     
     ; 
 };
-
+function showStatistics() {
+    if (errorCount <= 2) {
+       userLevel.innerText =`Well done!` ;
+       userScore.innerText = `You have ${correctAnswersCount} correct answers.`;
+    } else {
+        userLevel.innerText = `You did great, but you can do better!`;
+        userScore.innerText = `You have only ${correctAnswersCount} correct answers.`;
+    };
+};
 dontKnowButton.addEventListener('click', setCorrectAnswer);
 nextButton.onclick = () => {
     for (let i = 0; i < 5; i++) {
@@ -177,12 +188,14 @@ nextButton.onclick = () => {
         nextButton.classList.add('hide');
         soundImage.classList.add('hide');
         dontKnowButton.classList.add('hide');
+        showStatistics();
+        console.log(playAgain);
 }
     else {
     getData();}
 }
+  
 
-    
 
 
 
