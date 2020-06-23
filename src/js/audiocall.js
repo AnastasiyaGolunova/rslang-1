@@ -15,6 +15,8 @@ const nextButton = document.querySelector('#next-button');
 const answerText = document.querySelector('#correct-answer');
 let roundNumber = 0;
 const statisticsPage = document.querySelector('#statistics');
+let errorCount = 0;
+let correctAnswersCount = 0;
 //let audio = {
   //  correct: new Audio(''),
     //errors: new Audio(''),
@@ -47,11 +49,13 @@ function getRandomInt(max) {
      clearStatusClass(element);
      if(correct) {
          element.classList.add('correct')
+          
      } else {
          element.classList.add('wrong');
          answerText.classList.remove('hide');
          correctWordImage.classList.remove('hide');
          soundImage.classList.add('hide');
+         
      }
  }
   function selectAnswer(element) {
@@ -61,9 +65,19 @@ function getRandomInt(max) {
       Array.from(answerButtons.children).forEach(button => {
           setStatusClass(button, button.dataset.correct)
       })
+
       dontKnowButton.classList.add('hide'); 
       nextButton.classList.remove('hide'); 
+      if (correct) {
+        correctAnswersCount++;
+        console.log('corrects = ', correctAnswersCount);
+      } else {
+          errorCount++
+          console.log('errors = ',errorCount);
+      }
   }
+
+
   function setCorrectAnswer() {
     correctWordImage.classList.remove('hide');
     nextButton.classList.remove('hide');
@@ -73,8 +87,8 @@ function getRandomInt(max) {
     Array.from(answerButtons.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-
-
+    errorCount++;
+    console.log('errors = ',errorCount);
 }
 
 function shuffle(array) {
@@ -127,8 +141,7 @@ function getData(){
         button.dataset.correct = element.correct;
     }
     button.addEventListener('click', selectAnswer) 
-         
-    
+
     answerButtons.appendChild(button);
     
     });
