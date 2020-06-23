@@ -158,7 +158,7 @@ const renderCard = () => {
   const replaceMeaning = findWordInText(word, textMeaning);
 
   const card = `<div class="word-example example">${replaceExample}</div>
-                  <div class="word-example example-translation">${textExampleTranslate}</div>
+                  <div class="word-example example-translation none">${textExampleTranslate}</div>
                   <div class="word-input">
                       <input type="text" class="answer-input input-word" style="width:${
                         word.length * 12
@@ -171,9 +171,8 @@ const renderCard = () => {
                   </div>
                   <div class="meaning">
                       <div class="meaning-text">
-                          <div class="word-example meaning-name"><span>Значение:</span></div>
-                          <div class="word-example meaning-eng mean">${replaceMeaning}</div>
-                          <div class="word-example meaning-ru mean-translation">${textMeaningTranslate}</div>
+                        <div class="word-example meaning-eng mean">${replaceMeaning}</div>
+                        <div class="word-example meaning-ru mean-translation none">${textMeaningTranslate}</div>
                       </div>
                   </div>
     `;
@@ -255,9 +254,9 @@ const audioPlayTurn = () => {
 };
 
 const BTN_CHECK = document.querySelector(".about-team");
-const BTN_NEXT = document.querySelector(".next");
-const BTN_ANSWER = document.querySelector(".answer");
-const BTN_ENTER = document.querySelector(".enter");
+const BTN_NEXT = document.querySelector(".btn-next");
+const BTN_ANSWER = document.querySelector(".btn-answer");
+const BTN_ENTER = document.querySelector(".btn-enter");
 const CHECKBOX_EXAMPLE = document.querySelector(".checkbox-example");
 const CHECKBOX_TRANSLATE = document.querySelector(".checkbox-word-translation");
 const CHECKBOX_TRANSCRIPT = document.querySelector(
@@ -265,6 +264,7 @@ const CHECKBOX_TRANSCRIPT = document.querySelector(
 );
 const CHECKBOX_ASSOCIATION = document.querySelector(".checkbox-association");
 const CHECKBOX_MEANING = document.querySelector(".checkbox-mean");
+const CHECKBOX_ANSWER = document.querySelector('.checkbox-answer');
 
 const checked = (event) => {
   const WORD_EXAMPLE = document.querySelectorAll(".word-example");
@@ -353,6 +353,15 @@ CHECKBOX_MEANING.addEventListener("change", (event) => {
   checked(event);
 });
 
+CHECKBOX_ANSWER.addEventListener('change', () => {
+    const btnAnswer = document.querySelector('.btn-answer')
+    if (CHECKBOX_ANSWER.checked) {
+        btnAnswer.classList.remove('none');
+    } else {
+        btnAnswer.classList.add('none');
+    }
+});
+
 BTN_CHECK.addEventListener("click", async () => {
   receivedWords.length = 0;
   wordsData = await getWords(page, group);
@@ -380,3 +389,4 @@ BTN_ANSWER.addEventListener("click", () => {
     }
   });
 });
+

@@ -164,22 +164,22 @@
     cursor: pointer;
 }
 
-.answer {
+.btn-answer {
     background-color: #76C1F8;
 }
-.answer:hover {
+.btn-answer:hover {
     background-color: #9bd2fa;
 }
-.enter {
+.btn-enter {
     background-color: #FF5757;
 }
-.enter:hover {
+.btn-enter:hover {
 background-color: #ff7e7e;
 }
-.next {
+.btn-next {
     background-color: #80A63F;
 }
-.next:hover {
+.btn-next:hover {
 background-color: #85b82d;
 }
 
