@@ -1,4 +1,5 @@
 //game page creation
+
 function startGame() {
   document.querySelector(".timer").classList.toggle("hidden");
 
@@ -28,10 +29,13 @@ function startGame() {
   <div class="translations">
   <div class="answers"></div>
   </div>
+  
   </div>`;
   document.body.append(gamePage);
   loadGame();
+  animateWord();
 }
+
 let right_translation = document.querySelector(".translation");
 //change answers order
 function changeAnswersOrder() {
@@ -103,119 +107,136 @@ function loadGame() {
       data[Math.floor(Math.random() * Math.floor(20))].wordTranslate;
   };
   loadWrongTranslations();
+}
 
-  //animation
-  function Box() {
-    let animationStartTime = 0;
-    let animationDuration = 4500;
-    let target = document.querySelector(".word");
+//animation & buttons click logic
+function animateWord() {
+  let pos = 0;
+  let id = setInterval(frame, 13);
+  let elem = document.querySelector(".star-success");
+  let target = document.querySelector(".word");
 
-    this.startAnimation = function () {
-      animationStartTime = Date.now();
-      requestAnimationFrame(update);
-      if (res) cancelAnimationFrame(requestAnimationFrame(update));
-    };
+  function frame() {
+    if (pos == 550 && elem) {
+      clearInterval(id);
 
-    function update() {
-      let currentTime = Date.now();
-      let positionInAnimation =
-        (currentTime - animationStartTime) / animationDuration;
-      console.log(positionInAnimation);
+      getIncorrectChoice();
+      //   pos = 0;
+      //   id = setInterval(frame, 13);
 
-      let xPosition = positionInAnimation;
-      let yPosition = positionInAnimation * 500;
-
-      target.style.transform =
-        "translate(" + xPosition + "px, " + yPosition + "px)";
-
-      if (positionInAnimation <= 1) {
-        requestAnimationFrame(update);
-        res();
+      console.log(pos);
+    } else {
+      if (elem) {
+        pos++;
+        //console.log(pos);
+        target.style.top = pos + "px";
       }
-
-      //   if (positionInAnimation > 1) {
-      //     let elem = document.querySelector(".star-success");
-      //     if (elem) {
-      //       getIncorrectChoice();
-      //     }
-      //   }
     }
   }
-  let box = new Box();
-  box.startAnimation();
-}
 
-//correct choice
+  //right&wrong answers counter, buttons click logic
+  let stat = 0;
+  let error = 0;
+  function getCorrectChoice() {
+    let right_translation = document.querySelector(".translation");
 
-//let stat = [];
-let stat = 0;
-function getCorrectChoice() {
-  let right_translation = document.querySelector(".translation");
+    right_translation.onclick = function (event) {
+      // play audio of correct click
+      let audio = new Audio();
+      audio.src = "/src/audio/correct.mp3";
+      audio.autoplay = true;
+      clearInterval(id);
+      pos = 0;
+      id = setInterval(frame, 13);
+      loadGame(event);
+      stat++;
+    };
+  }
 
-  right_translation.onclick = function (event) {
-    // play audio of correct click
+  //incorrect choice
+  function getIncorrectChoice() {
+    // play audio & change picture of wrong click
+    const rating = document.querySelector(".rating");
+    let elem = document.querySelector(".star-success");
+
     let audio = new Audio();
-    audio.src = "/src/audio/correct.mp3";
+    audio.src = "/src/audio/error.mp3";
     audio.autoplay = true;
 
-    // changeAnswersOrder();
-    loadGame();
-    stat++;
-  };
+    if (elem) {
+      audio.autoplay = true;
+      elem.remove();
+      rating.innerHTML += `<div class="star-error"></div>`;
+      loadGame();
+      console.log(error);
+    } else {
+      clearInterval(id);
+      //alert("GAME OVER" + " Correct answers: " + stat);
+      getStatistics();
+    }
+  }
 
-  //answers++;
-}
+  function selectWrong2() {
+    document.querySelector(".translation2").onclick = function (event) {
+      clearInterval(id);
+      pos = 0;
+      id = setInterval(frame, 13);
+      getIncorrectChoice();
+      error++;
+    };
+  }
 
-//incorrect choice
-function getIncorrectChoice() {
-  // play audio & change picture of wrong click
-  const rating = document.querySelector(".rating");
-  let elem = document.querySelector(".star-success");
+  function selectWrong3() {
+    document.querySelector(".translation3").onclick = function (event) {
+      clearInterval(id);
+      pos = 0;
+      id = setInterval(frame, 13);
+      getIncorrectChoice();
+      error++;
+    };
+  }
 
-  let audio = new Audio();
-  audio.src = "/src/audio/error.mp3";
-  audio.autoplay = true;
+  function selectWrong4() {
+    document.querySelector(".translation4").onclick = function (event) {
+      clearInterval(id);
+      pos = 0;
+      id = setInterval(frame, 13);
+      getIncorrectChoice();
+      error++;
+    };
+  }
 
-  elem.remove();
-  rating.innerHTML += `<div class="star-error"></div>`;
-  //state.errors += 1;
+  function res() {
+    let elem = document.querySelector(".star-success");
+    if (elem) {
+      getCorrectChoice();
+      selectWrong2();
+      selectWrong3();
+      selectWrong4();
+    } else {
+      clearInterval(id);
+      getStatistics();
+      //alert("GAME OVER" + " Correct answers: " + stat);
+    }
+  }
+  res();
 
-  // changeAnswersOrder();
+  function getStatistics() {
+    const statictics = document.createElement("div");
+    statictics.classList.add("page-wrapper");
+    statictics.innerHTML = `
+    <div class="statistics-page">
+    <div id="popup2" class="overlay light">
+    <a class="cancel" href="#"></a>
+    <div class="popup">
+        <h2>What the what?</h2>
+        <div class="content">
+      <p>${stat}</p>
+        </div>
+    </div>
+</div>
+</div>`;
 
-  loadGame();
-
-  //   else {
-  //     alert("GAME OVER" + answers);
-  //   }
-}
-
-function selectWrong2() {
-  document.querySelector(".translation2").onclick = function (event) {
-    getIncorrectChoice();
-  };
-}
-
-function selectWrong3() {
-  document.querySelector(".translation3").onclick = function (event) {
-    getIncorrectChoice();
-  };
-}
-
-function selectWrong4() {
-  document.querySelector(".translation4").onclick = function (event) {
-    getIncorrectChoice();
-  };
-}
-
-function res() {
-  let elem = document.querySelector(".star-success");
-  if (elem) {
-    getCorrectChoice();
-    selectWrong2();
-    selectWrong3();
-    selectWrong4();
-  } else {
-    alert("GAME OVER" + " Correct answers: " + stat);
+    document.body.append(statictics);
   }
 }
-res();
