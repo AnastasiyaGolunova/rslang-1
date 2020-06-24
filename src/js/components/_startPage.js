@@ -5,9 +5,9 @@ const startPage = document.createElement("div");
 startPage.classList.add("page-wrapper");
 
 startPage.innerHTML = `<div class="start-page">
-<h2 class="header-block">Savannah</h2>
+<h2 class="header-block">САВАННА</h2>
 <div class="levelSettings">
-            <p class="level__text">Select your level </p>
+            <p class="level__text">Выбери свой уровень </p>
             <select class="level radio-toolbar" id="level">
                 <option value="0">A1</option>
                 <option value="1">A2</option>
@@ -17,13 +17,11 @@ startPage.innerHTML = `<div class="start-page">
                 <option value="5">C2</option>
             </select>
         </div>
-<div class="body-block"><p>The Savannah training helps you build your vocabulary. <br> The more words you know, the more experience
-points
-you'll get.</p></div>
+<div class="body-block"><p>Тренировка Саванна развивает словарный запас. <br> Чем больше слов ты знаешь, тем больше очков опыта получишь.</p></div>
 
 <img class="game-icon" src="img/savannah-icon.svg"></img>
 <div class="button-wrapper">
-<button class="start-btn">start</button>
+<button class="start-btn">Начать</button>
 </div>
 </div>`;
 document.body.prepend(startPage);
