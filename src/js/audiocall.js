@@ -17,9 +17,12 @@ let roundNumber = 0;
 const statisticsPage = document.querySelector('#statistics');
 const userLevel = document.querySelector('#great');
 const userScore = document.querySelector('#score');
+const statisticsAudio = document.createElement('div');
 const playAgain = [];
 let errorCount = 0;
 let correctAnswersCount = 0;
+const restartButton = document.querySelector('#restart');
+const studyButton = document.querySelector('#study');
 //let audio = {
   //  correct: new Audio(''),
     //errors: new Audio(''),
@@ -167,42 +170,53 @@ function showStatistics() {
     switch(errorCount) {
         case 0:
             userLevel.innerText = `Отличная работа!`;
-            userScore.innerText = `${correctAnswersCount} изучено, 0 на изучении. `;
+            userScore.innerText = `${correctAnswersCount} слов изучено, 0 на изучении. `;
             break;
         case 1:    
         case 2:
             userLevel.innerText = `Хорошо!`;
-            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+            userScore.innerText = `${correctAnswersCount} слов изучено, ${errorCount} на изучении. `;
             break;
             case 3:       
         case 4:
             userLevel.innerText = `Неплохо!`;
-            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+            userScore.innerText = `${correctAnswersCount} слов изучено, ${errorCount} на изучении. `;
             break;
             case 5:         
         case 6:
-            userLevel.innerText = `Надо подучить слова!`;
-            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+            userLevel.innerText = `Еще немного и ты справишься!`;
+            userScore.innerText = `${correctAnswersCount} слов изучено, ${errorCount} на изучении. `;
             break; 
             case 7: 
             case 8:
                 case 9:
                 userLevel.innerText = `Ты можешь лучше!`;
-                userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+                userScore.innerText = `${correctAnswersCount} слов изучено, ${errorCount} на изучении. `;
                 break;  
         default:
             userLevel.innerText = `Не сдавайся!`;
-            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;                  
+            userScore.innerText = `${correctAnswersCount} слов изучено, ${errorCount} на изучении. `;                  
     };
     playAgain.forEach(element => {
         const audioItem = document.createElement('audio');
         audioItem.setAttribute('src', `${dataUrl}${element.srcWord}`);
         audioItem.setAttribute('controls', 'controls');
-        const itemTranslation = document.createElement('p');
-        itemTranslation.setAttribute('class', 'item-translation');
-        itemTranslation.innerText = `${element.word}`;
-        statisticsPage.appendChild(itemTranslation);
-        statisticsPage.appendChild(audioItem);
+        //audioItem.setAttribute('data-title', `${element.word}`)
+       // const itemTranslation = document.createElement('p');
+       // itemTranslation.setAttribute('class', 'item-translation');
+       // itemTranslation.innerText = `${element.word}`;
+       // statisticsPage.appendChild(itemTranslation);
+       const audioFigure = document.createElement('figure');
+       audioFigure.setAttribute('class', 'audio-figure');
+       const audioFigcaption = document.createElement('figcaption');
+       audioFigcaption.innerText = `${element.word}`;
+       statisticsAudio.setAttribute('class', 'audio-div');
+       audioFigure.appendChild( audioFigcaption);
+       audioFigure.appendChild(audioItem);
+       statisticsAudio.appendChild(audioFigure)
+        statisticsPage.appendChild(statisticsAudio);
+        restartButton.classList.remove('hide');
+        studyButton.classList.remove('hide');
         console.log(playAgain);
        
     });
