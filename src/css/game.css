@@ -115,7 +115,7 @@
     font-weight: 700;
     color: #939393;
 }
-.answers-icon .answers {
+.difficult-icon .answers {
     height: 50px;
     width: 50px;
     cursor: pointer;
@@ -131,9 +131,18 @@
     flex-direction: column;
     align-items: center;
 }
-.answers-icon {
-    width: 26%;
+.difficult-icon {
+    position: relative;
 }
+.difficult-icon:hover::after { 
+    content: attr(data-title);
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    font-size: 10px;
+    width: 70px; 
+}
+
 .game-footer {
     width: 100%;
     display: flex;
@@ -146,12 +155,24 @@
     cursor: pointer;
 }
 .delete-icon {
-    width: 16%;
+    position: relative;
 }
+
+.delete-icon:hover::after { 
+    content: attr(data-title);
+    position: absolute;
+    top: 50px;
+    left: 45px;
+    font-size: 10px;
+    width: 70px; 
+}
+
 .buttons {
     display: flex;
     flex-direction: row;
     padding-top: 20px;
+    justify-content: center;
+    width: 100%;
 }
 .btn {
     border: none;
@@ -223,7 +244,7 @@ background-color: #85b82d;
     width: 107px;
     height: 50px;
 }
-.answers, .trash {
+.difficult, .trash {
     height: 20px !important;
     width: 20px !important;
 }

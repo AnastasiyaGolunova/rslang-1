@@ -24,30 +24,30 @@ const getWords = async (page, group) => {
 };
 
 let count = 0;
-let curentWord = "";
+let curentWord = '';
 const deleteWords = [];
 const page = 0;
 const group = 0;
 const receivedWords = [];
 const URL_DATA =
-  "https://raw.githubusercontent.com/omirbeck/rslang-data/master/";
-const QUANTITY_WORDS = document.querySelector(".quantity-words");
-const QUANTITY_CARDS = document.querySelector(".quantity-cards");
+  'https://raw.githubusercontent.com/omirbeck/rslang-data/master/';
+const QUANTITY_WORDS = document.querySelector('.quantity-words');
+const QUANTITY_CARDS = document.querySelector('.quantity-cards');
 const MAX_PAGE = 29;
 const MAX_GROUP = 5;
 let allCards = [];
 const arrayNewWords = [];
 const arrayOldWords = [];
 const arrayId = [
-  "5e9f5ee35eb9e72bc21af4a1",
-  "5e9f5ee35eb9e72bc21af4a2",
-  "5e9f5ee35eb9e72bc21af4a3",
-  "5e9f5ee35eb9e72bc21af4a4",
+  '5e9f5ee35eb9e72bc21af4a1',
+  '5e9f5ee35eb9e72bc21af4a2',
+  '5e9f5ee35eb9e72bc21af4a3',
+  '5e9f5ee35eb9e72bc21af4a4',
 ];
 
 const getQuantityWords = async (countPage, countGroup) => {
   const arrayWords = [];
-  console.log(`countGroup=${  countGroup}`);
+  console.log(`countGroup=${countGroup}`);
 
   for (let j = 0; j < countGroup; j += 1) {
     console.log(j);
@@ -93,12 +93,12 @@ const getNewWords = async () => {
         countPage = 0;
         countGroup += 1;
       }
-      console.log("if <");
+      console.log('if <');
       findNewWords();
     } else {
-      console.log("else");
+      console.log('else');
       while (arrayNewWords.length > quantityNewWords) {
-        console.log("while");
+        console.log('while');
         arrayNewWords.pop();
       }
     }
@@ -122,19 +122,19 @@ const quantityCards = () => {
 };
 
 const findWordInText = (word, text) => {
-  const re = new RegExp(word, "mi");
-  const wordReplace = text.replace(re, "[...]");
+  const re = new RegExp(word, 'mi');
+  const wordReplace = text.replace(re, '[...]');
   console.log(wordReplace);
   return wordReplace;
 };
 
-const findRenderChecked = () => {};
+const findRenderChecked = () => { };
 
-const CHECKBOX = document.querySelectorAll(".checkbox");
+const CHECKBOX = document.querySelectorAll('.checkbox');
 
 let wordsData = [];
 
-findWordInText("feeling", "How long, must this feeling go on?");
+findWordInText('feeling', 'How long, must this feeling go on?');
 
 const renderCard = () => {
   // console.log(allCards)
@@ -164,36 +164,34 @@ const renderCard = () => {
   const replaceExample = findWordInText(word, textExample);
   const replaceMeaning = findWordInText(word, textMeaning);
 
-  const card = `<div class="word-example example">${replaceExample}</div>
-                  <div class="word-example example-translation none">${textExampleTranslate}</div>
-                  <div class="word-input">
-                      <input type="text" class="answer-input input-word" style="width:${
-                        word.length * 12
-                      }px" autofocus>
+  const card = `<div class='word-example example'>${replaceExample}</div>
+                  <div class='word-example example-translation none'>${textExampleTranslate}</div>
+                  <div class='word-input'>
+                      <input type='text' class='answer-input input-word' style='width:${word.length * 12}px' autofocus>
                   </div>
-                  <div class="word-example word-translation">${wordTranslate}</div>
-                  <div class="word-example word-transcription">${transcription}</div>
-                  <div class="word-example association" id="picture">
-                      <img src="${URL_DATA}${image}" alt="${word}">
+                  <div class='word-example word-translation'>${wordTranslate}</div>
+                  <div class='word-example word-transcription'>${transcription}</div>
+                  <div class='word-example association' id='picture'>
+                      <img src='${URL_DATA}${image}' alt='${word}'>
                   </div>
-                  <div class="meaning">
-                      <div class="meaning-text">
-                        <div class="word-example meaning-eng mean">${replaceMeaning}</div>
-                        <div class="word-example meaning-ru mean-translation none">${textMeaningTranslate}</div>
+                  <div class='meaning'>
+                      <div class='meaning-text'>
+                        <div class='word-example meaning-eng mean'>${replaceMeaning}</div>
+                        <div class='word-example meaning-ru mean-translation none'>${textMeaningTranslate}</div>
                       </div>
                   </div>
     `;
 
-  const aaa = `<span class="text-example">${textExample}</span>
-    <span class="text-example_translate">${textExampleTranslate}</span>
-    <input class="input input-word" style="width:${word.length * 6}px" ></input>
-    <span class="word-translate">${wordTranslate}</span>
-    <span class="word-transcript">${transcription}</span>
-    <img class="word-image"></img>
-    <span class="text-meaning">${textMeaning}</span>
-    <span class="text-meaning_translate">${textMeaningTranslate}</span>`;
+  const aaa = `<span class='text-example'>${textExample}</span>
+    <span class='text-example_translate'>${textExampleTranslate}</span>
+    <input class='input input-word' style='width:${word.length * 6}px' ></input>
+    <span class='word-translate'>${wordTranslate}</span>
+    <span class='word-transcript'>${transcription}</span>
+    <img class='word-image'></img>
+    <span class='text-meaning'>${textMeaning}</span>
+    <span class='text-meaning_translate'>${textMeaningTranslate}</span>`;
 
-  const CARD = document.querySelector(".game-content");
+  const CARD = document.querySelector('.game-content');
 
   CARD.innerHTML = card;
 
@@ -203,13 +201,13 @@ const renderCard = () => {
 };
 
 const checkWord = () => {
-  const INPUT_WORD = document.querySelector(".input-word");
+  const INPUT_WORD = document.querySelector('.input-word');
   const wordCheck = INPUT_WORD.value.toLowerCase();
   console.log(wordCheck, curentWord);
   if (wordCheck === curentWord) {
-    console.log("good");
+    console.log('good');
   } else {
-    console.log("bad");
+    console.log('bad');
   }
 };
 
@@ -221,100 +219,101 @@ const audioPlay = (src) => {
 
 
 const audioPlayTurn = () => {
-  const CHECKBOX_AUTOPLAY = document.querySelector('.autoplay')  
+  const CHECKBOX_AUTOPLAY = document.querySelector('.autoplay')
 
   if (CHECKBOX_AUTOPLAY.checked) {
-    const {audio, audioExample, audioMeaning } = wordsData[count];
+    const {audio, audioExample, audioMeaning} = wordsData[count];
     const audioArray = [audio];
     const EXAMPLE = document.querySelector('.checkbox-example');
     const MEAN = document.querySelector('.checkbox-mean');
 
     if (EXAMPLE.checked) {
-        audioArray.push(audioExample);
+      audioArray.push(audioExample);
     }
 
     if (MEAN.checked) {
-        audioArray.push(audioMeaning);
+      audioArray.push(audioMeaning);
     }
 
     let firstAudio = 0;
-  
+
     const loadAudio = () => {
       const audioPath = `${URL_DATA}${audioArray[firstAudio]}`;
       firstAudio += 1;
-  
+
       if (firstAudio > audioArray.length) {
         return
       }
-  
-      const audioText = new Audio() 
+
+      const audioText = new Audio()
       audioText.src = audioPath;
       audioText.autoplay = true;
       audioText.addEventListener('ended', () => {
-          loadAudio();
+        loadAudio();
       });
     };
-  
+
     loadAudio();
   }
 
 };
 
-const BTN_CHECK = document.querySelector(".about-team");
-const BTN_NEXT = document.querySelector(".btn-next");
-const BTN_ANSWER = document.querySelector(".btn-answer");
-const BTN_ENTER = document.querySelector(".btn-enter");
-const CHECKBOX_EXAMPLE = document.querySelector(".checkbox-example");
-const CHECKBOX_TRANSLATE = document.querySelector(".checkbox-word-translation");
-const CHECKBOX_TRANSCRIPT = document.querySelector(
-  ".checkbox-word-transcription"
+const BTN_CHECK = document.querySelector('.about-team');
+const BTN_NEXT = document.querySelector('.btn-next');
+const BTN_ANSWER = document.querySelector('.btn-answer');
+const BTN_ENTER = document.querySelector('.btn-enter');
+const CHECKBOX_EXAMPLE = document.querySelector('.checkbox-example');
+const CHECKBOX_TRANSLATE = document.querySelector('.checkbox-word-translation');
+const CHECKBOX_TRANSCRIPT = document.querySelector('.checkbox-word-transcription'
 );
-const CHECKBOX_ASSOCIATION = document.querySelector(".checkbox-association");
-const CHECKBOX_MEANING = document.querySelector(".checkbox-mean");
+const CHECKBOX_ASSOCIATION = document.querySelector('.checkbox-association');
+const CHECKBOX_MEANING = document.querySelector('.checkbox-mean');
 const CHECKBOX_ANSWER = document.querySelector('.checkbox-answer');
+const BTN_TRASH = document.querySelector('.delete-icon');
+const BTN_DIFFICULT = document.querySelector('.difficult-icon');
 
 const checked = (event) => {
-  const WORD_EXAMPLE = document.querySelectorAll(".word-example");
+  const WORD_EXAMPLE = document.querySelectorAll('.word-example');
   let eventClass = event.target.classList[1];
-  eventClass = eventClass.replace(/checkbox-/im, "");
+  eventClass = eventClass.replace(/checkbox-/im, '');
   console.log(eventClass);
 
   if (event.target.checked) {
     WORD_EXAMPLE.forEach((element) => {
       console.log(element);
       if (element.classList.contains(`${eventClass}`)) {
-        element.classList.remove("none");
+        element.classList.remove('none');
       }
     });
   } else {
     WORD_EXAMPLE.forEach((element) => {
       if (element.classList.contains(`${eventClass}`)) {
-        element.classList.add("none");
+        element.classList.add('none');
       }
     });
   }
 };
 
 const findCheckbox = () => {
-  const WORD_EXAMPLE = document.querySelectorAll(".word-example");
-  const CHECKBOX_ALL = document.querySelectorAll(".checkbox");
+  const WORD_EXAMPLE = document.querySelectorAll('.word-example');
+  const CHECKBOX_ALL = document.querySelectorAll('.checkbox');
 
   console.log(CHECKBOX_ALL[0].checked);
 
   CHECKBOX_ALL.forEach((checkbox) => {
     let checkboxClass = checkbox.classList[1];
-    checkboxClass = checkboxClass.replace(/checkbox-/im, "");
+    checkboxClass = checkboxClass.replace(/checkbox-/im, '');
     console.log(checkboxClass);
     if (checkbox.checked) {
       WORD_EXAMPLE.forEach((element) => {
         if (element.classList.contains(`${checkboxClass}`)) {
-          element.classList.remove("none");
+          element.classList.remove('none');
         }
       });
     } else {
       WORD_EXAMPLE.forEach((element) => {
         if (element.classList.contains(`${checkboxClass}`)) {
-          element.classList.add("none");
+          element.classList.add('none');
         }
       });
     }
@@ -338,38 +337,70 @@ const findCheckbox = () => {
   // }
 };
 
-CHECKBOX_EXAMPLE.addEventListener("change", (event) => {
+const removeClass = (elementClass, removeClass) => {
+  if (elementClass && removeClass) {
+    if ((typeof elementClass === 'string') && (typeof removeClass === 'string')) {
+      const div = document.querySelector(`.${elementClass}`);
+      div.classList.remove(`${removeClass}`);
+    }
+  }
+}
+
+const addClass = (elementClass, addClass) => {
+  if (elementClass && addClass) {
+    if ((typeof elementClass === 'string') && (typeof addClass === 'string')) {
+      const div = document.querySelector(`.${elementClass}`);
+      div.classList.add(`${addClass}`);
+    }
+  }
+}
+
+
+const showAnswer = () => {
+  const EXAMPLE = document.querySelector('.example');
+  const MEAN = document.querySelector('.mean');
+  const {textExample, textMeaning} = wordsData[count];
+  if (CHECKBOX_EXAMPLE.checked) {
+    EXAMPLE.innerHTML = textExample;
+      removeClass('example-translation', 'none');
+  };
+
+  if (CHECKBOX_MEANING.checked) {
+    MEAN.innerHTML = textMeaning;
+    removeClass('mean-translation', 'none');
+  };
+}
+
+CHECKBOX_EXAMPLE.addEventListener('change', (event) => {
   checked(event);
 });
 
-CHECKBOX_TRANSLATE.addEventListener("change", (event) => {
+CHECKBOX_TRANSLATE.addEventListener('change', (event) => {
   checked(event);
 });
 
-CHECKBOX_TRANSCRIPT.addEventListener("change", (event) => {
-  const div = document.querySelector(".word-transcription");
+CHECKBOX_TRANSCRIPT.addEventListener('change', (event) => {
   checked(event);
 });
 
-CHECKBOX_ASSOCIATION.addEventListener("change", (event) => {
+CHECKBOX_ASSOCIATION.addEventListener('change', (event) => {
   checked(event);
 });
 
-CHECKBOX_MEANING.addEventListener("change", (event) => {
-  const div = document.querySelector(".meaning-eng");
+CHECKBOX_MEANING.addEventListener('change', (event) => {
   checked(event);
 });
 
 CHECKBOX_ANSWER.addEventListener('change', () => {
-    const btnAnswer = document.querySelector('.btn-answer')
-    if (CHECKBOX_ANSWER.checked) {
-        btnAnswer.classList.remove('none');
-    } else {
-        btnAnswer.classList.add('none');
-    }
+  const btnAnswer = document.querySelector('.btn-answer')
+  if (CHECKBOX_ANSWER.checked) {
+    btnAnswer.classList.remove('none');
+  } else {
+    btnAnswer.classList.add('none');
+  }
 });
 
-BTN_CHECK.addEventListener("click", async () => {
+BTN_CHECK.addEventListener('click', async () => {
   receivedWords.length = 0;
   wordsData = await getWords(page, group);
   // await getNewWords();
@@ -379,21 +410,40 @@ BTN_CHECK.addEventListener("click", async () => {
   // checkWord();
 });
 
-BTN_NEXT.addEventListener("click", () => {
+
+BTN_ENTER.addEventListener('click', () => {
+  const INPUT_WORD = document.querySelector('.answer-input');
+  const {word} = wordsData[count];
+  if (INPUT_WORD.value === word) {
+    count += 1;
+    renderCard();
+    findCheckbox();
+    audioPlayTurn();
+  }
+});
+
+
+BTN_ANSWER.addEventListener('click', () => {
+  findCheckbox();
+  const ANSWER_INPUT = document.querySelector('.answer-input');
+  const {word} = wordsData[count];
+  ANSWER_INPUT.value = word;
+  showAnswer();
+});
+
+
+BTN_NEXT.addEventListener('click', () => {
   count += 1;
   renderCard();
   findCheckbox();
   audioPlayTurn();
-  console.log("next");
+  console.log('next');
 });
 
-BTN_ANSWER.addEventListener("click", () => {
-  console.log("answer");
-  console.log(CHECKBOX);
-  CHECKBOX.forEach((element) => {
-    if (element.checked) {
-      console.log(element);
-    }
-  });
+BTN_TRASH.addEventListener('click', () => {
+  console.log('trash');
 });
 
+BTN_DIFFICULT.addEventListener('click', () => {
+  console.log('difficult');
+});
