@@ -110,11 +110,11 @@ function getData(){
         let i = getRandomInt(20);
         console.log(i);
         let soundSrc = data[i].audio;
-        playAgain.push(soundSrc);
         let imageSrc = data[i].image;
         let correctAnswer = data[i].wordTranslate;
         let answerTranscription = data[i].transcription;
         let answer = data[i].word;
+        playAgain.push({srcWord: `${soundSrc}`, word: `${correctAnswer}`});
         let pageSoundUrl = `${dataUrl}${soundSrc}`;
         let pageImageUrl = `${dataUrl}${imageSrc}`;
         console.log(pageImageUrl);
@@ -161,16 +161,54 @@ function getData(){
     })
     
     ; 
+    
 };
 function showStatistics() {
-    if (errorCount <= 2) {
-       userLevel.innerText =`Well done!` ;
-       userScore.innerText = `You have ${correctAnswersCount} correct answers.`;
-    } else {
-        userLevel.innerText = `You did great, but you can do better!`;
-        userScore.innerText = `You have only ${correctAnswersCount} correct answers.`;
+    switch(errorCount) {
+        case 0:
+            userLevel.innerText = `Отличная работа!`;
+            userScore.innerText = `${correctAnswersCount} изучено, 0 на изучении. `;
+            break;
+        case 1:    
+        case 2:
+            userLevel.innerText = `Хорошо!`;
+            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+            break;
+            case 3:       
+        case 4:
+            userLevel.innerText = `Неплохо!`;
+            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+            break;
+            case 5:         
+        case 6:
+            userLevel.innerText = `Надо подучить слова!`;
+            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+            break; 
+            case 7: 
+            case 8:
+                case 9:
+                userLevel.innerText = `Ты можешь лучше!`;
+                userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;
+                break;  
+        default:
+            userLevel.innerText = `Не сдавайся!`;
+            userScore.innerText = `${correctAnswersCount} изучено, ${errorCount} на изучении. `;                  
     };
+    playAgain.forEach(element => {
+        const audioItem = document.createElement('audio');
+        audioItem.setAttribute('src', `${dataUrl}${element.srcWord}`);
+        audioItem.setAttribute('controls', 'controls');
+        const itemTranslation = document.createElement('p');
+        itemTranslation.setAttribute('class', 'item-translation');
+        itemTranslation.innerText = `${element.word}`;
+        statisticsPage.appendChild(itemTranslation);
+        statisticsPage.appendChild(audioItem);
+        console.log(playAgain);
+       
+    });
+    
 };
+
 dontKnowButton.addEventListener('click', setCorrectAnswer);
 nextButton.onclick = () => {
     for (let i = 0; i < 5; i++) {
@@ -189,7 +227,7 @@ nextButton.onclick = () => {
         soundImage.classList.add('hide');
         dontKnowButton.classList.add('hide');
         showStatistics();
-        console.log(playAgain);
+        
 }
     else {
     getData();}

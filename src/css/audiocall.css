@@ -126,6 +126,10 @@
     --hue: var(--hue-neutral);
     background-color: hsl(var(--hue), 50%, 50%);
   }
+  .next-button{
+    width: 140px;
+  }
+ 
   
   .next-button, .dont-know-button, .button {
     font-size: 1.5rem;
@@ -150,3 +154,5 @@
     from {opacity: 0;}
   to {opacity: 1;}
   }
+
+  
