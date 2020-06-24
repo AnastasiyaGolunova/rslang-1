@@ -23,6 +23,7 @@
     --hue: var(--hue-correct);
     width: 900px;
   max-width: 80%;
+  height: 80%;
   background-color: hsl(var(--hue), 45%, 75%);
   border-radius: 5px;
   padding: 10px;
@@ -36,37 +37,42 @@
       flex-direction: column;
   }
 .audio {
-    margin-top: 10%;
+    margin-top: 0;
     display: flex;
     justify-content: center;
     justify-items: center;
     flex-direction: column;
 }
 .audio h2 {
-  margin: 0 auto;
+  margin: 20px auto 10px;
   font-size: 1.5rem;
+  animation-name: invisible;
+    animation-duration: 1s;
   
 }
 .image {
-  margin: 0 auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 15%;
-    padding-top: 10px;
-} 
-.leo {
-  width: 270px;
-  height: 270px;
-  margin: 0 auto;
-}
-
-.sound {
   width: 113px;
   height: 113px;
   margin: 0 auto;
-    margin-top: 0;
+    border-radius: 50%;
+    animation-name: invisible;
+    animation-duration: 2s;
+} 
+.leo {
+  margin: 0 auto;
+  width: 270px;
+  height: 270px;
+}
+
+.sound {
+  margin: 40px auto 10px;
+  width: 113px;
+  height: 113px;
+ 
+   
     border-radius: 50%;
     animation: radial-pulse 1s 0.8s;
+   
     
 }
 @keyframes radial-pulse {
@@ -78,10 +84,8 @@
     box-shadow: 0 0 0 40px rgba(27, 88, 38, 0);
   }
 }
-.audiocall {
-  cursor: pointer;
-}
 .button-grid {
+  
     display: grid;
     grid-template-columns: repeat(5, auto);
     gap: 10px;
@@ -89,6 +93,7 @@
   }
 
   .button {
+    margin-top: 80px;
     --hue: var(--hue-correct);
     border: 1px solid hsl(var(--hue), 100%, 30%);
     background-color: hsl(var(--hue), 50%, 50%);
@@ -96,6 +101,8 @@
     padding: 5px 10px;
     color: black;
     outline: none;
+    animation-name: invisible;
+    animation-duration: 1s;
   }
   .button:hover {
     border-color: black;
@@ -106,16 +113,26 @@
   .button.correct {
     --hue: var(--hue-correct);
     color: black;
+    animation-name: invisible;
+    animation-duration: 1s;
   }
   
   .button.wrong {
     --hue: var(--hue-wrong);
+    animation-name: invisible;
+    animation-duration: 1s;
+  }
+  .start-button {
+    --hue: var(--hue-neutral);
+    background-color: hsl(var(--hue), 50%, 50%);
   }
   
-  .start-button, .next-button, .dont-know-button, .button {
+  .next-button, .dont-know-button, .button {
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 10px 20px;
+    animation-name: invisible;
+    animation-duration: 1s;
+    
   }
   
   .controls {
@@ -126,4 +143,10 @@
   
   .hide {
     display: none;
+    
+  }
+
+  @keyframes invisible {
+    from {opacity: 0;}
+  to {opacity: 1;}
   }

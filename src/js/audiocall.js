@@ -112,9 +112,9 @@ function getData(){
         let soundSrc = data[i].audio;
         playAgain.push(soundSrc);
         let imageSrc = data[i].image;
-        let correctAnswer = data[i].word;
+        let correctAnswer = data[i].wordTranslate;
         let answerTranscription = data[i].transcription;
-        let answerTranslation = data[i].wordTranslate;
+        let answer = data[i].word;
         let pageSoundUrl = `${dataUrl}${soundSrc}`;
         let pageImageUrl = `${dataUrl}${imageSrc}`;
         console.log(pageImageUrl);
@@ -123,10 +123,10 @@ function getData(){
         console.log(newData);
         let j = getRandomInt(16);
         console.log(j);
-        let firstWord = newData[j].word;
-        let secondWord = newData[j + 1].word;
-        let thirdWord = newData[j + 2].word;
-        let forthWord = newData[j + 3].word;
+        let firstWord = newData[j].wordTranslate;
+        let secondWord = newData[j + 1].wordTranslate;
+        let thirdWord = newData[j + 2].wordTranslate;
+        let forthWord = newData[j + 3].wordTranslate;
         let answers = [
             {text: `${correctAnswer}`, correct: true},
             {text: `${firstWord}`, correct: false},
@@ -156,7 +156,7 @@ function getData(){
         audioCall.setAttribute('src', `${pageSoundUrl}`);
         audio.play();
         correctWordImage.setAttribute('src', `${pageImageUrl}`);
-        answerText.innerText=`${correctAnswer} - ${answerTranscription} - ${answerTranslation}`;
+        answerText.innerText=`${answer} - ${answerTranscription} - ${correctAnswer}`;
         
     })
     
