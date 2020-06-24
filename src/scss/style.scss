@@ -67,6 +67,15 @@ body {
             background-image: url('./../img/1.jfif');
             background-repeat: no-repeat;
             background-size: cover;
+
+            .group-words {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                height: 10%;
+            }
         }
 
         .img-sound,

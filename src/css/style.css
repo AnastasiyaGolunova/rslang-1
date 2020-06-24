@@ -59,6 +59,14 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.wrapper .game-wrapper .img-puzzle .group-words {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 10%;
+}
 .wrapper .game-wrapper .img-sound,
 .wrapper .game-wrapper select {
   border: unset;
