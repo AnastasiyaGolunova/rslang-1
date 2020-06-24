@@ -117,18 +117,15 @@ function animateWord() {
   let target = document.querySelector(".word");
 
   function frame() {
-    if (pos == 550 && elem) {
+    if (pos == 550) {
       clearInterval(id);
-
       getIncorrectChoice();
-      //   pos = 0;
-      //   id = setInterval(frame, 13);
-
+      animateWord();
       console.log(pos);
     } else {
       if (elem) {
         pos++;
-        //console.log(pos);
+        console.log(pos);
         target.style.top = pos + "px";
       }
     }
@@ -164,10 +161,10 @@ function animateWord() {
     audio.autoplay = true;
 
     if (elem) {
-      audio.autoplay = true;
       elem.remove();
       rating.innerHTML += `<div class="star-error"></div>`;
       loadGame();
+
       console.log(error);
     } else {
       clearInterval(id);
@@ -214,7 +211,7 @@ function animateWord() {
       selectWrong3();
       selectWrong4();
     } else {
-      clearInterval(id);
+      //clearInterval(id);
       getStatistics();
       //alert("GAME OVER" + " Correct answers: " + stat);
     }
@@ -222,6 +219,7 @@ function animateWord() {
   res();
 
   function getStatistics() {
+    //window.clearInterval(id);
     const statictics = document.createElement("div");
     statictics.classList.add("page-wrapper");
     statictics.innerHTML = `
