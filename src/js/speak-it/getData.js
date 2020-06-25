@@ -8,8 +8,7 @@ const groupValue = document.querySelector('.group').value;
 const cardsWrap = document.querySelector('.cards');
 
 const imgTrain = document.querySelector('.default_img');
-const wordTranscript = document.querySelector('.word-transcript');
-const wordTranslate = document.querySelector('.word-translate');
+const wdTranslate = document.querySelector('.word-translate');
 let i = 0;
 
 async function getData (){
