@@ -180,6 +180,7 @@
   }
   .audio-div{
     margin: -70% 90%;  
+
   }
   .audio-figure{
     margin-top: -10px;
@@ -187,7 +188,9 @@
   .audio-figure audio {
     height: 20px;
     outline: none;
+  
   }
 .audio-figure figcaption {
   font-style: italic;
+  text-align: justify;
 }

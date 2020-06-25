@@ -13,23 +13,21 @@ const soundImage = document.querySelector('#sound');
 const correctWordImage = document.querySelector('#correct-image');
 const nextButton = document.querySelector('#next-button');
 const answerText = document.querySelector('#correct-answer');
-let roundNumber = 0;
 const statisticsPage = document.querySelector('#statistics');
 const userLevel = document.querySelector('#great');
 const userScore = document.querySelector('#score');
 const statisticsAudio = document.createElement('div');
 const playAgain = [];
-let errorCount = 0;
-let correctAnswersCount = 0;
 const restartButton = document.querySelector('#restart');
 const studyButton = document.querySelector('#study');
-//let audio = {
-  //  correct: new Audio(''),
-    //errors: new Audio(''),
-    //success: new Audio(''),
-    //failure: new Audio(''),
-//};
+const correctSound = document.createElement('audio');
+const wrongSound = document.createElement('audio');
 
+wrongSound.setAttribute('src', 'mp3/wrong.mp3');
+correctSound.setAttribute('src', 'mp3/correct.mp3');
+let roundNumber = 0;
+let errorCount = 0;
+let correctAnswersCount = 0;
 function startGame() {
     startButton.classList.add('hide');
     leoImage.classList.add('hide');
@@ -43,6 +41,9 @@ function startGame() {
 }
 
 startButton.addEventListener('click', startGame);
+restartButton.onclick = () => {
+    window.location.reload()
+};
  
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -75,9 +76,14 @@ function getRandomInt(max) {
       dontKnowButton.classList.add('hide'); 
       nextButton.classList.remove('hide'); 
       if (correct) {
+        
+        correctSound.play();
+        console.log(correctSound);
         correctAnswersCount++;
         console.log('corrects = ', correctAnswersCount);
       } else {
+        
+        wrongSound.play();
           errorCount++
           console.log('errors = ',errorCount);
       }
@@ -93,6 +99,7 @@ function getRandomInt(max) {
         setStatusClass(button, button.dataset.correct)
     })
     errorCount++;
+    wrongSound.play();
     console.log('errors = ',errorCount);
 }
 
@@ -201,11 +208,6 @@ function showStatistics() {
         const audioItem = document.createElement('audio');
         audioItem.setAttribute('src', `${dataUrl}${element.srcWord}`);
         audioItem.setAttribute('controls', 'controls');
-        //audioItem.setAttribute('data-title', `${element.word}`)
-       // const itemTranslation = document.createElement('p');
-       // itemTranslation.setAttribute('class', 'item-translation');
-       // itemTranslation.innerText = `${element.word}`;
-       // statisticsPage.appendChild(itemTranslation);
        const audioFigure = document.createElement('figure');
        audioFigure.setAttribute('class', 'audio-figure');
        const audioFigcaption = document.createElement('figcaption');
