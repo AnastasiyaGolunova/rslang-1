@@ -1,6 +1,6 @@
 'use strict';
 
-cardsWrap.addEventListener('click', function (event) {
+cardsWrap.addEventListener('click', function learn (event) {
     const check = event.target;
     if(check.matches('.fa')){
         const atr = event.target.getAttribute('data-active');
@@ -20,4 +20,9 @@ cardsWrap.addEventListener('click', function (event) {
         }
         tr();
     }
+    strGame.addEventListener('click', function (event) {
+        const start = event.target;
+        cardsWrap.removeEventListener('click', learn);
+        console.log('game');
+    });
 });
