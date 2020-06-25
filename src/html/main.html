@@ -63,8 +63,8 @@
                                     <option value="50">50</option>
                                 </select>
                             </li>
-                            <li class="li-dropdown cards"><img class="ticket" src="../icons/ticket.png" alt="ticket"><a
-                                    href="#" class="pointer">Карточки в день</a>
+                            <li class="li-dropdown cards-number"><img class="ticket" src="../icons/ticket.png"
+                                    alt="ticket"><a href="#" class="pointer">Карточки в день</a>
                                 <select id="number" name="number">
                                     <option value="5">5</option>
                                     <option value="10">10</option>
@@ -148,42 +148,44 @@
             </div>
         </div>
     </nav>
-    <div class="cards">
-        <div class="card">
-            <div id="card-container">
-                <div class="card-name learned">
-                    <span>Изучено</span>
-                </div>
-                <img class="approval" src="../icons/approval.png" alt="approval">
-                <div class="word-count">
-                    <span>56 слов</span>
+    <div class="cards-wrapper">
+        <div class="cards">
+            <div class="card">
+                <div id="card-container">
+                    <div class="card-name learned">
+                        <span>Изучено</span>
+                    </div>
+                    <img class="approval" src="../icons/approval.png" alt="approval">
+                    <div class="word-count">
+                        <span>56 слов</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div id="card-container">
-                <div class="card-name day">
-                    <span>Слова дня</span>
+            <div class="card">
+                <div id="card-container">
+                    <div class="card-name day">
+                        <span>Слова дня</span>
+                    </div>
+                    <div class="word-count">
+                        <div class="progress"><progress max="100" value="80"></progress></div>
+                        <span class="balance">Осталось:</span>
+                    </div>
+                    <button class="start">Начать изучение</button>
                 </div>
-                <div class="word-count">
-                    <div class="progress"><progress max="100" value="80"></progress></div>
-                    <span class="balance">Осталось:</span>
-                </div>
-                <button class="start">Начать изучение</button>
             </div>
-        </div>
 
-        <div class="card">
-            <div id="card-container">
-                <div class="card-name difficult">
-                    <span>Сложные слова</span>
+            <div class="card">
+                <div id="card-container">
+                    <div class="card-name difficult">
+                        <span>Сложные слова</span>
+                    </div>
+                    <div class="word-count">
+                        <div class="progress"><progress max="100" value="80"></progress></div>
+                        <span class="balance">Осталось:</span>
+                    </div>
+                    <button class="start">Начать изучение</button>
                 </div>
-                <div class="word-count">
-                    <div class="progress"><progress max="100" value="80"></progress></div>
-                    <span class="balance">Осталось:</span>
-                </div>
-                <button class="start">Начать изучение</button>
             </div>
         </div>
     </div>

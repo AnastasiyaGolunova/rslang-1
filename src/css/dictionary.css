@@ -4,13 +4,16 @@
     z-index: 0;
     text-align: center;
     align-items: center;
+    width: 100%;
 }
 
- .header {
+.header {
     padding-top: 1em;
+    width: 38vw;
 }
-.dictionary-list.content {
-    padding: 1em;
+.content {
+    padding-top: 1em;
+    width: 38vw;
 }
 .dictionary-list.name h2 {
     font-size: 26px;
@@ -34,6 +37,7 @@
     border-radius: 4px;
     margin-top: 1em;
     z-index: 0;
+    width: 38vw;
 }
 .filter-item {
     padding-right: 30px;
@@ -49,23 +53,23 @@
     cursor: pointer;
     text-decoration: underline;
 }
-.dictionary-list .word-list {
+.word-list {
     background-color: #ffffff;
     opacity: 65%;
     border-radius: 4px;
     padding: 0 36px;
 }
-.dictionary-list .word {
+.word {
     padding: 0;
     display: flex;
     flex-direction: row;
     margin: 20px;
 }
-.dictionary-list .icon {
+.icon {
     padding: 0;
+    align-content: baseline;
 }
-.dictionary-list .words {
-    padding: 0 150px 0 0;
+.words {
     margin-left: 10px;
     align-items: baseline;
 }
@@ -93,8 +97,10 @@
     width: 145px;
     align-self: flex-end;
 }
-.dictionary-list .button {
+.button {
     margin-top: 20px;
+    width: 38vw;
+    align-content: center;
 }
 
 @media screen and (max-width: 320px) {
@@ -102,7 +108,9 @@
 .dictionary-list.filter {
     font-size: 8px;
     padding: 4px;
-    width: 85%;
+    width: 30%;
+    flex-direction: column;
+    text-align: start;
 }
 .voice, .trash {
     height: 15px;

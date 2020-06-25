@@ -5,8 +5,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 	font-family: "Roboto";
-	height: 100vh;
-	margin: -20px 0 50px;
+	height: 100%;
 }
 
 h1 {
@@ -92,6 +91,7 @@ input {
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
+	margin: 11em;
 }
 
 .form-container {
@@ -227,40 +227,47 @@ input {
 }
 
 @media screen and (max-width: 320px) {
-.signup {
-	font-size: 24px;
-}
-button {
-	font-size: 7px;
-	padding: 7px 20px;
-	width: 90px;
-	overflow-wrap: break-word;
-}
-.right-greeting {
-	font-size: 24px;
-}
-.right {
-	font-size: 10px;
-}
-.right-button {
-	overflow-wrap: break-word;
-	width: 110px;
-	font-size: 8px;
-}
-.container {
-	width: 285px;
-	min-height: 375px;
-}
-input {
-	font-size: 12px;
-}
-.left-greeting {
-	font-size: 16px;
-}
-.left {
-	font-size: 10px;
-}
-h1 {
-	font-size: 24px;
-}
+	.signup {
+		font-size: 14px;
+		margin: 0px;
+	}
+	button {
+		font-size: 5px;
+		padding: 7px 15px;
+		width: 108px;
+	}
+	.left-button {
+		width: 60px !important;
+	}
+	.right-greeting {
+		font-size: 10px;
+	}
+	.right {
+		font-size: 8px;
+		padding-left: 70px;
+	}
+	.right-button {
+		width: 110px;
+		font-size: 5px;
+	}
+	.container {
+		width: 285px;
+		min-height: 275px;
+	}
+	.signup-button {
+		width: 60px !important;
+	}
+	input {
+		font-size: 7px;
+		padding: 9px 13px;
+	}
+	.left-greeting {
+		font-size: 9px;
+	}
+	.left {
+		font-size: 7px;
+	}
+	h1 {
+		font-size: 14px;
+	}
 }
