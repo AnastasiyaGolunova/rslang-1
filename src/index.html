@@ -46,7 +46,7 @@
                     <li class="rs-li"><a href="#" class="pointer about-team">О команде</a></li>
                     <li class="rs-li"><a href="#" class="pointer"><img class="services" src="./icons/services.png"
                                 alt="services"></a>
-                        <ul class="ul-dropdown settings">
+                        <ul class="ul-dropdown settings" id="settings">
                             <li class="li-dropdown words"><img class="update" src="./icons/update.png" alt="update">
                                 <a href="#" class="pointer">Слова в день</a>
                                 <input type="number" class="input-number quantity-words" name="quantity" min="0"
@@ -60,28 +60,28 @@
                             <li class="li-dropdown"><img class="document" src="./icons/document.png" alt="document"><a
                                     href="#" class="pointer">Пример</a>
                                 <div class="switcher">
-                                    <input type="checkbox" class="checkbox checkbox-example" id="switch-5" />
+                                    <input data-action="example" type="checkbox" class="checkbox checkbox-example" id="switch-5" />
                                     <label for="switch-5"></label>
                                 </div>
                             </li>
                             <li class="li-dropdown"><img class="translation" src="./icons/translation.png"
                                     alt="translation"><a href="#" class="pointer">Перевод слова</a>
                                 <div class="switcher">
-                                    <input type="checkbox" class="checkbox checkbox-word-translation" id="switch-1" />
+                                    <input data-action="translate" type="checkbox" class="checkbox checkbox-word-translation" id="switch-1" checked/>
                                     <label for="switch-1"></label>
                                 </div>
                             </li>
                             <li class="li-dropdown"><img class="hangouts" src="./icons/hangouts.png" alt="hangouts"><a
                                     href="#" class="pointer">Транскрипция</a>
                                 <div class="switcher">
-                                    <input type="checkbox" class="checkbox checkbox-word-transcription" id="switch-3" />
+                                    <input data-action="transcript" type="checkbox" class="checkbox checkbox-word-transcription" id="switch-3" />
                                     <label for="switch-3"></label>
                                 </div>
                             </li>
                             <li class="li-dropdown"><img class="image" src="./icons/picture.png" alt="picture"><a
                                     href="#" class="pointer">Ассоциация</a>
                                 <div class="switcher">
-                                    <input type="checkbox" class="checkbox checkbox-association" id="switch-4" />
+                                    <input data-action="association" type="checkbox" class="checkbox checkbox-association" id="switch-4" />
                                     <label for="switch-4"></label>
                                 </div>
                             </li>
@@ -95,7 +95,7 @@
                             <li class="li-dropdown"><img class="solve" src="./icons/solve.png" alt="solve"><a href="#"
                                     class="pointer">Показать ответ</a>
                                 <div class="switcher">
-                                    <input type="checkbox" class="checkbox checkbox-answer" id="switch-6" />
+                                    <input type="checkbox" class="checkbox checkbox-answer" id="switch-6" checked/>
                                     <label for="switch-6"></label>
                                 </div>
                             </li>
@@ -137,7 +137,7 @@
                 <img class="voice" src="./icons/voice.png" alt="voice">
             </div>
             <div class="game-spelling">
-                <input type="checkbox" class="autoplay" id="switch" />
+                <input data-action="autoPlay" type="checkbox" class="autoplay" id="switch" />
                 <label for="switch" class="spelling-check"></label>
                 <span class="spelling-text">Автопроизношение</span>
             </div>
@@ -167,15 +167,15 @@
         </div>
         <div class="word-example game-footer">
             <div class="delete-icon" data-title="Удалить слово">
-                <img class="trash" src="./icons/trash.png" alt="trash">
+                <img data-action="trash" class="trash" src="./icons/trash.png" alt="trash">
             </div>
             <div class="difficult-icon" data-title="Добавить в сложные слова">
-                <img class="answers" src="./icons/answers.png" alt="answers">
+                <img data-action="difficult" class="answers" src="./icons/answers.png" alt="answers">
             </div>
             <div class="buttons card-button">
-                <button class="btn btn-answer none">Ответ</button>
-                <button class="btn btn-enter">Enter</button>
-                <button class="btn btn-next">Далее &#8594</button>
+                <button data-action="answer" class="btn btn-answer">Ответ</button>
+                <button data-action="send" class="btn btn-enter">Enter</button>
+                <button data-action="next" class="btn btn-next">Далее &#8594</button>
             </div>
         </div>
 
