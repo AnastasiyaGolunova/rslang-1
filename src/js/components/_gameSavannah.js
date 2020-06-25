@@ -1,4 +1,9 @@
 //game page creation
+let stat = 0;
+let error = 0;
+
+let learnedWords = [];
+let newWords = [];
 
 function startGame() {
   document.querySelector(".timer").classList.toggle("hidden");
@@ -33,7 +38,7 @@ function startGame() {
   </div>`;
   document.body.append(gamePage);
   loadGame();
-  animateWord();
+  animateGame();
 }
 
 let right_translation = document.querySelector(".translation");
@@ -110,7 +115,7 @@ function loadGame() {
 }
 
 //animation & buttons click logic
-function animateWord() {
+function animateGame() {
   let pos = 0;
   let id = setInterval(frame, 13);
   let elem = document.querySelector(".star-success");
@@ -120,20 +125,19 @@ function animateWord() {
     if (pos == 550) {
       clearInterval(id);
       getIncorrectChoice();
-      animateWord();
-      console.log(pos);
+      animateGame();
+      //console.log(pos);
     } else {
       if (elem) {
         pos++;
-        console.log(pos);
+        //console.log(pos);
         target.style.top = pos + "px";
       }
     }
   }
 
   //right&wrong answers counter, buttons click logic
-  let stat = 0;
-  let error = 0;
+
   function getCorrectChoice() {
     let right_translation = document.querySelector(".translation");
 
@@ -190,6 +194,7 @@ function animateWord() {
       id = setInterval(frame, 13);
       getIncorrectChoice();
       error++;
+      right_translation;
     };
   }
 
@@ -212,29 +217,61 @@ function animateWord() {
       selectWrong4();
     } else {
       //clearInterval(id);
+      console.log(error);
+      console.log(stat);
       getStatistics();
       //alert("GAME OVER" + " Correct answers: " + stat);
     }
   }
   res();
+}
 
-  function getStatistics() {
-    //window.clearInterval(id);
-    const statictics = document.createElement("div");
-    statictics.classList.add("page-wrapper");
-    statictics.innerHTML = `
+//Statistic page
+function getStatistics() {
+  const statictics = document.createElement("div");
+  statictics.classList.add("page-wrapper");
+  statictics.innerHTML = `
     <div class="statistics-page">
-    <div id="popup2" class="overlay light">
-    <a class="cancel" href="#"></a>
-    <div class="popup">
-        <h2>What the what?</h2>
-        <div class="content">
-      <p>${stat}</p>
-        </div>
-    </div>
+    <h2 class="header-block">изучено слов: ${stat}</h2>
+    <div class="body-block"></div>
+    <div class="button-wrapper">
+<button class="continue-btn">продолжить тренировку</button>
 </div>
 </div>`;
 
-    document.body.append(statictics);
-  }
+  document.body.append(statictics);
+
+  //Continue button click
+  const continueBtn = document.querySelector(".continue-btn");
+  continueBtn.addEventListener("click", () => {
+    function timer(from, to) {
+      let current = from;
+
+      document.body.innerHTML = `
+        <div class="game-page">
+    
+        <div class="timer">
+        <div class="circle-timer">
+            <div class="timer-slot">
+                <div class="timer-lt"></div>
+            </div>
+            <div class="timer-slot">
+                <div class="timer-rt"></div>
+            </div>
+            <div class="count"></div>
+        </div>
+      </div>
+      </div>`;
+
+      const timerId = setInterval(function () {
+        document.querySelector(".count").innerHTML = current;
+        if (current == to) {
+          clearInterval(timerId);
+          startGame();
+        }
+        current--;
+      }, 1000);
+    }
+    timer(3, 0);
+  });
 }
