@@ -1,27 +1,28 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 :root {
-    --hue-neutral: 201;
-    --hue-wrong: 0;
-    --hue-correct: 100;
-  }
-  body {
-      font-family: 'Roboto', sans-serif;
-    --hue: var(--hue-neutral);
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-color: hsl(var(--hue), 45%, 75%);
-  }
-  
+  --hue-neutral: 201;
+  --hue-wrong: 0;
+  --hue-correct: 100;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  --hue: var(--hue-neutral);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(var(--hue), 45%, 75%);
+}
 .container {
-    --hue: var(--hue-correct);
-    width: 900px;
+  --hue: var(--hue-correct);
+  width: 900px;
   max-width: 80%;
   height: 80%;
   background-color: hsl(var(--hue), 45%, 75%);
@@ -29,167 +30,140 @@
   padding: 10px;
   box-shadow: 0 0 10px 2px;
 }
-  .description {
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-  }
+.description,
 .audio {
-    margin-top: 0;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    flex-direction: column;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .audio h2 {
   margin: 20px auto 10px;
-  font-size: 1.5rem;
-  animation-name: invisible;
-    animation-duration: 1s;
-  
 }
-.image {
+.image,
+.sound {
   width: 113px;
   height: 113px;
+  border-radius: 50%;
+}
+.image {
   margin: 0 auto;
-    border-radius: 50%;
-    animation-name: invisible;
-    animation-duration: 2s;
-} 
+  animation-name: invisible;
+  animation-duration: 2s;
+}
 .leo {
   margin: 0 auto;
   width: 270px;
   height: 270px;
 }
-
 .sound {
   margin: 40px auto 10px;
-  width: 113px;
-  height: 113px;
- 
-   
-    border-radius: 50%;
-    animation: radial-pulse 1s 0.8s;
-   
-    
+  animation: radial-pulse 1s 0.8s;
 }
 @keyframes radial-pulse {
   0% {
     box-shadow: 0 0 0 0px rgba(27, 88, 38, 0.61);
   }
- 
   100% {
     box-shadow: 0 0 0 40px rgba(27, 88, 38, 0);
   }
 }
 .button-grid {
-  
-    display: grid;
-    grid-template-columns: repeat(5, auto);
-    gap: 10px;
-    margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 10px;
+  margin: 20px 0;
+}
+.button {
+  margin-top: 50px;
+  --hue: var(--hue-correct);
+  border: 1px solid hsl(var(--hue), 100%, 30%);
+  background-color: hsl(var(--hue), 50%, 50%);
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: black;
+  outline: none;
+}
+.button:hover {
+  border-color: black;
+  box-shadow: 0 0 10px 2px;
+  cursor: pointer;
+}
+.button.correct {
+  --hue: var(--hue-correct);
+  color: black;
+}
+.button.wrong {
+  --hue: var(--hue-wrong);
+}
+.start-button {
+  --hue: var(--hue-neutral);
+  background-color: hsl(var(--hue), 50%, 50%);
+}
+.next-button {
+  width: 140px;
+}
+.next-button,
+.dont-know-button,
+.button,
+.button.wrong,
+.button.correct,
+.audio h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation-name: invisible;
+  animation-duration: 1s;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hide {
+  display: none;
+}
+@keyframes invisible {
+  from {
+    opacity: 0;
   }
-
-  .button {
-    margin-top: 50px;
-    --hue: var(--hue-correct);
-    border: 1px solid hsl(var(--hue), 100%, 30%);
-    background-color: hsl(var(--hue), 50%, 50%);
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: black;
-    outline: none;
-    animation-name: invisible;
-    animation-duration: 1s;
+  to {
+    opacity: 1;
   }
-  .button:hover {
-    border-color: black;
-    box-shadow: 0 0 10px 2px;
-    cursor: pointer;
-  }
-  
-  .button.correct {
-    --hue: var(--hue-correct);
-    color: black;
-    animation-name: invisible;
-    animation-duration: 1s;
-  }
-  
-  .button.wrong {
-    --hue: var(--hue-wrong);
-    animation-name: invisible;
-    animation-duration: 1s;
-  }
-  .start-button {
-    --hue: var(--hue-neutral);
-    background-color: hsl(var(--hue), 50%, 50%);
-  }
-  .next-button{
-    width: 140px;
-  }
- 
-  
-  .next-button, .dont-know-button, .button {
-    font-size: 1.5rem;
-    font-weight: bold;
-    animation-name: invisible;
-    animation-duration: 1s;
-    
-  }
-  
-  .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .hide {
-    display: none;
-    
-  }
-
-  @keyframes invisible {
-    from {opacity: 0;}
-  to {opacity: 1;}
-  }
-  .statistics {
-    display: inline-block;
-    justify-content: center;
-    
-  }
-  .statistics-buttons {
-    display: flex;
-    flex-direction: column;
-  }
-  .restart, .study {
-    width: 300px;
-  }
-  .great, .score {
-    margin-left: 50px;
-  }
-  .great {
-    font-size: 1.5rem;
-    font-weight: bold;
-    
-  }
-  .score {
-    
-    font-size: 1rem;
-  }
-  .audio-div{
-    margin: -70% 90%;  
-
-  }
-  .audio-figure{
-    margin-top: -10px;
-  }
-  .audio-figure audio {
-    height: 20px;
-    outline: none;
-  
-  }
+}
+.statistics {
+  display: inline-block;
+  justify-content: center;
+}
+.statistics-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.restart,
+.study {
+  width: 300px;
+}
+.great,
+.score {
+  margin-left: 50px;
+}
+.great {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.score {
+  font-size: 1rem;
+}
+.audio-div {
+  margin: -70% 90%;
+}
+.audio-figure {
+  margin-top: -10px;
+}
+.audio-figure audio {
+  height: 20px;
+  outline: none;
+}
 .audio-figure figcaption {
   font-style: italic;
   text-align: justify;
