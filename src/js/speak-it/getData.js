@@ -10,7 +10,7 @@ const cardsWrap = document.querySelector('.cards');
 const imgTrain = document.querySelector('.default_img');
 const wdTranslate = document.querySelector('.word-translate');
 let i = 0;
-
+let words = [];
 async function getData (){
     const url = `${backData}page=${pageValue}&group=${groupValue}`;
     const res = await fetch(url);
@@ -30,6 +30,7 @@ function app (cards){
         const wordTitle = document.createElement('p');
         wordTitle.classList = 'wordTitle';
         wordTitle.innerHTML = word;
+        words.push(word);
         let transcription = item.transcription;
         const transcriptionTitle = document.createElement('p');
         transcriptionTitle.classList = 'transcriptionTitle';
