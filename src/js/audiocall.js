@@ -27,27 +27,19 @@ correctSound.setAttribute("src", "mp3/correct.mp3");
 let roundNumber = 0;
 let errorCount = 0;
 let correctAnswersCount = 0;
-function startGame() {
-  startButton.classList.add("hide");
-  leoImage.classList.add("hide");
-  description.classList.add("hide");
-  answerButtons.classList.remove("hide");
-  audioCall.classList.remove("hide");
-  dontKnowButton.classList.remove("hide");
-  soundImage.classList.remove("hide");
-  getData();
-};
-startButton.addEventListener("click", startGame);
-restartButton.onclick = () => {
-  window.location.reload();
-};
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
 function clearStatusClass(element) {
   element.classList.remove("correct");
   element.classList.remove("wrong");
 }
+
 function setStatusClass(element, correct) {
   clearStatusClass(element);
   if (correct) {
@@ -58,10 +50,11 @@ function setStatusClass(element, correct) {
     correctWordImage.classList.remove("hide");
     soundImage.classList.add("hide");
   }
-};
+}
+
 function selectAnswer(element) {
   const selectedButton = element.target;
-  const correct = selectedButton.dataset.correct;
+  const { correct } = selectedButton.dataset;
   setStatusClass(document.body, correct);
   Array.from(answerButtons.children).forEach((button) => {
     setStatusClass(button, button.dataset.correct);
@@ -70,62 +63,39 @@ function selectAnswer(element) {
   nextButton.classList.remove("hide");
   if (correct) {
     correctSound.play();
-    console.log(correctSound);
-    correctAnswersCount++;
-    console.log("corrects = ", correctAnswersCount);
+    correctAnswersCount += 1;
   } else {
     wrongSound.play();
-    errorCount++;
-    console.log("errors = ", errorCount);
+    errorCount += 1;
   }
-};
-function setCorrectAnswer() {
-  correctWordImage.classList.remove("hide");
-  nextButton.classList.remove("hide");
-  soundImage.classList.add("hide");
-  dontKnowButton.classList.add("hide");
-  answerText.classList.remove("hide");
-  Array.from(answerButtons.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
-  });
-  errorCount++;
-  wrongSound.play();
-  console.log("errors = ", errorCount);
-};
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-};
+}
+
 function getData() {
-  let group = select.options[select.selectedIndex].value;
-  let url = `${urlApi}?page=${getRandomInt(30)}&group=${group}`;
+  const group = select.options[select.selectedIndex].value;
+  const url = `${urlApi}?page=${getRandomInt(30)}&group=${group}`;
   fetch(url)
     .then((response) => {
-      let data = response.json();
+      const data = response.json();
       return data;
     })
     .then((data) => {
-      console.log(data);
-      let i = getRandomInt(20);
-      console.log(i);
-      let soundSrc = data[i].audio;
-      let imageSrc = data[i].image;
-      let correctAnswer = data[i].wordTranslate;
-      let answerTranscription = data[i].transcription;
-      let answer = data[i].word;
+      const i = getRandomInt(20);
+      const soundSrc = data[i].audio;
+      const imageSrc = data[i].image;
+      const correctAnswer = data[i].wordTranslate;
+      const answerTranscription = data[i].transcription;
+      const answer = data[i].word;
       playAgain.push({ srcWord: `${soundSrc}`, word: `${correctAnswer}` });
-      let pageSoundUrl = `${dataUrl}${soundSrc}`;
-      let pageImageUrl = `${dataUrl}${imageSrc}`;
-      console.log(pageImageUrl);
+      const pageSoundUrl = `${dataUrl}${soundSrc}`;
+      const pageImageUrl = `${dataUrl}${imageSrc}`;
       data.splice(i, 1);
-      let newData = data;
-      console.log(newData);
-      let j = getRandomInt(16);
-      console.log(j);
-      let firstWord = newData[j].wordTranslate;
-      let secondWord = newData[j + 1].wordTranslate;
-      let thirdWord = newData[j + 2].wordTranslate;
-      let forthWord = newData[j + 3].wordTranslate;
-      let answers = [
+      const newData = data;
+      const j = getRandomInt(16);
+      const firstWord = newData[j].wordTranslate;
+      const secondWord = newData[j + 1].wordTranslate;
+      const thirdWord = newData[j + 2].wordTranslate;
+      const forthWord = newData[j + 3].wordTranslate;
+      const answers = [
         { text: `${correctAnswer}`, correct: true },
         { text: `${firstWord}`, correct: false },
         { text: `${secondWord}`, correct: false },
@@ -142,29 +112,52 @@ function getData() {
           button.dataset.correct = element.correct;
         }
         button.addEventListener("click", selectAnswer);
-
         answerButtons.appendChild(button);
       });
-      console.log(answers);
-      console.log(firstWord, secondWord, thirdWord, forthWord);
-      console.log(pageImageUrl);
-      console.log(pageSoundUrl);
-      console.log(correctAnswer);
       audioCall.setAttribute("src", `${pageSoundUrl}`);
-      audio.play();
+      audioCall.play();
       correctWordImage.setAttribute("src", `${pageImageUrl}`);
       answerText.innerText = `${answer} - ${answerTranscription} - ${correctAnswer}`;
     });
+}
+
+function startGame() {
+  startButton.classList.add("hide");
+  leoImage.classList.add("hide");
+  description.classList.add("hide");
+  answerButtons.classList.remove("hide");
+  audioCall.classList.remove("hide");
+  dontKnowButton.classList.remove("hide");
+  soundImage.classList.remove("hide");
+  getData();
+}
+startButton.addEventListener("click", startGame);
+restartButton.onclick = () => {
+  window.location.reload();
 };
+
+function setCorrectAnswer() {
+  correctWordImage.classList.remove("hide");
+  nextButton.classList.remove("hide");
+  soundImage.classList.add("hide");
+  dontKnowButton.classList.add("hide");
+  answerText.classList.remove("hide");
+  Array.from(answerButtons.children).forEach((button) => {
+    setStatusClass(button, button.dataset.correct);
+  });
+  errorCount += 1;
+  wrongSound.play();
+}
+
 function showStatistics() {
   switch (errorCount) {
     case 0:
-      userLevel.innerText = `Отличная работа!`;
+      userLevel.innerText = `Отличный результат!`;
       userScore.innerText = `${correctAnswersCount} слов изучено, 0 на изучении. `;
       break;
     case 1:
     case 2:
-      userLevel.innerText = `Хорошо!`;
+      userLevel.innerText = `Хороший результат!`;
       userScore.innerText = `${correctAnswersCount} слов изучено, ${errorCount} на изучении. `;
       break;
     case 3:
@@ -202,13 +195,12 @@ function showStatistics() {
     statisticsPage.appendChild(statisticsAudio);
     restartButton.classList.remove("hide");
     studyButton.classList.remove("hide");
-    console.log(playAgain);
   });
-};
+}
 dontKnowButton.addEventListener("click", setCorrectAnswer);
 nextButton.onclick = () => {
-  for (let i = 0; i < 5; i++) {
-    let elem = document.getElementById("engbtn");
+  for (let i = 0; i < 5; i += 1) {
+    const elem = document.getElementById("engbtn");
     elem.parentNode.removeChild(elem);
   }
   dontKnowButton.classList.remove("hide");
@@ -216,7 +208,7 @@ nextButton.onclick = () => {
   soundImage.classList.remove("hide");
   correctWordImage.classList.add("hide");
   answerText.classList.add("hide");
-  roundNumber++;
+  roundNumber += 1;
   if (roundNumber === 10) {
     statisticsPage.classList.remove("hide");
     nextButton.classList.add("hide");

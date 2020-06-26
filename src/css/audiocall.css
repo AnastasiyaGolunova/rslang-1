@@ -167,4 +167,5 @@ body {
 .audio-figure figcaption {
   font-style: italic;
   text-align: justify;
+  font-size: 0.8rem;
 }
