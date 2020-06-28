@@ -80,3 +80,7 @@ body,
     background-color: brown;
     border: 1px solid brown;
 }
+.line{
+    border-bottom: 2px solid maroon;
+    padding-bottom: 5px;
+}
