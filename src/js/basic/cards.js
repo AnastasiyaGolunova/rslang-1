@@ -2,10 +2,9 @@ import {study} from '../index';
 
 export default class Cards {
   
-  render() {
+  render(words) {
     // console.log(allCards)
-  
-    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio,image} = study.wordsData[study.count];
+    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio,image} = words;
     study.currentWord = word;
     console.log(`${study.urlData}`);
   

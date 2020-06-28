@@ -11,8 +11,10 @@ import '../css/game.css';
 import Study from './basic/study';
 import Cards from './basic/cards';
 import Menu from './basic/menu';
+import Trash from './basic/trash';
 export const study = new Study();
 export const card = new Cards();
+export const trash = new Trash();
 
 
 const settings = document.querySelector('#settings');
@@ -24,14 +26,9 @@ let count = 0;
 let curentWord = '';
 const deleteWords = [];
 
-const receivedWords = [];
+// const receivedWords = [];
 
-const QUANTITY_WORDS = document.querySelector('.quantity-words');
-const QUANTITY_CARDS = document.querySelector('.quantity-cards');
-
-let allCards = [];
-
-const arrayId = ['5e9f5ee35eb9e72bc21af4a1','5e9f5ee35eb9e72bc21af4a2','5e9f5ee35eb9e72bc21af4a3','5e9f5ee35eb9e72bc21af4a4',];
+// let allCards = [];
 
 
 study.findWordInText('feeling', 'How long, must this feeling go on?');
@@ -81,13 +78,26 @@ const BTN_DIFFICULT = document.querySelector('.difficult-icon');
 // });
 
 BTN_CHECK.addEventListener('click', async () => {
-  receivedWords.length = 0;
-  study.wordsData = await study.getWords(0, 0);
-  // await getNewWords();
-  // quantityCards();
-  card.render();
-  study.findCheckbox();
+  study.receivedWords.length = 0;
+  study.arrayStudy = await study.getCompareWords();
+  // const result = study.arrayStudy[0].paginatedResults;
+  console.log(study.arrayStudy);
+  if (study.arrayStudy.length !== 0) {
+    card.render(study.arrayStudy[study.count]);
+  }
+
+  // study.wordsData = await study.getWords(0, 0);
+  //await study.get();
+  //study.quantityCards();
+  // card.render();
+  //study.findCheckbox();
   // checkWord();
+});
+
+document.querySelector('.dictionary-trash').addEventListener('click', async () => {
+  console.log('dictionary-trash')
+  const data = await study.getRemoveWord();
+  console.log(data);
 });
 
 

@@ -75,25 +75,6 @@ const loginUser = async (user) => {
   } catch (error) {}
 };
 
-const getUserWord = async ({ userId, wordId }) => {
-    const token = localStorage.getItem('token');
-    console.log(token);
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/words/${wordId}`,
-        {
-            method: "GET",
-            withCredentials: true,
-            headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: "application/json",
-            },
-        }
-    );
-
-  const content = await rawResponse.json();
-
-  console.log(content);
-};
-
 signUpRightButton.addEventListener("click", () => {
   container.classList.add("right-panel-active");
 });
@@ -141,6 +122,5 @@ SIGNIN_BTN.addEventListener("click", async () => {
         userId: `${userId}`,
         wordId: `${wordId}`
       }
-    await getUserWord(userWord);
   }
 });
