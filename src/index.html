@@ -16,11 +16,11 @@
                     <li class="rs-li"><a href="#" class="pointer">Словарь</a><img class="sort" src="./icons/sort.png"
                             alt="sort">
                         <ul class="ul-dropdown dictionary">
-                            <li class="li-dropdown"><img class="bookmark" src="./icons/bookmark.png" alt="bookmark"><a
+                            <li class="li-dropdown dictionary-learn"><img class="bookmark" src="./icons/bookmark.png" alt="bookmark"><a
                                     href="#" class="pointer">Изучаемые слова</a></li>
-                            <li class="li-dropdown"><img class="answers" src="./icons/answers.png" alt="answers"><a
+                            <li class="li-dropdown dictionary-difficult"><img class="answers" src="./icons/answers.png" alt="answers"><a
                                     href="#" class="pointer">Сложные слова</a></li>
-                            <li class="li-dropdown"><img class="trash" src="./icons/trash.png" alt="trash"><a href="#"
+                            <li class="li-dropdown dictionary-trash"><img class="trash" src="./icons/trash.png" alt="trash"><a href="#"
                                     class="pointer">Удалённые слова</a></li>
                         </ul>
                     </li>
@@ -88,28 +88,28 @@
                             <li class="li-dropdown"><img class="about" src="./icons/about.png" alt="about"><a href="#"
                                     class="pointer">Значение слова</a>
                                 <div class="switcher">
-                                    <input type="checkbox" class="checkbox checkbox-mean" id="switch-2" />
+                                    <input data-action="meaning" type="checkbox" class="checkbox checkbox-mean" id="switch-2" />
                                     <label for="switch-2"></label>
                                 </div>
                             </li>
                             <li class="li-dropdown"><img class="solve" src="./icons/solve.png" alt="solve"><a href="#"
                                     class="pointer">Показать ответ</a>
                                 <div class="switcher">
-                                    <input type="checkbox" class="checkbox checkbox-answer" id="switch-6" checked/>
+                                    <input data-action="answerCheckbox" type="checkbox" class="checkbox checkbox-answer" id="switch-6" checked/>
                                     <label for="switch-6"></label>
                                 </div>
                             </li>
                             <li class="li-dropdown"><img class="answers" src="./icons/answers.png" alt="answers"><a
                                     href="#" class="pointer">Сложные слова</a>
                                 <div class="switcher">
-                                    <input type="checkbox" id="switch-7" />
+                                    <input data-action="difficultCheckbox" type="checkbox" id="switch-7" checked/>
                                     <label for="switch-7"></label>
                                 </div>
                             </li>
                             <li class="li-dropdown"><img class="trash" src="./icons/trash.png" alt="trash"><a href="#"
                                     class="pointer">Удаление слова</a>
                                 <div class="switcher">
-                                    <input type="checkbox" id="switch-8" />
+                                    <input data-action="trashCheckbox" class="checkbox checkbox-trash" type="checkbox" id="switch-8" checked/>
                                     <label for="switch-8"></label>
                                 </div>
                             </li>
