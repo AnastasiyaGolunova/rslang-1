@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dictionary.css">
     <title>RS Lang</title>
 </head>
 
 <body>
-    <nav>
+    <nav  class="header-navigation">
     </nav>
     <div class="dictionary-list">
         <div class="header">
@@ -18,26 +16,15 @@
                 <h2>Мой словарь</h2>
             </div>
             <div class="dictionary-list filter">
-                <div class="filter-item"><span>Все</span></div>
-                <div class="filter-item"><span>Сложные слова</span></div>
-                <div class="filter-item"><span>Новые слова</span></div>
-                <div class="filter-item"><span>Удалённые слова</span></div>
+                <div class="filter-item filter-all_words active">Все</div>
+                <div class="filter-item filter-difficult_words">Сложные слова</div>
+                <!-- <div class="filter-item"><span>Новые слова</span></div> -->
+                <div class="filter-item filter-remove_words">Удалённые слова</div>
             </div>
         </div>
         <div class="dictionary-list content">
             <div class="dictionary-list word-list">
-                <div class="dictionary-list word">
-                    <div class="dictionary-list icon">
-                        <img class="voice" src="./icons/voice.png" alt="voice">
-                    </div>
-                    <div class="dictionary-list words">
-                        <span class="dictionary-list eng-word">ability</span>
-                        <span class="dictionary-list ru-word">физическая возможность</span>
-                    </div>
-                    <div class="dictionary-list icon">
-                        <img class="trash" src="./icons/trash.png" alt="trash">
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="dictionary-list button">

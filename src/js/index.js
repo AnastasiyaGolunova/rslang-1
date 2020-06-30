@@ -1,17 +1,17 @@
 import '../css/index.css';
 import '../css/style.css';
 import '../css/game.css';
-import {renderHeader, setHeader} from './header.js';
+import Header from './header'
 import Study from './basic/study';
 import Cards from './basic/cards';
 import Menu from './basic/menu';
 import Trash from './basic/trash';
 export const study = new Study();
 export const card = new Cards();
-export const trash = new Trash();
+export const header = new Header();
 
-renderHeader();
-setHeader();
+header.render();
+
 const settings = document.querySelector('#settings');
 const gameWrap = document.querySelector('.game-wrap');
 new Menu(settings);
@@ -42,6 +42,11 @@ const CHECKBOX_ANSWER = document.querySelector('.checkbox-answer');
 const BTN_TRASH = document.querySelector('.delete-icon');
 const BTN_DIFFICULT = document.querySelector('.difficult-icon');
 
+const MENU_DICTIONARY = document.querySelector('.menu-dictionary');
+
+MENU_DICTIONARY.addEventListener('click', () => {
+  window.location.href = 'dictionary.html';
+});
 
 // CHECKBOX_EXAMPLE.addEventListener('change', (event) => {
 //    study.checked(event);
