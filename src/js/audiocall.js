@@ -21,12 +21,12 @@ const restartButton = document.querySelector("#restart");
 const studyButton = document.querySelector("#study");
 const correctSound = document.createElement("audio");
 const wrongSound = document.createElement("audio");
-
 wrongSound.setAttribute("src", "mp3/wrong.mp3");
 correctSound.setAttribute("src", "mp3/correct.mp3");
 let roundNumber = 0;
 let errorCount = 0;
 let correctAnswersCount = 0;
+let changeBackgroundColor = 70;
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -34,12 +34,15 @@ function shuffle(array) {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-
+function changeColor() {
+  document.body.style.backgroundColor = `hsl(201, 45%, ${changeBackgroundColor}%)`;
+  changeBackgroundColor -=5;
+}
+nextButton.addEventListener('click', changeColor);
 function clearStatusClass(element) {
   element.classList.remove("correct");
   element.classList.remove("wrong");
 }
-
 function setStatusClass(element, correct) {
   clearStatusClass(element);
   if (correct) {
