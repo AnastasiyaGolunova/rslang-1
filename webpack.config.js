@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 const ENV = process.env.npm_lifecycle_event;
 const isDev = ENV === 'dev';
 const isProd = ENV === 'build';
@@ -25,7 +24,11 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: {index: './src/js/index.js'},
+  entry: {
+    index: './src/js/index.js', 
+    login: './src/js/login.js',
+    dictionary: './src/js/dictionary.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
@@ -121,11 +124,22 @@ const config = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: '[name].css',
     }),
     new HtmlWebPackPlugin({
       template: './src/index.html',
-      filename: './index.html'
+      chunks: ['index'],
+      filename: 'index.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/login.html',
+      chunks: ['login'],
+      filename: 'login.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/dictionary.html',
+      chunks: ['dictionary'],
+      filename: 'dictionary.html'
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
