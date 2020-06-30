@@ -1,4 +1,5 @@
-import { createTimer } from './timer'
+import { showWord, showTranslate } from '../helpers/show_card'
+import {easy, medium, hard} from '../data/get_data'
 
 function gamePageInit() {
   const gamePage = document.createElement('DIV')
@@ -15,18 +16,15 @@ function gamePageInit() {
         </div>    
       </div>
       <div class="word-section">
-        <div class="word">Hello</div>
-        <div class="translate">Привет</div>
+        <div class="word">${showWord(easy)}</div>
+        <div class="translate">${showTranslate(easy)}</div>
       </div>
-      <div class="button-wrapper">
+      <div class="button-wrapper" id="game-controls">
         <button class="wrong-btn btn"><i class="far fa-arrow-alt-circle-left"></i> Верно</button>
         <button class="wright-btn btn">Неверно <i class="far fa-arrow-alt-circle-right"></i></button>
       </div>`
   document.querySelector('.wrapper').append(gamePage)
-  // console.log(gamePage.querySelector('game-page__header'))
-  //document.querySelector('.gamePage__header').append(createTimer())
 }
 
-//gamePageInit()
 
 export{ gamePageInit }
