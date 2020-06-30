@@ -1,4 +1,4 @@
-import {study, card, trash} from '../index';
+import {study, card} from '../index';
 
 export default class Menu {
   constructor(elem) {
@@ -53,11 +53,11 @@ export default class Menu {
     console.log('next');
   }
 
-  trash() {
-    trash.remove(true);
-    window.location.href = 'login.html';
-    console.log('trash');
-  }
+  // trash() {
+  //   trash.remove(true);
+  //   window.location.href = 'login.html';
+  //   console.log('trash');
+  // }
 
   difficult() {
     console.log('difficult');

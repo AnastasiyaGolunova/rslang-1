@@ -1,9 +1,10 @@
-import { study } from "..";
+// import { study } from "..";
 
 /* eslint-disable no-console */
 export default class Study {
   constructor() {
     this.urlData = 'https://raw.githubusercontent.com/omirbeck/rslang-data/master/';
+    this.urlHeroku = 'https://afternoon-falls-25894.herokuapp.com';
     this.count = 0;
     this.maxPage = 29;
     this.maxGroup = 5;
@@ -38,7 +39,7 @@ export default class Study {
   async getAgregateWords({ userId, group, wordsPerPage, filter }){
     const filterUrl = `${encodeURIComponent(filter)}`;
     const token = localStorage.getItem('token');
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/aggregatedWords?
+    const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/aggregatedWords?
     wordsPerPage=${wordsPerPage}&filter=${filterUrl}`,
         {
             method: "GET",
@@ -56,7 +57,7 @@ export default class Study {
   async getUserWord({ userId, wordId }){
     const token = localStorage.getItem('token');
     console.log(token);
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/words/${wordId}`,
+    const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`,
         {
             method: "GET",
             withCredentials: true,
@@ -74,7 +75,7 @@ export default class Study {
   async createUserWord({userId, wordId, word}) {
     console.log(word)
     const token = localStorage.getItem('token');
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/words/${wordId}`, {
+    const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`, {
       method: 'POST',
       withCredentials: true,
       headers: {
@@ -91,7 +92,7 @@ export default class Study {
   async updateUserWord({userId, wordId, word}) {
     console.log(word)
     const token = localStorage.getItem('token');
-    const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/words/${wordId}`, {
+    const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`, {
       method: 'PUT',
       withCredentials: true,
       headers: {
@@ -104,20 +105,6 @@ export default class Study {
 
     return await this.response(rawResponse);
   };
-
-  async getRemoveWord() {
-    const userId = localStorage.getItem('userId');
-    const agregateWords = {
-      "userId": `${userId}`,
-      // "group": "",
-      // "wordsPerPage": `${value}`,
-      "filter": `{"userWord.optional.delete":true}`,
-    }
-  
-    const newWords = await this.getAgregateWords(agregateWords);
-    console.log('getDeleteWords' + newWords);
-    return newWords;
-  }
 
   quantityCards() {
     const QUANTITY_WORDS = document.querySelector('.quantity-words');
@@ -143,7 +130,7 @@ export default class Study {
       "filter": `{"$and":[{"userWord.optional.repeat":{"$ne":true}}]}`,
     }
   
-    const newWords = await study.getAgregateWords(agregateWords);
+    const newWords = await this.getAgregateWords(agregateWords);
 
     if (newWords === null) {
       return null;
@@ -281,7 +268,7 @@ export default class Study {
     const CHECKBOX_AUTOPLAY = document.querySelector('.autoplay')
   
     if (CHECKBOX_AUTOPLAY.checked) {
-      const {audio, audioExample, audioMeaning} = study.arrayStudy[study.count];
+      const {audio, audioExample, audioMeaning} = this.arrayStudy[this.count];
       const audioArray = [audio];
       const EXAMPLE = document.querySelector('.checkbox-example');
       const MEAN = document.querySelector('.checkbox-mean');

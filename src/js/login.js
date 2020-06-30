@@ -13,13 +13,14 @@ const SIGNIN_ERROR = document.querySelector(".signin-error");
 const SIGNUP_ERROR = document.querySelector(".signup-error");
 let userContent = null;
 let userLogin = null;
+const urlHeroku = `https://afternoon-falls-25894.herokuapp.com`
 
 console.log(SIGNIN_BTN);
 
 const createUser = async (user) => {
   try {
     const rawResponse = await fetch(
-      "https://afternoon-falls-25894.herokuapp.com/users",
+      `${urlHeroku}/users`,
       {
         method: "POST",
         headers: {
@@ -48,7 +49,7 @@ const createUser = async (user) => {
 const loginUser = async (user) => {
   try {
     const rawResponse = await fetch(
-      "https://afternoon-falls-25894.herokuapp.com/signin",
+      `${urlHeroku}/signin`,
       {
         method: "POST",
         headers: {
@@ -107,7 +108,6 @@ const wordId = '5e9f5ee35eb9e72bc21af716';
 
 SIGNIN_BTN.addEventListener("click", async (event) => {
   event.preventDefault();
-  window.location.href = 'index.html';
   console.log(SIGNIN_EMAIL.value);
   console.log(SIGNIN_PASSWORD.value);
   if (SIGNIN_EMAIL && SIGNIN_PASSWORD) {
@@ -125,5 +125,6 @@ SIGNIN_BTN.addEventListener("click", async (event) => {
         userId: `${userId}`,
         wordId: `${wordId}`
       }
+    window.location.href = 'index.html';
   }
 });
