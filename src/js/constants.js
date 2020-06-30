@@ -1,9 +1,7 @@
 const SPRINT_TIME_LIMIT = 60;
-
 const SPRINT_WARNING_THRESHOLD = 30;
 const FULL_DASH_ARRAY = 283;
 const SPRINT_ALERT_THRESHOLD = 15;
-
 const SPRINT_COLOR_CODES = {
   info: {
     color: "green"
