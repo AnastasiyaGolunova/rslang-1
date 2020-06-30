@@ -1,0 +1,153 @@
+.dictionary-list {
+    display: flex;
+    flex-flow: column wrap;
+    z-index: 0;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.header {
+    padding-top: 1em;
+    width: 38vw;
+}
+.content {
+    padding-top: 1em;
+    width: 38vw;
+}
+.dictionary-list.name h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 1em 8em 0 0;
+}
+.dictionary-list.name {
+    width: 35%;
+    white-space: nowrap;
+}
+.dictionary-list.filter {
+    background-color: #ffffff;
+    flex-direction: row;
+    opacity: 65%;
+    font-size: 16px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 1em;
+    z-index: 0;
+    width: 38vw;
+}
+
+.filter-item {
+    padding-right: 30px;
+    white-space: nowrap;
+}
+
+.filter-item span {
+    cursor: pointer;
+    color: #000000;
+}
+
+.filter-item span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.word-list {
+    background-color: #ffffff;
+    opacity: 65%;
+    border-radius: 4px;
+    padding: 0 36px;
+}
+.word {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+.icon {
+    padding: 0;
+    align-content: baseline;
+}
+.words {
+    margin-left: 10px;
+    align-items: baseline;
+}
+.voice, .trash {
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.eng-word {
+    color: #EB7055;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0;
+}
+.ru-word {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0;
+}
+
+.start {
+    width: 145px;
+    align-self: flex-end;
+}
+.button {
+    margin-top: 20px;
+    width: 38vw;
+    align-content: center;
+}
+
+@media screen and (max-width: 320px) {
+
+.dictionary-list.filter {
+    font-size: 8px;
+    padding: 4px;
+    width: 30%;
+    flex-direction: column;
+    text-align: start;
+}
+.voice, .trash {
+    height: 15px;
+    width: 15px;
+}
+.content {
+    width: 100%;
+    padding: 1em 1em 0.5em 1em;
+}
+.word {
+    margin: 10px;
+}
+.words {
+    padding: 0 !important;
+    width: 100%;
+}
+.eng-word, .ru-word  {
+    font-size: 12px;
+}
+.word-list {
+    padding: 0 !important;
+}
+.dictionary-list {
+    align-items: unset !important;
+}
+.header {
+    margin-left: 10px;
+}
+.button {
+    margin-top: 0 !important;
+}
+.start {
+    align-self: flex-start;
+    font-size: 10px;
+    margin-left: 16px;
+    width: 100px;
+}
+
+}

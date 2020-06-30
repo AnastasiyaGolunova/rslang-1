@@ -1,3 +1,4 @@
+import '../css/login.css'
 const signUpRightButton = document.getElementById("signUp");
 const signInLeftButton = document.getElementById("signIn");
 const container = document.getElementById("container");
@@ -104,7 +105,9 @@ SIGNUP_BTN.addEventListener("click", async () => {
 
 const wordId = '5e9f5ee35eb9e72bc21af716';
 
-SIGNIN_BTN.addEventListener("click", async () => {
+SIGNIN_BTN.addEventListener("click", async (event) => {
+  event.preventDefault();
+  window.location.href = 'index.html';
   console.log(SIGNIN_EMAIL.value);
   console.log(SIGNIN_PASSWORD.value);
   if (SIGNIN_EMAIL && SIGNIN_PASSWORD) {

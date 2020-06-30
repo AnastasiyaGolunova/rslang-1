@@ -55,6 +55,7 @@ export default class Menu {
 
   trash() {
     trash.remove(true);
+    window.location.href = 'login.html';
     console.log('trash');
   }
 

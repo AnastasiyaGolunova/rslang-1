@@ -1,6 +1,7 @@
 import '../css/index.css';
 import '../css/style.css';
 import '../css/game.css';
+import {renderHeader, setHeader} from './header.js';
 import Study from './basic/study';
 import Cards from './basic/cards';
 import Menu from './basic/menu';
@@ -9,7 +10,8 @@ export const study = new Study();
 export const card = new Cards();
 export const trash = new Trash();
 
-
+renderHeader();
+setHeader();
 const settings = document.querySelector('#settings');
 const gameWrap = document.querySelector('.game-wrap');
 new Menu(settings);
@@ -89,7 +91,8 @@ BTN_CHECK.addEventListener('click', async () => {
 
 document.querySelector('.dictionary-trash').addEventListener('click', async () => {
   console.log('dictionary-trash')
-  const data = await study.getRemoveWord();
+  window.location.href = "http://www.example.com";
+  //const data = await study.getRemoveWord();
   console.log(data);
 });
 
