@@ -14,8 +14,6 @@ function learn (event) {
         const wTranslate = wordTranslate;
         wdTranslate.textContent = wTranslate;
         console.log(image);
-        //console.log(arr[atr]);
-        //console.log(arr);
     }
 }
 cardsWrap.addEventListener('click', learn);
