@@ -2,9 +2,6 @@
 
 const strGame = document.querySelector('.speak');
 
-// arr.forEach(function(index) {
-//  console.log(index['word'])});
-
 let recognizer = new window.webkitSpeechRecognition || window.SpeechRecognition;
 recognizer.continuous = true;
 recognizer.interimResults = true;
@@ -25,9 +22,15 @@ recognizer.onresult = function (event) {
         if (contains(words, elem)) {
             const anw = new Audio('./audio/right.wav');
             anw.play();
+            let answer = words.indexOf(elem.trim());
+            let mark = document.querySelector(".cards").children;
+            mark[answer].style.backgroundColor = 'yellow';
+            //mark[answer].innerText = "✔";
+            //mark.style.color = '#9acd32';
+
             // const star = document.createElement('i');
             // star.classList = 'fas fa-star';
-            //document.querySelector('.card').appendChild(star);
+
             console.log('right');
         } else {
             console.log('wrong');
