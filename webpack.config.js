@@ -34,7 +34,7 @@ const config = {
     filename: '[name].js'
   },
   mode: setDMode(),
-  devtool: setDevTool(),
+   devtool: setDevTool(),
   module: {
     rules: [{
         test: /\.html$/,
@@ -118,6 +118,15 @@ const config = {
             outputPath: 'fonts'
           }
         }]
+      },
+      {
+        test: /\.mp3$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'audio'
+          }
+        }]
       }
     ]
   },
@@ -142,9 +151,9 @@ const config = {
       filename: 'dictionary.html'
     }),
     new CopyWebpackPlugin([
-      // {from: './src/static', to: './'},
       {from: './src/img', to: './img/'},
-      {from: './src/icons', to: './icons/'}
+      {from: './src/icons', to: './icons/'},
+      {from: './src/audio', to: './audio/'},
     ]),
   ],
 

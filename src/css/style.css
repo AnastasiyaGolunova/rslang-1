@@ -334,6 +334,10 @@ input[type="checkbox"]:checked + label:before {
     display: none;
 }
 
+.active {
+    color: red;
+}
+
 
 @media screen and (max-width: 1024px) {
 body {

@@ -24,16 +24,19 @@ export default class Trash {
         BTN_REMOVE.addEventListener('click', (event) => {
             toggleClassMenu(event);
             this.forEachCard(this.removeWords);
+            study.addClass('dictionary-start', 'none');
         });
 
         BTN_DIFFICULT.addEventListener('click', (event) => {
             toggleClassMenu(event);
             this.forEachCard(this.difficultWords);
+            study.removeClass('dictionary-start', 'none');
         });
 
         BTN_ALL.addEventListener('click', (event) => {
             toggleClassMenu(event);
             this.forEachCard(this.allWords);
+            study.addClass('dictionary-start', 'none');
         });
 
         WORD_LIST.addEventListener('click', (event) => {
@@ -60,19 +63,17 @@ export default class Trash {
 
     }
 
-    async setRemoveWord(value) {
-        const {_id} = study.arrayStudy[study.count];
-        console.log(study.arrayStudy[study.count])
+    async setRemoveWord(value, arrDataWords) {
+        console.log(arrDataWords)
+        const {_id} = arrDataWords;
         console.log(_id);
         const userId = localStorage.getItem('userId');
         const dataRemove = {
             "userId": `${userId}`,
             "wordId": `${_id}`,
-            "word": {
-                "optional": {
-                    "delete": value
-                }
-              }
+            "word": { "difficulty": `${value}`,
+            "optional":{}
+            },
         }
   
         let result = await study.createUserWord(dataRemove);
@@ -83,27 +84,24 @@ export default class Trash {
         console.log(result);
     }
 
-    async getRemoveWord() {
+    async recoveryWordInWords(id) {
+        console.log(id)
         const userId = localStorage.getItem('userId');
-        const agregateWords = {
-          "userId": `${userId}`,
-          // "group": "",
-          // "wordsPerPage": `${value}`,
-          "filter": `{"userWord.optional.delete":true}`,
+        const data = {
+            "userId": `${userId}`,
+            "wordId": `${id}`,
+            "word": { "difficulty": "repeat" }
         }
-      
-        const removeWords = await study.getAgregateWords(agregateWords);
-        if (removeWords !== null) {
-            const result = removeWords[0].paginatedResults;
-            return result;
-        }
+  
+        const result = await study.updateUserWord(data);
+        console.log(result);
     }
 
-    async getDifficultWord() {
+    async getDifficultWord(value) {
         const userId = localStorage.getItem('userId');
         const agregateWords = {
           "userId": `${userId}`,
-          "filter": `{"userWord.difficulty":"difficult"}`,
+          "filter": `{"userWord.difficulty":"${value}" }`,
         }
       
         const words = await study.getAgregateWords(agregateWords);
@@ -150,21 +148,37 @@ export default class Trash {
     }
 
     recoveryWord(id) {
+        const removeWordInArray = (arrWords) => {
+            arrWords.forEach(({_id}, index) => {
+                if (_id === id) {
+                    arrWords.splice(index, 1);   
+                }
+            });
+        }
+
         if (id) {
             const active = document.querySelector('.active');
             const text = active.textContent;
 
             if (text === 'Удалённые слова') {
-                this.removeWords.forEach(({_id}, index) => {
-                    if (_id === id) {
-                        this.removeWords.splice(index, 1);
-                        
-                    }
-                });
+                removeWordInArray(this.removeWords);
+                removeWordInArray(this.allWords);
+                this.recoveryWordInWords(id);
+                console.log(this.removeWords)    
+            }
 
+            if (text === 'Сложные слова') {
+                removeWordInArray(this.difficultWords);
+                removeWordInArray(this.allWords);
+                this.recoveryWordInWords(id);
+                console.log(this.difficultWords)
+            }
 
-                
-                console.log(this.removeWords)
+            if (text === 'Все') {
+                removeWordInArray(this.allWords);
+                removeWordInArray(this.difficultWords);
+                removeWordInArray(this.removeWords);
+                this.recoveryWordInWords(id);
             }
 
         }

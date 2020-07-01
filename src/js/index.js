@@ -16,6 +16,7 @@ import Trash from './basic/trash';
 export const study = new Study();
 export const card = new Cards();
 export const header = new Header();
+export const trash = new Trash();
 
 header.render();
 
