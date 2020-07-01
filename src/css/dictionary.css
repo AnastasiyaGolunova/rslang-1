@@ -104,10 +104,6 @@
     align-content: center;
 }
 
-.active {
-    color: red;
-}
-
 @media screen and (max-width: 320px) {
 
 .dictionary-list.filter {

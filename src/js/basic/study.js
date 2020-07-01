@@ -19,7 +19,6 @@ export default class Study {
     this.wordsData = [];
     this.receivedWords = [];
     this.currentWord = '';
-    this.arrayId = ['5e9f5ee35eb9e72bc21af4a1','5e9f5ee35eb9e72bc21af4a2','5e9f5ee35eb9e72bc21af4a3','5e9f5ee35eb9e72bc21af4a4',];
   }
 
   async response(rawResponse) {

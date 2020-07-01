@@ -1,5 +1,5 @@
-import '../css/style.css';
 import '../css/dictionary.css';
+import '../css/style.css';
 import Header from './header';
 import Trash from './basic/trash';
 
@@ -10,8 +10,8 @@ trash.init();
 
 const renderDictionary = async() => {
     header.render();
-    trash.removeWords = await trash.getRemoveWord();
-    trash.difficultWords = await trash.getDifficultWord();
+    trash.removeWords = await trash.getDifficultWord('delete');
+    trash.difficultWords = await trash.getDifficultWord('difficult');
     console.log(trash.removeWords)
     console.log(trash.difficultWords);
     trash.allWords = trash.removeWords.concat(trash.difficultWords);

@@ -1,4 +1,4 @@
-import {study, card} from '../index';
+import {study, card, trash} from '../index';
 
 export default class Menu {
   constructor(elem) {
@@ -53,13 +53,16 @@ export default class Menu {
     console.log('next');
   }
 
-  // trash() {
-  //   trash.remove(true);
-  //   window.location.href = 'login.html';
-  //   console.log('trash');
-  // }
+  trash() {
+    const arrDataWords = study.arrayStudy[study.count];
+    trash.setRemoveWord('delete', arrDataWords);
+    // window.location.href = 'login.html';
+    console.log('trash');
+  }
 
   difficult() {
+    const arrDataWords = study.arrayStudy[study.count];
+    trash.setRemoveWord('difficult', arrDataWords);
     console.log('difficult');
   }
 
