@@ -10,19 +10,33 @@ const cardsWrap = document.querySelector('.cards');
 const imgTrain = document.querySelector('.default_img');
 const wdTranslate = document.querySelector('.word-translate');
 let i = 0;
-let words = [];
+
+
+// groupValue.onchange = function (event) {
+//     const listSentense = getData(event);
+// };
+//
+// pageValue.onchange = function (event) {
+//     const listSentense = getData(event);
+// };
+function formHandler(form){
+    var URL = document.form.site.options[document.form.site.selectedIndex].value;
+    window.location.href = URL;
+}
+
 async function getData (){
     const url = `${backData}page=${pageValue}&group=${groupValue}`;
     const res = await fetch(url);
     const data = await res.json();
+    data.length = 10;
     return data;
     // const json = await res.json();
     // json.length = 10;
     //const data = await fetch(app);
     //return json;
 }
-
-function app (cards){
+let words = [];
+function app(cards){
     cards.map((item) => {
         const card = document.createElement('div');
         card.classList = 'card';
@@ -43,5 +57,5 @@ function app (cards){
         card.appendChild(transcriptionTitle);
         card.appendChild(button);
     });
-
 }
+console.log(getData());
