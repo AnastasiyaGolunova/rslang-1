@@ -21,6 +21,10 @@ export default class Study {
     this.currentWord = '';
   }
 
+  init() {
+    
+  }
+
   async response(rawResponse) {
     if (!rawResponse.ok)  {
       // if (rawResponse.status === 401) {

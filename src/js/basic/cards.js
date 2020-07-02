@@ -1,4 +1,4 @@
-import {study} from '../index';
+import study from '../index';
 
 export default class Cards {
   
@@ -34,34 +34,29 @@ export default class Cards {
     CARD.innerHTML = card;
   };
 
-  renderVocabulary(){
-        const vocabularyBlock = `
-                      <div class="dictionary-list">
-                          <div class="header">
-                              <div class="dictionary-list name">
-                                  <h2>Мой словарь</h2>
-                              </div>
-                              <div class="dictionary-list filter">
-                                  <div class="filter-item"><span>Все</span></div>
-                                  <div class="filter-item"><span>Сложные слова</span></div>
-                                  <div class="filter-item"><span>Удалённые слова</span></div>
-                              </div>
-                          </div>
-                          <div class="dictionary-list content">
-                              <div class="dictionary-list word-list">
-
-                              </div>
-                          </div>
-                          <div class="dictionary-list button">
-                              <button class="start">Изучить слова</button>
-                          </div>
-                      </div>
+  renderGameWrapper(){
+        const gameContent = `
+        <div class="game-close">
+            <img class="delete" src="./icons/delete.png" alt="delete">
+        </div>
+         <div class="game-header">
+            <div class="game-icon">
+                <img class="voice" src="./icons/voice.png" alt="voice">
+            </div>
+            <div class="game-spelling">
+                <input data-action="autoPlay" type="checkbox" class="autoplay" id="switch" />
+                <label for="switch" class="spelling-check"></label>
+                <span class="spelling-text">Автопроизношение</span>
+            </div>
+            <div class="card-number">
+                <span>1/10</span>
+            </div>
+        </div>
         `
       
         const GAME_WRAP = document.querySelector('.game-wrap');
       
-        GAME_WRAP.innerHTML = vocabularyBlock;
-
+        GAME_WRAP.innerHTML = gameContent;
   }
 
   renderDictionary() {

@@ -13,10 +13,10 @@ import Study from './basic/study';
 import Cards from './basic/cards';
 import Menu from './basic/menu';
 import Trash from './basic/trash';
-export const study = new Study();
-export const card = new Cards();
-export const header = new Header();
-export const trash = new Trash();
+const study = new Study();
+const card = new Cards();
+const header = new Header();
+const trash = new Trash();
 
 header.render();
 
@@ -110,37 +110,4 @@ document.querySelector('.dictionary-trash').addEventListener('click', async () =
 });
 
 
-// BTN_ENTER.addEventListener('click', () => {
-//   const INPUT_WORD = document.querySelector('.answer-input');
-//   const {word} = study.wordsData[study.count];
-//   if (INPUT_WORD.value === word) {
-//     study.count += 1;
-//     card.render();
-//     study.findCheckbox();
-//     study.audioPlayTurn();
-//   }
-// });
-
-// BTN_ANSWER.addEventListener('click', () => {
-//   study.findCheckbox();
-//   const ANSWER_INPUT = document.querySelector('.answer-input');
-//   const {word} = study.wordsData[study.count];
-//   ANSWER_INPUT.value = word;
-//   study.showAnswer();
-// });
-
-// BTN_NEXT.addEventListener('click', () => {
-//   study.count += 1;
-//   card.render();
-//   study.findCheckbox();
-//   study.audioPlayTurn();
-//   console.log('next');
-// });
-
-// BTN_TRASH.addEventListener('click', () => {
-//   console.log('trash');
-// });
-
-// BTN_DIFFICULT.addEventListener('click', () => {
-//   console.log('difficult');
-// });
+export {study, card, header, trash}
