@@ -38,6 +38,9 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+.description p {
+  text-align: center;
+}
 .audio h2 {
   margin: 20px auto 10px;
 }
@@ -168,4 +171,64 @@ body {
   font-style: italic;
   text-align: justify;
   font-size: 0.8rem;
+}
+@media (max-width: 770px) {
+  .container {
+    margin-top: -30px;
+  }
+  .leo {
+    width: 135px;
+    height: 135px;
+  }
+  .button-grid {
+    display: flex;
+    flex-direction: column;
+    margin-top: -40px;
+  }
+  #engbtn {
+    margin-bottom: -40px;
+  }
+  .next-button,
+  .dont-know-button,
+  .button,
+  .button.wrong,
+  .button.correct,
+  .audio h2,
+  .score {
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+  .statistics {
+    display: flex;
+    flex-direction: column;
+  }
+  .statistics h3 {
+    font-size: 1rem;
+  }
+  .great,
+  .score {
+    margin: 0 auto;
+  }
+  .restart,
+  .study {
+    width: 100px;
+    margin: 5px auto;
+  }
+  .audio-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: -45px;
+  }
+  .audio-figure audio {
+    width: 70vw;
+    height: 15px;
+    margin-bottom: -10px;
+  }
+  .audio-figure figcaption {
+    font-style: italic;
+    text-align: justify;
+    font-size: 0.5rem;
+    margin-bottom: -10px;
+  }
 }
