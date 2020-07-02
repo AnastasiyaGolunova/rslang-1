@@ -1,11 +1,10 @@
-import {easy, medium, hard} from '../data/get_data'
+import { easy, medium, hard} from '../data/get_data'
+import { renderTranslate } from './choose_answer'
 
 let num = 0
 
 function showWord(obj) {
   let word = obj.words[num]
-  // num += 1;
-  // console.log(word)
   return word
 }
 
@@ -16,12 +15,13 @@ function showTranslate(obj) {
 }
 
 
+
+
 document.addEventListener('click', (e)=>{
-  console.log()
   if (e.target.parentNode == document.getElementById('game-controls')) {
     document.querySelector('.word').innerHTML = showWord(easy)
-    document.querySelector('.translate').innerHTML = showTranslate(easy) 
+    document.querySelector('.translate').innerHTML = renderTranslate(easy);
   }
 })
 
-export {showWord, showTranslate}
+export { showWord, showTranslate }

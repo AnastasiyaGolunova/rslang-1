@@ -3,7 +3,8 @@ import '../js/components/start_page'
 import '../js/components/timer'
 import '../js/components/game_page'
 import './data/get_data'
-import './helpers/show_card'
+import './helpers/show_word'
+import './helpers/choose_answer'
 
 import { createTimer } from './components/timer'
 

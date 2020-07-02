@@ -1,4 +1,6 @@
-import { showWord, showTranslate } from '../helpers/show_card'
+import { showWord } from '../helpers/show_word'
+import { renderTranslate } from '../helpers/choose_answer';
+
 import {easy, medium, hard} from '../data/get_data'
 
 function gamePageInit() {
@@ -11,17 +13,17 @@ function gamePageInit() {
             <span class="description">Очков за слово:</span> <span class="points">+10</span>
           </div>
           <div class="score"> 
-            <span>1000</span>
+            <span>0</span>
           </div>
         </div>    
       </div>
       <div class="word-section">
         <div class="word">${showWord(easy)}</div>
-        <div class="translate">${showTranslate(easy)}</div>
+        <div class="translate">${renderTranslate(easy)}</div>
       </div>
       <div class="button-wrapper" id="game-controls">
-        <button class="wrong-btn btn"><i class="far fa-arrow-alt-circle-left"></i> Верно</button>
-        <button class="wright-btn btn">Неверно <i class="far fa-arrow-alt-circle-right"></i></button>
+        <button class="wrong-btn btn"><i class="far fa-arrow-alt-circle-left"></i> Неверно</button>
+        <button class="wright-btn btn">Верно <i class="far fa-arrow-alt-circle-right"></i></button>
       </div>`
   document.querySelector('.wrapper').append(gamePage)
 }

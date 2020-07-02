@@ -181,6 +181,7 @@
   align-items: center;
   font-family: lilitaOne,sans-serif;
   font-size: 25px;
+  transition: all 0.5s;
 }
 
 .rate {
@@ -215,6 +216,7 @@
 
 .game-page {
   min-width: 260px;
+  min-height: 400px;
 }
 
 .game-page__header {
@@ -261,6 +263,54 @@
   padding: 10px;
 }
 
+.score span {
+  transition: all .15s;
+}
+
+.answered {
+  transform: scale(1.2);
+  position: absolute;
+}
+
+.up {
+  transform: translate(20px, -70px ) scale(2); 
+  opacity: 0;
+  color: #80A63F;
+}
+
+.reset {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.correct {
+  border: 3px solid greenyellow;
+}
+
+.wrong {
+  border: 3px solid red;
+}
+ 
 
 @media (max-width: 420px) {
   .rate .description {
@@ -269,5 +319,13 @@
 
   .rate .points{
     align-items: flex-end;
+  }
+
+  .score {
+    font-size: 40px;
+  }
+
+  .points {
+    font-size: 20px;
   }
 }
