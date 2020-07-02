@@ -2,7 +2,6 @@ import '../css/dictionary.css';
 import '../css/style.css';
 import Header from './header';
 import Trash from './basic/trash';
-
 const header = new Header();
 const trash = new Trash();
 

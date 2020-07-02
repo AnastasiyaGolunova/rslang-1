@@ -1,6 +1,10 @@
 import Study from './study';
+// import Cards from './cards';
 // import Study from '../basic/study.js';
 const study = new Study();
+import Cards from '../basic/cards';
+// const cards = new Cards();
+// cards.renderGameWrapper();
 
 export default class Trash {
     constructor() {
@@ -15,11 +19,16 @@ export default class Trash {
         const BTN_DIFFICULT = document.querySelector('.filter-difficult_words');
         const BTN_ALL = document.querySelector('.filter-all_words');
         const WORD_LIST = document.querySelector('.word-list');
+        const BTN_DIFFICULT_STUDY = document.querySelector('.dictionary-start');
 
         const toggleClassMenu = (event) => {
             document.querySelector('.active').classList.remove('active');
             event.target.classList.add('active');
         }
+
+        BTN_DIFFICULT_STUDY.addEventListener('click', () => {
+            console.log('study')
+        });
 
         BTN_REMOVE.addEventListener('click', (event) => {
             toggleClassMenu(event);
