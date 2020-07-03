@@ -1,9 +1,12 @@
+import '../css/game.css';
 import '../css/dictionary.css';
 import '../css/style.css';
 import Header from './header';
 import Trash from './basic/trash';
+import Menu from './basic/menu';
 const header = new Header();
 const trash = new Trash();
+
 
 trash.init();
 
@@ -17,6 +20,10 @@ const renderDictionary = async() => {
     trash.allWords.forEach(element => {
         trash.renderCard(element);
     });
+    const settings = document.querySelector('#settings');
+    const gameWrap = document.querySelector('.game-wrap');
+    new Menu(settings);
+    new Menu(gameWrap);
 }
 
 renderDictionary();

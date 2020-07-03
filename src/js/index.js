@@ -9,14 +9,14 @@ import '../css/index.css';
 import '../css/style.css';
 import '../css/game.css';
 import Header from './header'
-import Study from './basic/study';
+import { getStudy } from './basic/study';
 import Cards from './basic/cards';
 import Menu from './basic/menu';
-import Trash from './basic/trash';
-const study = new Study();
+import { getTrash } from './basic/trash';
+const study = getStudy();
 const card = new Cards();
 const header = new Header();
-const trash = new Trash();
+const trash = getTrash;
 
 header.render();
 

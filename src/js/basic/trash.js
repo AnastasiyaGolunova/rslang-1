@@ -1,10 +1,17 @@
-import Study from './study';
-// import Cards from './cards';
-// import Study from '../basic/study.js';
-const study = new Study();
+let studyInstance = null;
+
+export const getTrash = () => {
+  if (!studyInstance) {
+    studyInstance = new Trash();
+  }
+  return studyInstance;
+}
+
+import {getStudy} from './study';
 import Cards from '../basic/cards';
-// const cards = new Cards();
-// cards.renderGameWrapper();
+const study = getStudy();
+const cards = new Cards();
+cards.renderGameWrapper();
 
 export default class Trash {
     constructor() {
@@ -26,8 +33,13 @@ export default class Trash {
             event.target.classList.add('active');
         }
 
-        BTN_DIFFICULT_STUDY.addEventListener('click', () => {
-            console.log('study')
+        BTN_DIFFICULT_STUDY.addEventListener('click', async () => {
+            console.log('study');
+            study.arrayStudy.length = 0;
+            study.arrayStudy = this.difficultWords;
+            cards.render(study.arrayStudy[0]);
+            study.removeClass('game-wrap', 'none');
+            study.addClass('dictionary-wrap', 'none');
         });
 
         BTN_REMOVE.addEventListener('click', (event) => {

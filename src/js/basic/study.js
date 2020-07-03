@@ -1,6 +1,12 @@
-// import { study } from "..";
+let studyInstance = null;
 
-/* eslint-disable no-console */
+export const getStudy = () => {
+  if (!studyInstance) {
+    studyInstance = new Study();
+  }
+  return studyInstance;
+}
+
 export default class Study {
   constructor() {
     this.urlData = 'https://raw.githubusercontent.com/omirbeck/rslang-data/master/';
@@ -22,7 +28,7 @@ export default class Study {
   }
 
   init() {
-    
+
   }
 
   async response(rawResponse) {

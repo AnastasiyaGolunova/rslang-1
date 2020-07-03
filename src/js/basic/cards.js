@@ -1,4 +1,14 @@
-import study from '../index';
+let studyInstance = null;
+
+export const getCard = () => {
+  if (!studyInstance) {
+    studyInstance = new Cards();
+  }
+  return studyInstance;
+}
+
+import { getStudy } from './study';
+const study = getStudy();
 
 export default class Cards {
   
@@ -50,6 +60,21 @@ export default class Cards {
             </div>
             <div class="card-number">
                 <span>1/10</span>
+            </div>
+        </div>
+        <div class="game-content">
+        </div>
+        <div class="word-example game-footer">
+            <div class="delete-icon" data-title="Удалить слово">
+                <img data-action="trash" class="trash" src="./icons/trash.png" alt="trash">
+            </div>
+            <div class="difficult-icon" data-title="Добавить в сложные слова">
+                <img data-action="difficult" class="answers" src="./icons/answers.png" alt="answers">
+            </div>
+            <div class="buttons card-button">
+                <button data-action="answer" class="btn btn-answer">Ответ</button>
+                <button data-action="send" class="btn btn-enter">Enter</button>
+                <button data-action="next" class="btn btn-next">Далее &#8594</button>
             </div>
         </div>
         `
