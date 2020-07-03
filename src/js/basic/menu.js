@@ -1,4 +1,10 @@
-import {study, card, trash} from '../index';
+import {getStudy} from './study'
+import {getTrash} from './trash'
+import {getCard} from './cards';
+const study = getStudy();
+const trash = getTrash();
+const card = getCard();
+
 
 export default class Menu {
   constructor(elem) {
@@ -80,6 +86,10 @@ export default class Menu {
     } else {
       study.addClass('delete-icon', 'none');
     }
+  }
+
+  exit(){
+    console.log('exit');
   }
 
   difficultCheckbox(event) {
