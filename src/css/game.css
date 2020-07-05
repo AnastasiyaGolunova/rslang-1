@@ -69,17 +69,6 @@
     /* width: 85%; */
 }
 
-.answer-input {
-    background-color: #f0f0f0;
-    width: 100%;
-    border: none;
-    border-radius: 4px;
-    /* height: 3em; */
-    color: #000000;
-    padding: 3px;
-    font-size: 30px;
-}
-
 .word-input {
     position: relative;
     margin-top: 25px;
@@ -87,8 +76,8 @@
 }
 
 .word-background {
-    display: inline;
-    position: absolute;
+    /* display: inline;
+    position: absolute; */
     left: 0;
     top: 0;
     user-select: none;
@@ -102,6 +91,33 @@
     top: 0;
     user-select: none;
     padding: 3px;
+    transition: opacity 1000ms;
+    transition-delay: 1000ms;
+    transition-duration: 1000ms;
+    color: #81A4BB;
+}
+
+::selection{
+    background: rgba(50, 168, 76, 0.5);
+}
+
+/* input[type=text] {
+    background: transparent;
+} */
+
+.answer-input {
+    display: inline;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(44, 135, 172, 0.1);
+    width: 100%;
+    border: 1px solid #81A4BB;
+    border-radius: 3px;
+    color: #5094c2;
+    padding: 3px;
+    font-size: 30px;
+    outline: none;
 }
 
 .word-translation {
