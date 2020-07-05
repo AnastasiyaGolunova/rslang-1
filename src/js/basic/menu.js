@@ -42,20 +42,50 @@ export default class Menu {
 
   send() {
     const INPUT_WORD = document.querySelector('.answer-input');
-    const {word} = study.arrayStudy[study.count];
+    const DATA_WORD = study.arrayStudy[study.count];
+    const {word} = DATA_WORD;
     if (INPUT_WORD.value === word) {
       study.count += 1;
-      card.render(study.arrayStudy[study.count]);
-      study.findCheckbox();
-      study.audioPlayTurn();
+      if (study.arrayStudy.length >= study.count) {
+        card.render(DATA_WORD);
+        study.findCheckbox();
+        study.audioPlayTurn();
+      } else {
+        console.log('все слова изучены')
+      }
+    } else {
+      const wordContainer = document.querySelector('.word-container');
+      let result = '';
+      console.log(wordContainer);
+      const letters = word.split('');
+      const inputLetters = INPUT_WORD.value.split(''); 
+      letters.forEach((letter, index) => {
+        if (inputLetters.indexOf(letter) !== -1) {
+          const span = `<span>${letter}</span>`;
+          result += span;
+        } else {
+          const span = `<span class="red">${letter}</span>`;
+          result += span;
+        };
+      });
+      wordContainer.innerHTML = result;
+      INPUT_WORD.value = '';
+      wordContainer.classList.remove('hidden');
     }
   }
 
   next() {
+
+    const DATA_WORD = study.arrayStudy[study.count];
     study.count += 1;
-    card.render(study.arrayStudy[study.count]);
-    study.findCheckbox();
-    study.audioPlayTurn();
+    console.log(study.count, study.arrayStudy.length)
+    if (study.arrayStudy.length >= study.count) {
+      card.render(DATA_WORD);
+      study.findCheckbox();
+      study.audioPlayTurn();
+    } else {
+      console.log('все слова изучены')
+    }
     console.log('next');
   }
 
@@ -88,8 +118,15 @@ export default class Menu {
     }
   }
 
+  dictionary() {
+    console.log('dictionary');
+    window.location.href = 'dictionary.html';
+  }
+
   exit(){
     console.log('exit');
+    localStorage.clear();
+    window.location.href = "login.html";
   }
 
   difficultCheckbox(event) {
