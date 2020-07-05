@@ -6,11 +6,13 @@ import { getStudy } from './basic/study';
 import Cards from './basic/cards';
 import Menu from './basic/menu';
 import { getTrash } from './basic/trash';
-import {refreshLogin} from './basic//refresh';
+import {refreshLogin} from './basic/refresh';
+import User from './basic/user';
 const study = getStudy();
 const card = new Cards();
 const header = new Header();
-const trash = getTrash;
+const trash = getTrash();
+const user = User();
 
 
 async function init() {
@@ -29,6 +31,7 @@ async function init() {
     console.log(study.arrayStudy);
     if (study.arrayStudy.length !== 0) {
       card.render(study.arrayStudy[study.count]);
+      study.findCheckbox();
   }
 
   // study.wordsData = await study.getWords(0, 0);
@@ -59,4 +62,4 @@ const deleteWords = [];
 
 
 
-export {study, card, header, trash}
+export {study, card, header, trash, user}

@@ -32,12 +32,20 @@ export default class Menu {
     study.checked(event);
   }
 
-  answer() {
+  answer() { 
     study.findCheckbox();
     const ANSWER_INPUT = document.querySelector('.answer-input');
     const {word} = study.arrayStudy[study.count];
     ANSWER_INPUT.value = word;
+    ANSWER_INPUT.select();
     study.showAnswer();
+    study.audioPlayTurn();
+    setTimeout(() => {
+      study.count += 1;
+      const curentWord = study.arrayStudy[study.count];
+      card.render(curentWord);
+      study.findCheckbox();
+    }, 5000);
   }
 
   send() {
@@ -47,16 +55,17 @@ export default class Menu {
     const {word} = DATA_WORD;
     if (INPUT_WORD.value === word) {
       INPUT_WORD.select();
-      setTimeout(() => {
-        study.count += 1;
-        if (study.arrayStudy.length >= study.count) {
-          card.render(DATA_WORD);
+      if (study.arrayStudy.length >= study.count) {
+        study.audioPlayTurn();
+        setTimeout(() => {
+          study.count += 1;
+          const curentWord = study.arrayStudy[study.count];
+          card.render(curentWord);
           study.findCheckbox();
-          study.audioPlayTurn();
+        }, 5000);
         } else {
           console.log('все слова изучены')
         }
-      }, 2000)
     } else {
       let result = '';
       console.log(wordContainer);
@@ -75,6 +84,7 @@ export default class Menu {
       INPUT_WORD.value = '';
       wordContainer.classList.remove('hidden');
       wordContainer.style.opacity = 0.5;
+      study.audioPlayTurn();
     }
   }
 
