@@ -14,8 +14,9 @@ export default class Cards {
   
   render(words) {
     // console.log(allCards)
-    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio,image} = words;
+    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,image} = words;
     study.currentWord = word;
+    console.log(transcription,word,wordTranslate)
     console.log(`${study.urlData}`);
   
     const replaceExample = study.findWordInText(word, textExample);
