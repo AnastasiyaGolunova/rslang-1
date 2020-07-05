@@ -42,25 +42,28 @@ export default class Menu {
 
   send() {
     const INPUT_WORD = document.querySelector('.answer-input');
+    const wordContainer = document.querySelector('.word-container');
     const DATA_WORD = study.arrayStudy[study.count];
     const {word} = DATA_WORD;
     if (INPUT_WORD.value === word) {
-      study.count += 1;
-      if (study.arrayStudy.length >= study.count) {
-        card.render(DATA_WORD);
-        study.findCheckbox();
-        study.audioPlayTurn();
-      } else {
-        console.log('все слова изучены')
-      }
+      INPUT_WORD.select();
+      setTimeout(() => {
+        study.count += 1;
+        if (study.arrayStudy.length >= study.count) {
+          card.render(DATA_WORD);
+          study.findCheckbox();
+          study.audioPlayTurn();
+        } else {
+          console.log('все слова изучены')
+        }
+      }, 2000)
     } else {
-      const wordContainer = document.querySelector('.word-container');
       let result = '';
       console.log(wordContainer);
       const letters = word.split('');
       const inputLetters = INPUT_WORD.value.split(''); 
-      letters.forEach((letter, index) => {
-        if (inputLetters.indexOf(letter) !== -1) {
+      letters.forEach((letter, i) => {
+        if (letter === inputLetters[i]) {
           const span = `<span>${letter}</span>`;
           result += span;
         } else {
@@ -71,8 +74,20 @@ export default class Menu {
       wordContainer.innerHTML = result;
       INPUT_WORD.value = '';
       wordContainer.classList.remove('hidden');
+      wordContainer.style.opacity = 0.5;
     }
   }
+
+  answerInput() {
+    const container = document.querySelector('.word-container');
+
+    container.style.opacity = 0;
+    setTimeout(() => {
+      container.classList.add('hidden');
+      container.style.opacity = 1;
+    }, 2000);
+  }
+
 
   next() {
 
@@ -143,6 +158,13 @@ export default class Menu {
   }
 
   onClick(event) {
+    let action = event.target.dataset.action;
+    if (action) {
+      this[action](event);
+    }
+  };
+
+  onFocus(event) {
     let action = event.target.dataset.action;
     if (action) {
       this[action](event);

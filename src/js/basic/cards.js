@@ -36,7 +36,8 @@ export default class Cards {
                     <div class='word-input'>
                         <span class="word-background hidden">${spanLetter}</span>
                         <span class="word-container hidden">${spanLetter}</span>
-                        <input type='text' class='answer-input input-word' autofocus>
+                        <input data-action="answerInput" type='text' class='answer-input input-word' maxlength="50" 
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
                     </div>
                     <div class='word-example word-translation'>${wordTranslate}</div>
                     <div class='word-example word-transcription'>${transcription}</div>
