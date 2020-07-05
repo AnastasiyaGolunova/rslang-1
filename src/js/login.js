@@ -119,12 +119,9 @@ SIGNIN_BTN.addEventListener("click", async (event) => {
     userLogin = await loginUser(user);
     console.log(userLogin);
     localStorage.setItem('token', userLogin.token);
+    localStorage.setItem('refreshToken', userLogin.refreshToken)
     localStorage.setItem('userId', userLogin.userId);
     const userId = localStorage.getItem('userId');
-    const userWord = {
-        userId: `${userId}`,
-        wordId: `${wordId}`
-      }
     window.location.href = 'index.html';
   }
 });

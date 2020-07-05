@@ -20,11 +20,23 @@ export default class Cards {
   
     const replaceExample = study.findWordInText(word, textExample);
     const replaceMeaning = study.findWordInText(word, textMeaning);
+
+    let spanLetter = '';
+
+    for (let i = 0; i < word.length; i++) {
+        const letter = word[i];
+        const span = `<span index="${i}">${letter}</span>`;
+        spanLetter += span;
+    }
+
+    console.log(spanLetter);
   
     const card = `<div class='word-example example'>${replaceExample}</div>
                     <div class='word-example example-translation none'>${textExampleTranslate}</div>
                     <div class='word-input'>
-                        <input type='text' class='answer-input input-word' style='width:${word.length * 12}px' autofocus>
+                        <span class="word-background hidden">${spanLetter}</span>
+                        <span class="word-container hidden">${spanLetter}</span>
+                        <input type='text' class='answer-input input-word' autofocus>
                     </div>
                     <div class='word-example word-translation'>${wordTranslate}</div>
                     <div class='word-example word-transcription'>${transcription}</div>
@@ -42,6 +54,11 @@ export default class Cards {
     const CARD = document.querySelector('.game-content');
   
     CARD.innerHTML = card;
+    const width = document.querySelector('.word-container');
+
+    const wordInput = document.querySelector('.word-input');
+    wordInput.style.width = `${width.offsetWidth}px`;
+    console.log(width.offsetWidth)
   };
 
   renderGameWrapper(){
@@ -95,7 +112,7 @@ export default class Cards {
       
         const card = `<div class='word-example example'>${replaceExample}</div>
                         <div class='word-example example-translation none'>${textExampleTranslate}</div>
-                        <div class='word-input'>
+                        <div class='word-input word-container'>
                             <input type='text' class='answer-input input-word' style='width:${word.length * 12}px' autofocus>
                         </div>
                         <div class='word-example word-translation'>${wordTranslate}</div>

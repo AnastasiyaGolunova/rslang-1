@@ -8,7 +8,7 @@ export default class Header {
               <ul class="rs-ul">
                   <li class="logo">RS Lang</li>
                   <div class="navigation">
-                      <li class="rs-li menu-dictionary"><a href="#" class="pointer">Словарь</a><img class="sort" src="./icons/sort.png"
+                      <li class="rs-li menu-dictionary"><a href="#" data-action="dictionary" class="pointer">Словарь</a><img class="sort" src="./icons/sort.png"
                               alt="sort">
                           <ul class="ul-dropdown dictionary">
                               <li class="li-dropdown dictionary-learn"><img class="bookmark" src="./icons/bookmark.png" alt="bookmark"><a
@@ -110,7 +110,7 @@ export default class Header {
                               </li>
                           </ul>
                       </li>
-                      <li class="rs-li"><a href="#" class="pointer"><img class="exit" src="./icons/exit.png"
+                      <li class="rs-li"><a href="#" class="pointer"><img data-action="exit" class="exit" src="./icons/exit.png"
                                   alt="exit"></a>
                       </li>
                   </div>
