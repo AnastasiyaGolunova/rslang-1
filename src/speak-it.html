@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>speak it</title>
     <link rel="stylesheet" href="css/speakit.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 </head>
 <body>
 <div class="wrap">
@@ -14,9 +14,9 @@
 </div>
 <div class="wrap_game">
     <div class="wrap_wrap">
-        <div class="group-page">
+        <form class="group-page">
             <label for="group">Level</label>
-            <select name="levels" class="group">
+            <select name="levels" class="group" onchange="change(window)">
                 <option value="0">1</option>
                 <option value="1">2</option>
                 <option value="2">3</option>
@@ -25,7 +25,7 @@
                 <option value="5">6</option>
             </select>
             <label for="page">Page</label>
-            <select name="page" class="page">
+            <select name="page" class="page" onchange="change(window)">
                 <option value="0">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -87,7 +87,7 @@
                 <option value="59">59</option>
                 <option value="60">60</option>
             </select>
-        </div>
+        </form>
         <div class="game">
             <div class="default">
                 <img class="default_img" src="img/default_img.jpg" width="300px" height="200px">
