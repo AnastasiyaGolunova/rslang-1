@@ -103,49 +103,25 @@ export default class Cards {
         GAME_WRAP.innerHTML = gameContent;
   }
 
-  renderDictionary() {
-        // console.log(allCards)
-        const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,audio,image} = words;
-        study.currentWord = word;
-        console.log(`${study.urlData}`);
+  renderStartPage() {
+    const startPage = `
+    <div class="start-wrap">
+        <div class="start-description">
+        </div>
+        <button data-action="start" class="btn start-btn">Начать обучение</button>
+    </div>
+        `
+    const GAME_WRAP = document.querySelector('.game-wrap');
       
-        const replaceExample = study.findWordInText(word, textExample);
-        const replaceMeaning = study.findWordInText(word, textMeaning);
-      
-        const card = `<div class='word-example example'>${replaceExample}</div>
-                        <div class='word-example example-translation none'>${textExampleTranslate}</div>
-                        <div class='word-input word-container'>
-                            <input type='text' class='answer-input input-word' style='width:${word.length * 12}px' autofocus>
-                        </div>
-                        <div class='word-example word-translation'>${wordTranslate}</div>
-                        <div class='word-example word-transcription'>${transcription}</div>
-                        <div class='word-example association' id='picture'>
-                            <img src='${study.urlData}${image}' alt='${word}'>
-                        </div>
-                        <div class='meaning'>
-                            <div class='meaning-text'>
-                              <div class='word-example meaning-eng mean'>${replaceMeaning}</div>
-                              <div class='word-example meaning-ru mean-translation none'>${textMeaningTranslate}</div>
-                            </div>
-                        </div>
-          `;
-      
-        const CARD = document.querySelector('.game-content');
-      
-        CARD.innerHTML = card;
-    `
-    <div class="dictionary-list word">
-                    <div class="dictionary-list icon">
-                        <img class="voice" src="../icons/voice.png" alt="voice">
-                    </div>
-                    <div class="dictionary-list words">
-                        <span class="dictionary-list eng-word">ability</span>
-                        <span class="dictionary-list ru-word">физическая возможность</span>
-                    </div>
-                    <div class="dictionary-list icon">
-                        <img class="trash" src="../icons/trash.png" alt="trash">
-                    </div>
-                </div>
-    `
+    GAME_WRAP.innerHTML = startPage;
+  }
+
+  renderCardCount(number, allCount) {
+    const cardCount = `
+                <span>${number}/${allCount}</span>
+                `
+    const CARD_NUMBER = document.querySelector('.card-number');
+
+    CARD_NUMBER.innerHTML = cardCount;
   }
 }
