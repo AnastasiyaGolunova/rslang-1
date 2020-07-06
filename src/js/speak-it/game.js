@@ -26,7 +26,7 @@ recognizer.onresult = function (event) {
             imgTrain.src = pic;
             let answer = words.indexOf(elem.trim());
             let mark = document.querySelector(".cards").children;
-            mark[answer].style.backgroundColor = 'yellow';
+            mark[answer].style.backgroundColor = 'hsl(201, 45%, 75%)';
             right.push(elem);
             console.log('right ' + right);
         } else {
@@ -41,6 +41,11 @@ recognizer.onresult = function (event) {
 strGame.addEventListener('click', function () {
     cardsWrap.removeEventListener('click', learn);
     recognizer.start();
-    // wdTranslate.add.style = 'line';
+    wdTranslate.classList.add('line');
+    wdTranslate.classList.add('mic');
+    // const mic = document.createElement('img');
+    // mic.classList = 'mic';
+    // mic.src = "https://img.icons8.com/wired/28/000000/microphone.png";
+    // wdTranslate.appendChild(mic);
     console.log('game');
 });
