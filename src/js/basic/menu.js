@@ -12,6 +12,19 @@ export default class Menu {
     elem.onclick = this.onClick.bind(this);
   }
 
+  async start() {
+    study.receivedWords.length = 0;
+    study.arrayStudy = await study.getCompareWords();
+    // const result = study.arrayStudy[0].paginatedResults;
+    console.log(study.arrayStudy);
+    if (study.arrayStudy.length !== 0) {
+      card.renderGameWrapper();
+      card.render(study.arrayStudy[study.count]);
+      card.renderCardCount(1, study.arrayStudy.length)
+      study.findCheckbox();
+  }
+  }
+
   example(event) {
     study.checked(event);
   }
@@ -48,7 +61,7 @@ export default class Menu {
     }, 5000);
   }
 
-  send() {
+  async send() {
     const INPUT_WORD = document.querySelector('.answer-input');
     const wordContainer = document.querySelector('.word-container');
     const DATA_WORD = study.arrayStudy[study.count];
@@ -61,7 +74,9 @@ export default class Menu {
           study.count += 1;
           const curentWord = study.arrayStudy[study.count];
           card.render(curentWord);
+          card.renderCardCount(study.count + 1, study.arrayStudy.length)
           study.findCheckbox();
+          console.log(study.arrayStudy)
         }, 5000);
         } else {
           console.log('все слова изучены')

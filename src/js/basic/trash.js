@@ -11,7 +11,6 @@ import {getStudy} from './study';
 import Cards from '../basic/cards';
 const study = getStudy();
 const cards = new Cards();
-cards.renderGameWrapper();
 
 export default class Trash {
     constructor() {
@@ -111,7 +110,11 @@ export default class Trash {
         const data = {
             "userId": `${userId}`,
             "wordId": `${id}`,
-            "word": { "difficulty": "repeat" }
+            "word": { "difficulty": "",
+            "option": {
+                "repeat": true
+            }
+        }
         }
   
         const result = await study.updateUserWord(data);
