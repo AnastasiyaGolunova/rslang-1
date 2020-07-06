@@ -38,18 +38,50 @@ export default function intervalRepetition(word, level) {
         const millisecondsInDay = 60 * 60 * 24 * 1000; //86.400.000
         const today = new Date();
         const now = today.getMilliseconds();
-        const nextPracticeDate = now + millisecondsInDay * interval;  // Store the nextPracticeDate in the database???
+        const nextPracticeDate = (now + millisecondsInDay * interval) * 60000;
+
+        // Store the nextPracticeDate in the database
+
+        const updateUserWord = async ({ userId, wordId, practiceDate }) => {
+
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('userId');
+
+            const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/words/${wordId}`, {
+                method: 'PUT',
+                withCredentials: true,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(practiceDate)
+            });
+            const content = await rawResponse.json();
+
+            console.log(content);
+        };
+
+        updateUserWord({
+            userId: `${userId}`,
+            wordId: `${wordId}`,
+            word: {
+                "optional":
+                    { date: `${nextPracticeDate}` }
+            }
+        });
 
         //buttons
         againBtn.onclick = () => {
             const levelMessage = `
             <h5 class="message">
-            Данное слово появится в тренировке через 5 минут.
+            Данное слово появится в тренировке через 1 минуту.
             </h5>
         `;
             levelButtons.innerHTML = levelMessage;
         }
 
+        // как отправить слова на тренировку через определенное кол-во времени? setTimeout(`${nextPracticeDate}`)?
         hardBtn.onclick = () => {
             level = 1;
             const levelMessage = `

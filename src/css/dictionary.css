@@ -96,13 +96,27 @@
     font-weight: 700;
     padding: 0;
 }
-.ru-word, .eng-sentence {
+.eng-sentence {
     color: #000000;
     font-size: 16px;
     font-weight: 400;
     padding: 0;
+    width: 33vw;
+    height: 3vh;
 }
 
+.ru-word {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0;
+    width: 15vw;
+    height: 3vh;
+}
+
+b {
+    display: contents;
+}
 .start {
     width: 145px;
     align-self: flex-end;
@@ -111,6 +125,11 @@
     margin-top: 20px;
     width: 38vw;
     align-content: center;
+}
+
+.dictionary-list-words {
+    height: 20vh;
+    width: 15vw;
 }
 
 @media screen and (max-width: 320px) {
