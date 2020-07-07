@@ -22,7 +22,12 @@ export default class Menu {
       card.render(study.arrayStudy[study.count]);
       card.renderCardCount(1, study.arrayStudy.length)
       study.findCheckbox();
+    }
   }
+
+  burger() {
+    const nav = document.querySelector('.navigation');
+    nav.classList.toggle('navigation-active');
   }
 
   example(event) {

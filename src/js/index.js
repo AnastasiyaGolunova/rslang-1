@@ -1,7 +1,8 @@
 import '../css/index.css';
 import '../css/style.css';
 import '../css/game.css';
-import '../css/start.css'
+import '../css/start.css';
+import '../css/fonts.css';
 import Header from './header'
 import { getStudy } from './basic/study';
 import Cards from './basic/cards';

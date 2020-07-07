@@ -115,7 +115,7 @@ export default class Header {
                       </li>
                   </div>
               </ul>
-              <div class="burger">
+              <div class="burger" data-action="burger">
                   <div class="line1"></div>
                   <div class="line2"></div>
                   <div class="line3"></div>
