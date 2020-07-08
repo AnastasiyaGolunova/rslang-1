@@ -16,13 +16,15 @@ function renderTranslate(obj) {
   let rendered = [correctTranslate, randomTranslate][Math.round(Math.random())]
   
   cardInfo.isTrue = (rendered == correctTranslate);
-  console.log(cardInfo)
+  cardInfo.correctTranslate = correctTranslate;
+
+  cardInfo.correctTranslate = correctTranslate
   return rendered
 }
 
 function addCorrectAnswer(points) {
   let score = +document.querySelector('.score span').innerHTML
-  document.querySelector('.score span').innerHTML = +score + points;
+  document.querySelectorAll('.score span').forEach(el => el.innerHTML = +score + points)
   document.querySelector('.score span').classList.add('answered')
   
   cardInfo.correctChain +=1;
@@ -73,14 +75,45 @@ function addWrongAnswer() {
 document.addEventListener('click', (e)=>{
   if ((e.target === document.querySelector('.wright-btn') && cardInfo.isTrue) ||
       (e.target === document.querySelector('.wrong-btn') && !cardInfo.isTrue)) {
-    addCorrectAnswer(cardInfo.correctCost)
+    addCorrectAnswer(cardInfo.correctCost);
+    addSuccessToStatistics()
   }
   if ((e.target === document.querySelector('.wright-btn') && !cardInfo.isTrue) ||
       (e.target === document.querySelector('.wrong-btn') && cardInfo.isTrue)) {
     addWrongAnswer()
+    addFailureToStatistics()
   }
 
 })
+
+function addFailureToStatistics() {
+  let word = document.querySelector('.word');
+  let failSection = document.querySelector('.fail')
+
+  let row = document.createElement('DIV');
+  row.classList.add('row');
+  row.innerHTML = `
+    <div class="word">${word.dataset.word}</div>
+    <div class="translate">${cardInfo.correctTranslate}</div>`
+
+  failSection.append(row);
+  failSection.querySelector('.title span').innerHTML = +failSection.querySelector('.title span').innerHTML + 1
+}
+
+function addSuccessToStatistics() {
+  let word = document.querySelector('.word');
+  let successSection = document.querySelector('.success')
+
+  let row = document.createElement('DIV');
+  row.classList.add('row');
+  row.innerHTML = `
+    <div class="word">${word.dataset.word}</div>
+    <div class="translate">${cardInfo.correctTranslate}</div>`
+
+  successSection.append(row);
+  successSection.querySelector('.title span').innerHTML = +successSection.querySelector('.success .title span').innerHTML + 1
+}
+
 
 
 export { renderTranslate }
