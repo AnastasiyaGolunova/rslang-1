@@ -121,10 +121,10 @@ const config = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'sprint.css',
+      filename: 'style.css',
     }),
     new HtmlWebPackPlugin({
-      template: './src/index.html',
+      template: './src/sprint.html',
       filename: './index.html'
     }),
     new CopyWebpackPlugin([
