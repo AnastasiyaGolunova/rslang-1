@@ -13,6 +13,7 @@ let medium = {
   words: [],
   translate: []
 }
+
 let hard = {
   words: [],
   translate: []
@@ -24,7 +25,7 @@ async function getWords(obj) {
   obj == easy ? [startPage, endPage] = [0, 1] : 
   obj == medium ? [startPage, endPage] = [2, 3] : [startPage, endPage] = [4, 5]
   for(let a = startPage ; a <= endPage ; a ++) {
-    for(let b = 0 ; b < 5  ; b ++) {
+    for(let b = 0 ; b < 15  ; b ++) {
       const data = await getData(a, b);
       for ( let i = 0 ; i < data.length ; i ++) {
       obj.translate.push(data[i].wordTranslate)
@@ -36,8 +37,8 @@ async function getWords(obj) {
 }
 
 getWords(easy)
-getWords(medium)
-getWords(hard)
+// getWords(medium)
+// getWords(hard)
 
 
 export {easy, medium, hard}

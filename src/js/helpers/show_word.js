@@ -1,15 +1,17 @@
 import { easy, medium, hard} from '../data/get_data'
-import { renderTranslate } from './choose_answer'
+import { renderTranslate} from './game_process'
 
 let num = 0
 
 function showWord(obj) {
   let word = obj.words[num]
+  // cardInfo.word = word
   return word
 }
 
 function showTranslate(obj) {
   let translate = obj.translate[num]
+  // cardInfo.correctTranslate = translate;
   num += 1;
   return translate
 }
@@ -19,7 +21,8 @@ function showTranslate(obj) {
 
 document.addEventListener('click', (e)=>{
   if (e.target.parentNode == document.getElementById('game-controls')) {
-    document.querySelector('.word').innerHTML = showWord(easy)
+    let word = document.querySelector('.word')
+    word.innerHTML = word.dataset.word = showWord(easy);
     document.querySelector('.translate').innerHTML = renderTranslate(easy);
   }
 })

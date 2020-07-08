@@ -25,8 +25,10 @@
 }
 
 .start-page,
-.game-page {
+.game-page,
+.statistics-page {
   background-color: #ffebcd;
+  min-height: 400px;
   width: 80%;
   height: 50%;
   min-width: 220px;
@@ -62,6 +64,12 @@
   justify-content: space-between;
 }
 
+.statistics-page .button-wrapper {
+  width: 100%;
+  height: 15%;
+  margin-bottom: 0;
+}
+
 .btn {
   font-family: 'Helvetica', sans-serif;
   text-transform: uppercase;
@@ -81,6 +89,13 @@
 
 .start-btn {
   background-color: #80A63F;
+}
+
+.return-btn {
+  background-color: tomato;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 0 0 10px 10px;
 }
 
 .btn:active {
@@ -167,7 +182,8 @@
   color: red;
 }
 
-.game-page {
+.game-page,
+.statistics-page {
   position: relative;
   font-family: 'Helvetica', sans-serif;
 }
@@ -214,15 +230,91 @@
   border-radius: 0 0  10px 0;
 }
 
-.game-page {
+.game-page,
+.statistics-page {
   min-width: 260px;
   min-height: 400px;
 }
 
-.game-page__header {
+.game-page__header,
+.statistics-page__header {
   height: 100px;
   display: flex;
   width: 100%;
+}
+
+.statistics-page__header {
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+}
+
+.statistics-page .title{
+  font-family: cursive;
+  font-weight: bold;
+  color: #81a4bb;
+  border-bottom: 1px dotted #b8860b;
+  padding: 5px;
+}
+
+.statistics-page__header .title {
+  border: 0;
+  font-size: 1.5em;
+}
+
+.statistics-page .score {
+  margin-left: 10px;
+  flex-grow: 0;
+}
+
+.fail,
+.success {
+  width: 100%; 
+}
+
+.fail {
+  background-color: rgba(255,99,71 ,0.3 );
+}
+
+.success {
+  background-color: rgba(154,205,50 ,0.3 );
+}
+
+.statistics-page .word-section {
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+.statistics-page .row {
+  display: flex;
+  border-bottom: 1px dotted #b8860b;
+}
+
+.statistics-page .word,
+.statistics-page .translate {
+  width: 50%;
+  text-align: start;
+  border-bottom: 0;
+  margin: 5px;
+  padding: 0;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: gray; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
 }
 
 .game-page__points {
@@ -247,6 +339,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .word {

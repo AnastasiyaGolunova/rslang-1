@@ -1,5 +1,5 @@
 import { showWord } from '../helpers/show_word'
-import { renderTranslate } from '../helpers/choose_answer';
+import { renderTranslate } from '../helpers/game_process';
 
 import {easy, medium, hard} from '../data/get_data'
 
@@ -18,7 +18,7 @@ function gamePageInit() {
         </div>    
       </div>
       <div class="word-section">
-        <div class="word">${showWord(easy)}</div>
+        <div class="word" data-word="${showWord(easy)}">${showWord(easy)}</div>
         <div class="translate">${renderTranslate(easy)}</div>
       </div>
       <div class="button-wrapper" id="game-controls">

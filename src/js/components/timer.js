@@ -1,7 +1,4 @@
-// import {SPRINT_TIME_LIMIT, SPRINT_COLOR_CODES,FULL_DASH_ARRAY} from '../constants'
-
-
-
+import {statisticsPageInit} from './statistics_page'
 const FULL_DASH_ARRAY = 283;
 const ATTENTION_THRESHOLD = 45;
 const WARNING_THRESHOLD = 30;
@@ -62,7 +59,9 @@ function createTimer(parent) {
 
 function onTimesUp() {
   clearInterval(timerInterval);
-  alert('здесь будет окно со статистикой слов')
+  document.querySelector('.game-page').classList.add('hidden');
+  document.querySelector('.statistics-page').classList.remove('hidden');
+  timePassed = 0;
 }
 
 function startTimer() {
