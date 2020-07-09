@@ -25,10 +25,10 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: {index: './src/js/index.js'},
+  entry: {audiocall: './src/js/audiocall.js'},
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: 'audiocall.js'
   },
   mode: setDMode(),
   devtool: setDevTool(),
@@ -115,21 +115,32 @@ const config = {
             outputPath: 'fonts'
           }
         }]
+      },
+      {
+        test: /\.mp3$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'audio'
+          }
+        }]
       }
     ]
   },
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: 'audiocall.css',
     }),
     new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
+      template: './src/audiocall.html',
+      chunks:'audiocall',
+      filename: 'audiocall.html'
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
-      {from: './src/img', to: './img/'}
+      {from: './src/img', to: './img/'},
+      {from: './src/audio', to: './audio/'}
     ]),
   ],
 

@@ -1,3 +1,5 @@
+import '../css/audiocall.css';
+
 const urlApi = "https://afternoon-falls-25894.herokuapp.com/words";
 const dataUrl =
   "https://raw.githubusercontent.com/natalypoida/rslang-data/master/";
@@ -21,8 +23,8 @@ const restartButton = document.querySelector("#restart");
 const studyButton = document.querySelector("#study");
 const correctSound = document.createElement("audio");
 const wrongSound = document.createElement("audio");
-wrongSound.setAttribute("src", "mp3/wrong.mp3");
-correctSound.setAttribute("src", "mp3/correct.mp3");
+wrongSound.setAttribute("src", "audio/wrong.mp3");
+correctSound.setAttribute("src", "audio/correct.mp3");
 let roundNumber = 0;
 let errorCount = 0;
 let correctAnswersCount = 0;
@@ -170,7 +172,7 @@ function showStatistics() {
       break;
     case 5:
     case 6:
-      userLevel.innerText = `Еще немного и ты справишься!`;
+      userLevel.innerText = `Старайся!`;
       userScore.innerText = `${correctAnswersCount} слов изучено, ${errorCount} на изучении. `;
       break;
     case 7:
