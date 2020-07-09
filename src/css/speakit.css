@@ -116,7 +116,7 @@ body,
     text-align: center;
     display: inline;
     padding: 18px;
-    font-size: 15px;
+    font-size: 25px;
 }
 .fa{
     float: left;
@@ -127,14 +127,23 @@ body,
     padding-top: 10px;
 }
 .line{
+    background-image: url("https://img.icons8.com/wired/28/000000/microphone.png");
+    background-repeat: no-repeat;
     border-bottom: 2px solid hsl(201, 45%, 75%);
     width: 200px;
     margin: 0 auto;
+
 }
 .mic{
- background-image: url("https://img.icons8.com/wired/28/000000/microphone.png");
-}
 
+}
+.statistic-wrap{
+    width: 90vw;
+    height: 53.64vw;
+}
+.statistic{
+    background-color: hsl(201, 45%, 75%);
+}
 @media screen and (min-width: 320px) and (max-width: 446px){
     .cards{
         justify-content: center;
