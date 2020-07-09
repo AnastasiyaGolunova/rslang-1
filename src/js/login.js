@@ -65,12 +65,17 @@ const loginUser = async (user) => {
       const content = await rawResponse.json();
       SIGNIN_ERROR.textContent = "Вы успешно вошли";
       return content;
+    } else {
+      if (rawResponse.status === 417) {
+        SIGNIN_ERROR.textContent = "Не верный логин или пароль";
+        return null
+      }
+      
+      if (rawResponse.status === 404) {
+        SIGNIN_ERROR.textContent = "Пользователь не найден";
+        return null
+      }
     }
-
-    if (rawResponse.status === 417) {
-      SIGNUP_ERROR.textContent = "Не верный логин или пароль";
-    }
-
     // console.log(content);
 
     //loginUser({ "email": "hello@user.com", "password": "Gfhjkm_123" });
@@ -85,7 +90,8 @@ signInLeftButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
 
-SIGNUP_BTN.addEventListener("click", async () => {
+SIGNUP_BTN.addEventListener("click", async (event) => {
+  event.preventDefault();
   console.log(SIGNUP_EMAIL.value);
   console.log(SIGNUP_PASSWORD.value);
   let regexp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z+-_@$!%*?&#.,;:[\]{}]{8,}/g;
@@ -99,6 +105,8 @@ SIGNUP_BTN.addEventListener("click", async () => {
       };
       console.log(user);
       userContent = await createUser(user);
+      SIGNUP_EMAIL.value = '';
+      SIGNUP_PASSWORD.value = '';
       console.log(userContent);
     }
   }
@@ -118,10 +126,15 @@ SIGNIN_BTN.addEventListener("click", async (event) => {
     console.log(user);
     userLogin = await loginUser(user);
     console.log(userLogin);
-    localStorage.setItem('token', userLogin.token);
-    localStorage.setItem('refreshToken', userLogin.refreshToken)
-    localStorage.setItem('userId', userLogin.userId);
-    const userId = localStorage.getItem('userId');
-    window.location.href = 'index.html';
+    if (userLogin !== null) {
+      localStorage.setItem('token', userLogin.token);
+      localStorage.setItem('refreshToken', userLogin.refreshToken)
+      localStorage.setItem('userId', userLogin.userId);
+      const userId = localStorage.getItem('userId');
+      window.location.href = 'index.html';
+    } else {
+      SIGNIN_EMAIL.value = '';
+      SIGNIN_PASSWORD.value = '';
+    }
   }
 });
