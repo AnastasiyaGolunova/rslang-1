@@ -1,3 +1,4 @@
+import '../css/style.css';
 import '../css/sprint.css';
 import './components/start_page'
 import './components/timer'

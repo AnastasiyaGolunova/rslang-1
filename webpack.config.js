@@ -25,7 +25,7 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: {index: './src/js/sprint.js'},
+  entry: {sprint: './src/js/sprint.js'},
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
@@ -121,11 +121,12 @@ const config = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: '[name].css',
     }),
     new HtmlWebPackPlugin({
       template: './src/sprint.html',
-      filename: './index.html'
+      // chunks: ['sprint'],
+      filename: 'index.html'
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},

@@ -11,7 +11,7 @@ startPage.innerHTML =  `<div class="start-page">
     </div>
   </div>`
 
-document.body.prepend(startPage);
+document.body.append(startPage);
 
 const rulesButton = document.querySelector('.rules-btn')
 
