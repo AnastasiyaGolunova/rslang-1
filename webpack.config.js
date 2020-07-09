@@ -23,7 +23,7 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: { index: "./src/js/index.js" },
+  entry: { savannah: "./src/js/savannah.js" },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
@@ -138,11 +138,12 @@ const config = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "style.css",
+      filename: "[name].css",
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
+      template: "./src/savannah.html",
+      chunks: ["savannah"],
+      filename: "index.html",
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
@@ -154,7 +155,7 @@ const config = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 3000,
+    port: 3001,
     overlay: true,
     stats: "errors-only",
     clientLogLevel: "none",
