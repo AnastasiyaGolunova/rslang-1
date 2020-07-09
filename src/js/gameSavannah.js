@@ -1,48 +1,3 @@
-import "../css/style.css";
-//import "../audio/correct.mp3";
-//import "../audio/error.mp3";
-
-//import "../img/";
-//import "../js/components/_startPage";
-//import "../js/components/_gameSavannah";
-
-// const success = new Audio(correct);
-// const fail = new Audio(wrong);
-
-//test backend
-///////////////////////////
-const user = {
-  email: "tatyana.korshun@gmail.com",
-  password: "Qwerty123!@#",
-};
-//userLogin = loginUser(user);
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmMzNGQ5YWFlNDcyMDAxNzk4YzE2ZiIsImlhdCI6MTU5Mzk2MzU2MCwiZXhwIjoxNTkzOTc3OTYwfQ.oxoPNq0J9hOu4ls2YCYu6P6sC8-sPb7UVza9WZkP4u8";
-const userId = "5efc34d9aae472001798c16f";
-localStorage.setItem("token", token);
-localStorage.setItem("userId", userId);
-
-//sign_in
-// const loginUser = async (user) => {
-//   const rawResponse = await fetch(
-//     "https://afternoon-falls-25894.herokuapp.com/signin",
-//     {
-//       method: "POST",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(user),
-//     }
-//   );
-//   const content = await rawResponse.json();
-
-//   console.log(content);
-// };
-
-// loginUser({ email: "tatyana.korshun@gmail.com", password: "Qwerty123!@#" });
-//////////////////////////////
-
 //start page creation
 
 const startPage = document.createElement("div");
@@ -50,25 +5,25 @@ const startPage = document.createElement("div");
 startPage.classList.add("page-wrapper");
 
 startPage.innerHTML = `<div class="start-page">
-<h2 class="header-block">САВАННА</h2>
-<div class="levelSettings">
-            <p class="level__text">Выбери свой уровень </p>
-            <select class="level radio-toolbar" id="level">
-                <option value="0">A1</option>
-                <option value="1">A2</option>
-                <option value="2">B1</option>
-                <option value="3">B2</option>
-                <option value="4">C1</option>
-                <option value="5">C2</option>
-            </select>
-        </div>
-<div class="body-block"><p>Тренировка Саванна развивает словарный запас. <br> Чем больше слов ты знаешь, тем больше очков опыта получишь.</p></div>
-
-<img class="game-icon" src="img/savannah-icon.svg"></img>
-<div class="button-wrapper">
-<button class="start-btn">Начать</button>
-</div>
-</div>`;
+  <h2 class="header-block">САВАННА</h2>
+  <div class="levelSettings">
+              <p class="level__text">Выбери свой уровень </p>
+              <select class="level radio-toolbar" id="level">
+                  <option value="0">A1</option>
+                  <option value="1">A2</option>
+                  <option value="2">B1</option>
+                  <option value="3">B2</option>
+                  <option value="4">C1</option>
+                  <option value="5">C2</option>
+              </select>
+          </div>
+  <div class="body-block"><p>Тренировка Саванна развивает словарный запас. <br> Чем больше слов ты знаешь, тем больше очков опыта получишь.</p></div>
+  
+  <img class="game-icon" src="img/savannah-icon.svg"></img>
+  <div class="button-wrapper">
+  <button class="start-btn">Начать</button>
+  </div>
+  </div>`;
 document.body.prepend(startPage);
 
 //Start button click
@@ -82,20 +37,20 @@ startBtn.addEventListener("click", () => {
     let current = from;
 
     startPage.innerHTML = `
-    <div class="game-page">
-
-    <div class="timer">
-    <div class="circle-timer">
-        <div class="timer-slot">
-            <div class="timer-lt"></div>
-        </div>
-        <div class="timer-slot">
-            <div class="timer-rt"></div>
-        </div>
-        <div class="count"></div>
+      <div class="game-page">
+  
+      <div class="timer">
+      <div class="circle-timer">
+          <div class="timer-slot">
+              <div class="timer-lt"></div>
+          </div>
+          <div class="timer-slot">
+              <div class="timer-rt"></div>
+          </div>
+          <div class="count"></div>
+      </div>
     </div>
-  </div>
-  </div>`;
+    </div>`;
 
     const timerId = setInterval(function () {
       document.querySelector(".count").innerHTML = current;
@@ -114,7 +69,7 @@ let stat = 0;
 let error = 0;
 let countWordId = [];
 let countGameWords = 0;
-const wordsLimit = 11;
+const wordsLimit = 31;
 
 let hardWords = [];
 let hardWordsTranslate = [];
@@ -127,30 +82,30 @@ function startGame() {
   const gamePage = document.createElement("div");
   gamePage.classList.add("page-wrapper");
   gamePage.innerHTML = ` <div class="game-page">
-  <div class="wrap-game" id="wrap-game">
-  <div class="rating">
-  <div class="star-success"></div>
+    <div class="wrap-game" id="wrap-game">
+    <div class="rating">
     <div class="star-success"></div>
-    <div class="star-success"></div>
-    <div class="star-success"></div>
-    <div class="star-success"></div></div>
-</div>
-  <div class="words">
-  <div class="question">
-      <p class="word"></p>
+      <div class="star-success"></div>
+      <div class="star-success"></div>
+      <div class="star-success"></div>
+      <div class="star-success"></div></div>
   </div>
-  <div class="item">
-      <button class="translation" id='answerBtn'></button>
-      <button class="translation2" id='answerBtn'></button>
-      <button class="translation3" id='answerBtn'></button>
-      <button class="translation4" id='answerBtn'></button>
-  </div>
-  </div>
-  <div class="translations">
-  <div class="answers"></div>
-  </div>
-  
-  </div>`;
+    <div class="words">
+    <div class="question">
+        <p class="word"></p>
+    </div>
+    <div class="item">
+        <button class="translation" id='answerBtn'></button>
+        <button class="translation2" id='answerBtn'></button>
+        <button class="translation3" id='answerBtn'></button>
+        <button class="translation4" id='answerBtn'></button>
+    </div>
+    </div>
+    <div class="translations">
+    <div class="answers"></div>
+    </div>
+    
+    </div>`;
   document.body.append(gamePage);
   stat = 0;
   error = 0;
@@ -288,12 +243,6 @@ function loadGame() {
   };
   changeAnswersOrder();
 
-  //   if (getUserWords.length < 30) {
-  //     console.log(getUserWords.length);
-  //     console.log(getUserWords.word);
-  //     loadWord();
-  //   }
-
   //load wrong answer options
   const loadWrongTranslations = async () => {
     const getRandomNum = Math.floor(Math.random() * Math.floor(30));
@@ -345,7 +294,7 @@ async function animateGame() {
     right_translation.onclick = function (event) {
       // play audio of correct click
       let audio = new Audio();
-      audio.src = "src/audio/correct.mp3";
+      audio.src = "../audio/correct.mp3";
       audio.autoplay = true;
       //   success.play();
       clearInterval(id);
@@ -365,7 +314,7 @@ async function animateGame() {
     error++;
 
     let audio = new Audio();
-    audio.src = "src/audio/error.mp3";
+    audio.src = "../audio/error.mp3";
     audio.autoplay = true;
     //fail.play();
 
@@ -435,6 +384,8 @@ async function animateGame() {
 
 //Statistic page
 function getStatistics() {
+  document.querySelector(".game-page").classList.toggle(".hidden");
+  console.log(document.querySelector(".game-page"));
   console.log(`Hardwords: ${hardWords}`);
   console.log(`HardwordsTranslate: ${hardWordsTranslate}`);
 
@@ -444,36 +395,36 @@ function getStatistics() {
   const statictics = document.createElement("div");
   statictics.classList.add("page-wrapper");
   statictics.innerHTML = `
-    <div class="statistics-page">
-        <h2 class="header-block">изучено слов: ${stat} на изучении: ${error}</h2>
-        <div class="body-statblock">${userScore}</div>
-        <div class="slider">
-            <input type="radio" name="switch" id="btn1" checked >
-            <input type="radio" name="switch" id="btn2" >
-
-            <div class="switch">
-                <label for="btn1" id="s1"></label>
-                <label for="btn2" id="s2"></label>
-            </div>
-
-            <div class="slider-inner">
-                <div class="slides">
-                    <div class="one"><strong>Изученные слова:</strong> <br>${resultHardWord}</div>
-                    <div class="two"><strong>На изучении:</strong> <br>${resultWeakWord}</div>
-                </div>
-            </div> 
-        </div>
-
-        <div class="button-wrapper">
-            <button class="continue-btn">продолжить тренировку</button>
-        </div>
-
-
-    </div>
-
-    
-    
-</div>`;
+      <div class="statistics-page">
+          <h2 class="header-block">изучено слов: ${stat} на изучении: ${error}</h2>
+          <div class="body-statblock">${userScore}</div>
+          <div class="slider">
+              <input type="radio" name="switch" id="btn1" checked >
+              <input type="radio" name="switch" id="btn2" >
+  
+              <div class="switch">
+                  <label for="btn1" id="s1"></label>
+                  <label for="btn2" id="s2"></label>
+              </div>
+  
+              <div class="slider-inner">
+                  <div class="slides">
+                      <div class="one"><strong>Изученные слова:</strong> <br>${resultHardWord}</div>
+                      <div class="two"><strong>На изучении:</strong> <br>${resultWeakWord}</div>
+                  </div>
+              </div> 
+          </div>
+  
+          <div class="button-wrapper">
+              <button class="continue-btn">продолжить тренировку</button>
+          </div>
+  
+  
+      </div>
+  
+      
+      
+  </div>`;
 
   document.body.append(statictics);
 
@@ -493,30 +444,27 @@ function getStatistics() {
   //Continue button click
   const continueBtn = document.querySelector(".continue-btn");
   continueBtn.addEventListener("click", () => {
-    //wordsLimit = 11;
-
     function timer(from, to) {
       let current = from;
       document.body.innerHTML = `
-        <div class="game-page">
-    
-        <div class="timer">
-        <div class="circle-timer">
-            <div class="timer-slot">
-                <div class="timer-lt"></div>
-            </div>
-            <div class="timer-slot">
-                <div class="timer-rt"></div>
-            </div>
-            <div class="count"></div>
+          <div class="game-page">
+          <div class="timer">
+          <div class="circle-timer">
+              <div class="timer-slot">
+                  <div class="timer-lt"></div>
+              </div>
+              <div class="timer-slot">
+                  <div class="timer-rt"></div>
+              </div>
+              <div class="count"></div>
+          </div>
         </div>
-      </div>
-      </div>`;
-
+        </div>`;
       const timerId = setInterval(function () {
         document.querySelector(".count").innerHTML = current;
         if (current == to) {
           clearInterval(timerId);
+
           startGame();
         }
         current--;
@@ -525,5 +473,3 @@ function getStatistics() {
     timer(3, 0);
   });
 }
-
-//Change difficulty according to statistics
