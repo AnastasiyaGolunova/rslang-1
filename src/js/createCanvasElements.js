@@ -1,3 +1,5 @@
+import { draggedItem } from './constants.js';
+
 const createCanvasElements = async ({
   src,
   wordsList,
@@ -52,15 +54,14 @@ const createCanvasElements = async ({
         const letterCounts = words.reduce((acc, val) => acc + val.replace(/<[^>]*>/g, '').length, 0);
         const reduceLength = letterCounts * EXTRA_WIDTH_VALUE;
         const extraWidth = Math.round(reduceLength / wordCount);
-        const onePart = Math.round((containerWidth - reduceLength) / letterCounts);
-        const canvasHeight = Math.round(containerHeight / groupsRow);
+        const onePart = Math.round((img.width - reduceLength) / letterCounts);
+        const canvasHeight = Math.round(img.height / groupsRow);
 
         let widthCount = 0;
 
-
         row.classList.add(`group-words`);
         row.classList.add(`row-${i + 1}`);
-
+        
         words.forEach((w, j) => {
           const word = w.replace(/<[^>]*>/g, '');
           const canvas = document.createElement('canvas');
@@ -70,12 +71,27 @@ const createCanvasElements = async ({
           canvas.classList.add(`canvas-item-${j + 1}`);
           canvas.setAttribute('data-item', `${i + 1}-${j + 1}`);
           canvas.setAttribute('data-word', word);
+          canvas.setAttribute('draggable', true);
+
+          canvas.addEventListener('dragstart', () => {
+            window.draggedItem = canvas;
+            setTimeout(() => {
+              canvas.style.display = 'none';
+            }, 0)
+          });
+
+          canvas.addEventListener('dragend', () => {
+            setTimeout(() => {
+              draggedItem.style.display = 'inline';
+              window.draggedItem = null;
+            }, 0);
+          });
 
           const ctx = canvas.getContext('2d');
           let canvasWidth = (word.length * onePart) + extraWidth;
 
           if (j === wordCount - 1) {
-            canvasWidth = containerWidth - widthCount;
+            canvasWidth = img.width - widthCount;
             widthCount += canvasWidth;
           } else {
             widthCount += canvasWidth;

@@ -12,7 +12,7 @@
     "lint": "eslint ./**/*.js",
     "clear": "del-cli dist",
     "test": "jest",
-    "scss": "sass --watch ./src/scss/style.scss ./src/css/style.css"
+    "scss": "sass --watch ./src/scss/english-puzzle.scss ./src/css/english-puzzle.css"
   },
   "author": "rslang team",
   "license": "ISC",
