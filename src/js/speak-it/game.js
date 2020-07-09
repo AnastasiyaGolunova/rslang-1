@@ -3,7 +3,8 @@
 const strGame = document.querySelector('.speak');
 let right = [];
 
-let recognizer = new window.webkitSpeechRecognition || window.SpeechRecognition;
+const MySpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition;
+let recognizer = new MySpeechRecognition;
 recognizer.continuous = true;
 recognizer.interimResults = true;
 recognizer.lang = 'en-En';
@@ -21,28 +22,31 @@ recognizer.onresult = function (event) {
         if (contains(words, elem)) {
             const anw = new Audio('./audio/right.wav');
             anw.play();
-            const {image} = arr[words.indexOf(elem.trim())];
+            let answer = words.indexOf(elem.trim());
+            const {image} = arr[answer];
             const pic = `${mediaData}${image}`;
             imgTrain.src = pic;
-            let answer = words.indexOf(elem.trim());
             let mark = document.querySelector(".cards").children;
             mark[answer].style.backgroundColor = 'hsl(201, 45%, 75%)';
             right.push(elem);
+            let del = words.slice(answer, 1);
             console.log('right ' + right);
+            console.log(del);
+            console.log(words, words.length);
+            console.log(answer);
         } else {
             console.log('wrong');
         }
         console.log('Вы сказали: ' + result[0].transcript);
-        // } else {
-        //     console.log('Промежуточный результат: ', result[0].transcript);
-        // }
-    }
+        } else {
+            console.log('Промежуточный результат: ', result[0].transcript);
+        }
 };
 strGame.addEventListener('click', function () {
     cardsWrap.removeEventListener('click', learn);
     recognizer.start();
     wdTranslate.classList.add('line');
-    wdTranslate.classList.add('mic');
+    //wdTranslate.classList.add('mic');
     // const mic = document.createElement('img');
     // mic.classList = 'mic';
     // mic.src = "https://img.icons8.com/wired/28/000000/microphone.png";
