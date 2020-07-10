@@ -138,6 +138,7 @@ body,
 
 }
 .statistic-wrap{
+    display: none;
     width: 90vw;
     height: 53.64vw;
 }
