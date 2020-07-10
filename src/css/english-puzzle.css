@@ -55,7 +55,6 @@ body {
 .wrapper .game-wrapper .img-puzzle {
   width: 90vw;
   height: 53.64vw;
-  background-image: url("./../img/1.jfif");
   background-repeat: no-repeat;
   background-size: cover;
 }
