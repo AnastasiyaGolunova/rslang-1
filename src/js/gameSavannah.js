@@ -1,70 +1,6 @@
-<<<<<<< HEAD:src/js/savannah_index.js
-import "../css/style.css";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import "../css/dictionary.css";
-import "../css/fonts.css";
-import "../css/game.css";
-import "../css/login.css";
-
-import "./login.js";
-=======
-import "../js/components/_startPage";
-import "../js/components/_gameSavannah";
->>>>>>> feat: add word, buttons&answers, sound, dynamic
-=======
-//import "../audio/correct.mp3";
-//import "../audio/error.mp3";
-
-//import "../img/";
-//import "../js/components/_startPage";
-//import "../js/components/_gameSavannah";
-
-// const success = new Audio(correct);
-// const fail = new Audio(wrong);
-
-//test backend
-///////////////////////////
-const user = {
-  email: "tatyana.korshun@gmail.com",
-  password: "Qwerty123!@#",
-};
-//userLogin = loginUser(user);
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmMzNGQ5YWFlNDcyMDAxNzk4YzE2ZiIsImlhdCI6MTU5Mzk2MzU2MCwiZXhwIjoxNTkzOTc3OTYwfQ.oxoPNq0J9hOu4ls2YCYu6P6sC8-sPb7UVza9WZkP4u8";
-const userId = "5efc34d9aae472001798c16f";
-localStorage.setItem("token", token);
-localStorage.setItem("userId", userId);
-
-//sign_in
-// const loginUser = async (user) => {
-//   const rawResponse = await fetch(
-//     "https://afternoon-falls-25894.herokuapp.com/signin",
-//     {
-//       method: "POST",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(user),
-//     }
-//   );
-//   const content = await rawResponse.json();
-
-//   console.log(content);
-// };
-
-// loginUser({ email: "tatyana.korshun@gmail.com", password: "Qwerty123!@#" });
-//////////////////////////////
-
-=======
->>>>>>> refactor: rename files:src/js/gameSavannah.js
 //start page creation
-
 const startPage = document.createElement("div");
-
 startPage.classList.add("page-wrapper");
-
 startPage.innerHTML = `<div class="start-page">
   <h2 class="header-block">САВАННА</h2>
   <div class="levelSettings">
@@ -79,16 +15,14 @@ startPage.innerHTML = `<div class="start-page">
               </select>
           </div>
   <div class="body-block"><p>Тренировка Саванна развивает словарный запас. <br> Чем больше слов ты знаешь, тем больше очков опыта получишь.</p></div>
-  
   <img class="game-icon" src="img/savannah-icon.svg"></img>
   <div class="button-wrapper">
   <button class="start-btn">Начать</button>
   </div>
   </div>`;
-document.body.prepend(startPage);
+document.body.append(startPage);
 
 //Start button click
-
 const startBtn = document.querySelector(".start-btn");
 startBtn.addEventListener("click", () => {
   document.querySelector(".body-block").classList.toggle("hidden");
@@ -96,10 +30,8 @@ startBtn.addEventListener("click", () => {
   //timer
   function timer(from, to) {
     let current = from;
-
     startPage.innerHTML = `
       <div class="game-page">
-  
       <div class="timer">
       <div class="circle-timer">
           <div class="timer-slot">
@@ -108,13 +40,13 @@ startBtn.addEventListener("click", () => {
           <div class="timer-slot">
               <div class="timer-rt"></div>
           </div>
-          <div class="count"></div>
+          <div class="countThree"></div>
       </div>
     </div>
     </div>`;
 
     const timerId = setInterval(function () {
-      document.querySelector(".count").innerHTML = current;
+      document.querySelector(".countThree").innerHTML = current;
       if (current == to) {
         clearInterval(timerId);
         startGame();
@@ -126,12 +58,11 @@ startBtn.addEventListener("click", () => {
 });
 
 //game page creation
+const wordsLimit = 31;
 let stat = 0;
 let error = 0;
 let countWordId = [];
 let countGameWords = 0;
-const wordsLimit = 31;
-
 let hardWords = [];
 let hardWordsTranslate = [];
 let weakWords = [];
@@ -156,7 +87,7 @@ function startGame() {
         <p class="word"></p>
     </div>
     <div class="item">
-        <button class="translation" id='answerBtn'></button>
+        <button class="translationRight" id='answerBtn'></button>
         <button class="translation2" id='answerBtn'></button>
         <button class="translation3" id='answerBtn'></button>
         <button class="translation4" id='answerBtn'></button>
@@ -176,11 +107,11 @@ function startGame() {
   hardWordsTranslate = [];
   weakWords = [];
   loadGame();
-  //countGameWords < wordsLimit ? animateGame() : getStatistics();
   animateGame();
 }
 
-let right_translation = document.querySelector(".translation");
+let right_translation = document.querySelector(".translationRight");
+
 //change answers order
 function changeAnswersOrder() {
   let time = Math.floor(Math.random() * Math.floor(4));
@@ -188,7 +119,7 @@ function changeAnswersOrder() {
   let time3 = Math.floor(Math.random() * Math.floor(4));
   let time4 = Math.floor(Math.random() * Math.floor(4));
 
-  const answerOrder = document.querySelector(".translation");
+  const answerOrder = document.querySelector(".translationRight");
   answerOrder.style.setProperty("order", time);
 
   const answerOrder2 = document.querySelector(".translation2");
@@ -206,13 +137,11 @@ let group = level.addEventListener("change", function () {
 });
 
 //load word & answer options
-
 function loadGame() {
   const wordToTranslate = document.querySelector(".word");
-  let right_translation = document.querySelector(".translation");
+  let right_translation = document.querySelector(".translationRight");
 
-  //let arrayHard = [];
-  //Выгрузить hard слова юзера
+  //Get hard user words
   async function getUserHardWord() {
     const token = localStorage.getItem("token");
     const userID = localStorage.getItem("userId");
@@ -232,10 +161,9 @@ function loadGame() {
     const content = await rawResponse.json();
     let results = content[0].paginatedResults;
     console.log("Content:", content);
-    console.log("Results:", results); //есть word, wordTranslate, group [{},{},{}]
+    console.log("Results:", results);
 
-    //Загрузить hard слово и корректный перевод
-
+    //Get hard word & right translation
     async function getWordToTranslate() {
       let wordsRandom = Math.floor(Math.random() * Math.floor(results.length));
       if (!countWordId.includes(results[wordsRandom]._id)) {
@@ -245,32 +173,24 @@ function loadGame() {
         let hardWordTranslate = results[wordsRandom].wordTranslate;
         hardWords.push(hardWord);
         hardWordsTranslate.push(hardWordTranslate);
-
         countWordId.push(results[wordsRandom]._id);
       } else if (countWordId.length < results.length) {
         getWordToTranslate();
       } else if (countWordId.length === results.length) {
-        //getStatistics();
         if (results.length < wordsLimit) {
           if (countGameWords < wordsLimit) {
             loadWord();
           } else getStatistics();
-          //   else {getStatistics();
-          //   console.log(countGameWords);}
         } else getStatistics();
       }
     }
-
     countGameWords++;
     getWordToTranslate();
     console.log(countWordId);
   }
-
   getUserHardWord();
 
-  //getUserWords();
-
-  //Выгрузка блока любых слов
+  //Get other words
   const getWords = async (page, group) => {
     try {
       const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`;
@@ -283,12 +203,9 @@ function loadGame() {
     }
   };
 
-  //let count = Math.floor(Math.random() * Math.floor(20));
   let count = Math.floor(Math.random() * Math.floor(3));
 
-  let countWord = 0;
-
-  //Выгрузка отдельного слова с переводом из слока любых слов
+  //Get a word with correct translation from
   const loadWord = async () => {
     if (countGameWords < 30) {
       const getRandomNum = Math.floor(Math.random() * Math.floor(30));
@@ -336,32 +253,25 @@ async function animateGame() {
         getIncorrectChoice();
         animateGame();
       }
-
-      //console.log(pos);
     } else {
       if (elem) {
         pos++;
-        //console.log(pos);
         target.style.top = pos + "px";
       }
     }
   }
 
   //right&wrong answers counter, buttons click logic
-
   function getCorrectChoice() {
-    let right_translation = document.querySelector(".translation");
-
+    let right_translation = document.querySelector(".translationRight");
     right_translation.onclick = function (event) {
       // play audio of correct click
       let audio = new Audio();
       audio.src = "../audio/correct.mp3";
       audio.autoplay = true;
-      //   success.play();
       clearInterval(id);
       pos = 0;
       id = setInterval(frame, 13);
-
       loadGame(event);
       stat++;
     };
@@ -373,23 +283,18 @@ async function animateGame() {
     const rating = document.querySelector(".rating");
     let elem = document.querySelector(".star-success");
     error++;
-
     let audio = new Audio();
     audio.src = "../audio/error.mp3";
     audio.autoplay = true;
-    //fail.play();
-
     if (elem && error < 5) {
       elem.remove();
       rating.innerHTML += `<div class="star-error"></div>`;
       weakWords.push(hardWords.pop());
       loadGame();
-
       console.log(error);
     } else if (error === 5) {
       clearInterval(id);
       weakWords.push(hardWords.pop());
-      //alert("GAME OVER" + " Correct answers: " + stat);
       getStatistics();
     }
   }
@@ -397,9 +302,7 @@ async function animateGame() {
   function selectWrong2() {
     document.querySelector(".translation2").onclick = function (event) {
       clearInterval(id);
-
       getIncorrectChoice();
-
       pos = 0;
       id = setInterval(frame, 13);
     };
@@ -408,9 +311,7 @@ async function animateGame() {
   function selectWrong3() {
     document.querySelector(".translation3").onclick = function (event) {
       clearInterval(id);
-
       getIncorrectChoice();
-
       pos = 0;
       id = setInterval(frame, 13);
     };
@@ -419,9 +320,7 @@ async function animateGame() {
   function selectWrong4() {
     document.querySelector(".translation4").onclick = function (event) {
       clearInterval(id);
-
       getIncorrectChoice();
-
       pos = 0;
       id = setInterval(frame, 13);
     };
@@ -462,12 +361,10 @@ function getStatistics() {
           <div class="slider">
               <input type="radio" name="switch" id="btn1" checked >
               <input type="radio" name="switch" id="btn2" >
-  
               <div class="switch">
                   <label for="btn1" id="s1"></label>
                   <label for="btn2" id="s2"></label>
               </div>
-  
               <div class="slider-inner">
                   <div class="slides">
                       <div class="one"><strong>Изученные слова:</strong> <br>${resultHardWord}</div>
@@ -475,16 +372,10 @@ function getStatistics() {
                   </div>
               </div> 
           </div>
-  
           <div class="button-wrapper">
-              <button class="continue-btn">продолжить тренировку</button>
+              <button class="continue-btn">начать заново</button>
           </div>
-  
-  
       </div>
-  
-      
-      
   </div>`;
 
   document.body.append(statictics);
@@ -505,38 +396,8 @@ function getStatistics() {
   //Continue button click
   const continueBtn = document.querySelector(".continue-btn");
   continueBtn.addEventListener("click", () => {
-    function timer(from, to) {
-      let current = from;
-      document.body.innerHTML = `
-          <div class="game-page">
-          <div class="timer">
-          <div class="circle-timer">
-              <div class="timer-slot">
-                  <div class="timer-lt"></div>
-              </div>
-              <div class="timer-slot">
-                  <div class="timer-rt"></div>
-              </div>
-              <div class="count"></div>
-          </div>
-        </div>
-        </div>`;
-      const timerId = setInterval(function () {
-        document.querySelector(".count").innerHTML = current;
-        if (current == to) {
-          clearInterval(timerId);
-
-          startGame();
-        }
-        current--;
-      }, 1000);
-    }
-    timer(3, 0);
+    location.reload();
   });
 }
-<<<<<<< HEAD:src/js/savannah_index.js
 
 //Change difficulty according to statistics
->>>>>>> feat: get words(backend); add statpage logic&style
-=======
->>>>>>> refactor: rename files:src/js/gameSavannah.js
