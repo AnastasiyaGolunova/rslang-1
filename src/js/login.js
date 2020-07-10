@@ -15,7 +15,6 @@ let userContent = null;
 let userLogin = null;
 const urlHeroku = `https://afternoon-falls-25894.herokuapp.com`
 
-console.log(SIGNIN_BTN);
 
 const createUser = async (user) => {
   try {
@@ -31,7 +30,6 @@ const createUser = async (user) => {
       }
     );
 
-    console.log(rawResponse);
     if (rawResponse.ok) {
       const content = await rawResponse.json();
       SIGNUP_ERROR.textContent = "Вы успешно зарегестрировались";
@@ -60,7 +58,7 @@ const loginUser = async (user) => {
       }
     );
 
-    console.log(rawResponse);
+    
     if (rawResponse.ok) {
       const content = await rawResponse.json();
       SIGNIN_ERROR.textContent = "Вы успешно вошли";
@@ -76,9 +74,6 @@ const loginUser = async (user) => {
         return null
       }
     }
-    // console.log(content);
-
-    //loginUser({ "email": "hello@user.com", "password": "Gfhjkm_123" });
   } catch (error) {}
 };
 
@@ -92,23 +87,19 @@ signInLeftButton.addEventListener("click", () => {
 
 SIGNUP_BTN.addEventListener("click", async (event) => {
   event.preventDefault();
-  console.log(SIGNUP_EMAIL.value);
-  console.log(SIGNUP_PASSWORD.value);
   let regexp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z+-_@$!%*?&#.,;:[\]{}]{8,}/g;
-  //console.log(regexp.test(SIGNIN_PASSWORD.value))
   if (regexp.test(SIGNUP_PASSWORD.value)) {
-    console.log("djfkd");
     if (SIGNUP_EMAIL && SIGNUP_PASSWORD) {
       const user = {
         email: `${SIGNUP_EMAIL.value}`,
         password: `${SIGNUP_PASSWORD.value}`,
       };
-      console.log(user);
       userContent = await createUser(user);
       SIGNUP_EMAIL.value = '';
       SIGNUP_PASSWORD.value = '';
-      console.log(userContent);
     }
+  } else {
+    SIGNUP_ERROR.textContent = 'Нужен пароль сложнее';
   }
 });
 
@@ -116,16 +107,15 @@ const wordId = '5e9f5ee35eb9e72bc21af716';
 
 SIGNIN_BTN.addEventListener("click", async (event) => {
   event.preventDefault();
-  console.log(SIGNIN_EMAIL.value);
-  console.log(SIGNIN_PASSWORD.value);
+
   if (SIGNIN_EMAIL && SIGNIN_PASSWORD) {
     const user = {
       email: `${SIGNIN_EMAIL.value}`,
       password: `${SIGNIN_PASSWORD.value}`,
     };
-    console.log(user);
+    
     userLogin = await loginUser(user);
-    console.log(userLogin);
+
     if (userLogin !== null) {
       localStorage.setItem('token', userLogin.token);
       localStorage.setItem('refreshToken', userLogin.refreshToken)
