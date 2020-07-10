@@ -1,4 +1,4 @@
-import '../css/english-puzzle.css';
+//import '../css/english-puzzle.css';
 import {
   startButton,
   logoWrap,
@@ -6,12 +6,13 @@ import {
   levelGame,
   pageGame,
   imageContainer,
-} from './constants';
-import images from './images';
+} from './constants.js';
+import images from './images.js';
 
 let draggedItem = null;
 let dataElements = null;
 let canvasElements = null;
+let canvasHeight = null;
 
 async function createCanvasElements({
   src,
@@ -66,7 +67,7 @@ async function createCanvasElements({
         const reduceLength = letterCounts * EXTRA_WIDTH_VALUE;
         const extraWidth = Math.round(reduceLength / wordCount);
         const onePart = Math.round((img.width - reduceLength) / letterCounts);
-        const canvasHeight = Math.round(img.height / groupsRow);
+        canvasHeight = Math.round(img.height / groupsRow);
 
         let widthCount = 0;
 
@@ -198,19 +199,23 @@ function showPuzzle() {
   gameWrap.className = 'game-wrapper';
 };
 
+/* ---------------------------------------------- Рандом данных ---------------------------------------------- */
 function getRandomElement(array) {
   const index = Math.floor(Math.random() * array.length);
   return index;
 };
+/* ---------------------------------------------------------------------------------------------------------== */
 
+/* --------------------------------------- Получение данных с сервера ---------------------------------------- */
 async function getSentense() {
-  const response = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${levelGame.value - 1}&page=${pageGame.value - 1}`)
+  const response = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${levelGame.value - 1}&page=${pageGame.value - 1}&wordsPerPage=10`)
   const data = await response.json();
   for (let i = 0; i < 10; i += 1) {
     data.splice(getRandomElement(data), 1);
   }
   return data;
 };
+/* ---------------------------------------------------------------------------------------------------------== */
 
 /* --------------------------------------- Создание новой строки пазла --------------------------------------- */
 function addNewRow(className, len) {
@@ -240,10 +245,18 @@ function addNewRow(className, len) {
 };
 /* ---------------------------------------------------------------------------------------------------------== */
 
-
-
-
-
+/* ---------------------------------------- Перемещать элементы пазла ---------------------------------------- */
+function movePuzzles(elements) {
+  const container = document.createElement('div');
+      container.className = elements.className;
+      document.querySelector('.elements-puzzle').append(container);
+      for (let i=0; i !== elements.childElementCount; i ) {
+        const index = getRandomElement(elements.children);
+        container.append(elements.children[index])
+        elements.remove(index);
+      };
+}
+/* ---------------------------------------------------------------------------------------------------------== */
 
 
 
@@ -269,13 +282,11 @@ startButton.onclick = () => {
       wordsList: data.map(item => item.textExample),
     })
     canvasElements.then(res => {
-
       imageContainer.style.backgroundColor = '#0465aa';
       imageContainer.style.border = '2px solid black';
       imageContainer.style.backgroundImage = 'none';
-
-      document.querySelector('.elements-puzzle').append(res[0]);
       addNewRow(res[0].className, res.length);
+      movePuzzles(res[0]);
     });
   });
   showPuzzle();
@@ -320,14 +331,14 @@ document.querySelector('#check').addEventListener('click', () => {
   if (countErrors === 0) {
     document.querySelector('#continue').classList.remove('hidden');
     document.querySelector('#check').classList.add('hidden');
-    const currentRow = document.querySelector('.img-puzzle').lastChild
+    /* const currentRow = document.querySelector('.img-puzzle').lastChild
     currentRow.removeEventListener('drop', () => {});
     currentRow.removeEventListener('dragenter', (e) => {
       e.preventDefault();
     });
     currentRow.removeEventListener('dragover', (e) => {
       e.preventDefault();
-    });
+    }); */
   } else(
     document.querySelector('#dont-know').classList.remove('hidden')
   )
@@ -339,10 +350,40 @@ document.querySelector('#check').addEventListener('click', () => {
 document.querySelector('#continue').addEventListener('click', () => {
   canvasElements.then(res => {
     const index = document.querySelector('.img-puzzle').childElementCount;
-    document.querySelector('.elements-puzzle').append(res[index]);
     addNewRow(res[index].className, res.length)
+    movePuzzles(res[index]);
   });
   document.querySelector('#continue').classList.add('hidden');
   document.querySelector('#dont-know').classList.remove('hidden');
+});
+/* ----------------------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------------ Смена режима подсказки ПЕРЕВОД --------------------------------------- */
+document.querySelector('#interpretation').addEventListener('change', () => {
+  if (document.querySelector('#interpretation').checked) {
+    const index = document.querySelector('.img-puzzle').childElementCount - 1;
+    document.querySelector('#translate').innerHTML = dataElements[index].textExampleTranslate;
+  } else {
+    document.querySelector('#translate').innerHTML = '';
+  };
+});
+/* ----------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------- Действие кнопки Я не знаю ----------------------------------------- */
+document.querySelector('#dont-know').addEventListener('click', () => {
+  const index = document.querySelector('.img-puzzle').childElementCount - 1;
+  const textExample = dataElements[index].textExample.replace(/<[^>]*>/g, '').split(' ');
+  textExample.forEach((word, index) => {
+    const elementsPuzzle = document.querySelector('.elements-puzzle').lastChild.childNodes;
+    elementsPuzzle.forEach(element => {
+      if (index === parseInt(element.getAttribute('data-item').split('-')[1], 10) -1 ) {
+        element.style.marginRight = `-${Math.round((canvasHeight / 3) / 2)}px`;
+        document.querySelector('.img-puzzle').lastChild.append(element);
+      }
+    })
+  })
+  document.querySelector('#dont-know').classList.add('hidden');
+  document.querySelector('#continue').classList.remove('hidden');
 });
 /* ----------------------------------------------------------------------------------------------------------- */
