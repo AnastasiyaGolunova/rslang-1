@@ -56,4 +56,4 @@ function app(cards){
     });
 }
 
-export {words, getData, cardsWrap, mediaData, imgTrain, wdTranslate}
+export {words, getData, cardsWrap, mediaData, imgTrain, wdTranslate, app}

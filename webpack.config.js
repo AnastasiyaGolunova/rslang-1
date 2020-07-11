@@ -25,7 +25,7 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: {index: './src/js/index.js'},
+  entry: {speakIt: './src/js/speak-it/speakIt.js'},
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
@@ -115,21 +115,32 @@ const config = {
             outputPath: 'fonts'
           }
         }]
+      },
+      {
+        test: /\.wav$/,
+        use: [{
+          loader: "file-loader",
+          options: {
+            outputPath: 'audio'
+          }
+        }]
       }
     ]
   },
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: '[name].css',
     }),
     new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
+      template: './src/speak-it.html',
+      //chunks: ['speak-it'],
+      filename: 'index.html'
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
-      {from: './src/img', to: './img/'}
+      {from: './src/img', to: './img/'},
+      {from: './src/audio', to: './audio'},
     ]),
   ],
 

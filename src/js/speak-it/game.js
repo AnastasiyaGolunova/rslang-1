@@ -2,6 +2,7 @@
 
 import {words, mediaData, imgTrain, wdTranslate, cardsWrap} from "./getData";
 import {learn} from "./learn";
+import {arr} from "./startPage";
 
 const strGame = document.querySelector('.speak');
 let right = [];

@@ -1,5 +1,4 @@
-'use strict';
-
+import {app} from "./getData";
 import {getData} from "./getData";
 
 const btn = document.querySelector('.start');
