@@ -1,5 +1,3 @@
-'use strict';
-
 const backData = 'https://afternoon-falls-25894.herokuapp.com/words?';
 const mediaData = 'https://raw.githubusercontent.com/anastasiyagolunova/rslang-data/master/';
 let pageValue  = document.querySelector('.page');
@@ -9,12 +7,6 @@ const imgTrain = document.querySelector('.default_img');
 const wdTranslate = document.querySelector('.word-translate');
 let i = 0;
 let words = [];
-
-async function change(){
-    cardsWrap.innerHTML = '';
-    const arr = await getData();
-    app(arr);
-}
 
 async function getData (){
     try {
@@ -55,5 +47,12 @@ function app(cards){
         cardsWrap.appendChild(card);
     });
 }
+async function change(){
+    cardsWrap.innerHTML = '';
+    const arr = await getData();
+    app(arr);
+}
+pageValue.addEventListener('change', change);
+groupValue.addEventListener('change', change);
 
 export {words, getData, cardsWrap, mediaData, imgTrain, wdTranslate, app}

@@ -1,5 +1,3 @@
-'use strict';
-
 import {mediaData, imgTrain, wdTranslate, cardsWrap} from "./getData";
 import {arr} from "./startPage";
 

@@ -110,6 +110,7 @@ label,
 .fa{
     float: left;
     padding: 15px 0 15px 15px;
+    cursor: pointer;
 }
 .text{
     display: inline-block;
