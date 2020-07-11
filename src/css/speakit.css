@@ -1,27 +1,14 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-/*body,*/
 .wrap{
     width: 100%;
-    /*height: 53.64vw;*/
-    height: calc(100% - 10vh);
+    height: 43vw;
+    /*height: calc(100% - 10vh);*/
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*background-color: hsl(201, 45%, 75%);*/
-    /*margin: 0 auto;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
     background-color: white;
-    /*padding: 0 auto;*/
 }
-/*.wrap{*/
-/*    background-color: white;*/
-/*}*/
 .title{
     color: #81A4BB;
     text-transform: uppercase;
@@ -36,11 +23,8 @@
 }
 .start{
     text-transform: uppercase;
-    /*border-radius: 10px;*/
     color: white;
-    /*border: 1px solid hsl(201, 45%, 75%);*/
     padding: 10px;
-    /*background-color: hsl(201, 45%, 75%);*/
 }
 .block{
     display: none;
@@ -111,12 +95,6 @@ label,
 .speak{
     width: 680px;
 }
-/*.game{*/
-/*    width: 90vw;*/
-/*}*/
-.default{
-
-}
 .default_img{
     display: block;
     margin-left: auto;
@@ -145,9 +123,6 @@ label,
     margin: 0 auto;
 
 }
-.mic{
-
-}
 .statistic-wrap{
     display: none;
     width: 90vw;
@@ -172,7 +147,7 @@ label,
         justify-content: center;
     }
     .speak{
-    width: 200px;
+        width: 200px;
     }
     .mode{
         justify-content: center;
@@ -193,5 +168,4 @@ label,
     .speak{
         width: 300px;
     }
-
 }

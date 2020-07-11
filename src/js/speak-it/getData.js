@@ -1,36 +1,32 @@
 'use strict';
 
-
 const backData = 'https://afternoon-falls-25894.herokuapp.com/words?';
 const mediaData = 'https://raw.githubusercontent.com/anastasiyagolunova/rslang-data/master/';
-
-let pageValue  = document.querySelector('.page').value;
-let groupValue = document.querySelector('.group').value;
+let pageValue  = document.querySelector('.page');
+let groupValue = document.querySelector('.group');
 const cardsWrap = document.querySelector('.cards-game');
-
 const imgTrain = document.querySelector('.default_img');
 const wdTranslate = document.querySelector('.word-translate');
 let i = 0;
 let words = [];
 
-function change(element) {
-    if (element.class === 'group'){
-        groupValue = element.value;
-    }else if (element.class === 'page'){
-        pageValue = element.value;
-        console.log('el:' + element.value);
-    }
+async function change(){
+    cardsWrap.innerHTML = '';
+    const arr = await getData();
+    app(arr);
 }
-// function formHandler(){
-//     document.location=this.options[this.selectedIndex].value;
-// }
 
 async function getData (){
-    const url = `${backData}page=${pageValue-1}&group=${groupValue-1}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    data.length = 10;
-    return data;
+    try {
+        const url = `${backData}page=${pageValue.value}&group=${groupValue.value}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        data.length = 10;
+        return data;
+    } catch (er) {
+        console.log(er);
+        return false;
+    }
 }
 
 function app(cards){
@@ -59,3 +55,5 @@ function app(cards){
         cardsWrap.appendChild(card);
     });
 }
+
+export {words, getData, cardsWrap, mediaData, imgTrain, wdTranslate}

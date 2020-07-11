@@ -1,5 +1,8 @@
 'use strict';
 
+import {mediaData, imgTrain, wdTranslate, cardsWrap} from "./getData";
+import {arr} from "./startPage";
+
 function learn (event) {
     const check = event.target;
     if (check.matches('.fa')) {
@@ -17,3 +20,4 @@ function learn (event) {
 }
 cardsWrap.addEventListener('click', learn);
 
+export {learn}

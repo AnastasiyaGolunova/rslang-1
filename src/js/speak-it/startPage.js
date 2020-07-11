@@ -1,5 +1,7 @@
 'use strict';
 
+import {getData} from "./getData";
+
 const btn = document.querySelector('.start');
 let arr = [];
 
@@ -10,5 +12,6 @@ btn.addEventListener('click', async () => {
     document.querySelector('.wrap_game').classList.remove('wrap_game');
 })
 
+export {arr}
 
 
