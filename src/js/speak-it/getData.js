@@ -1,11 +1,12 @@
 'use strict';
 
+
 const backData = 'https://afternoon-falls-25894.herokuapp.com/words?';
 const mediaData = 'https://raw.githubusercontent.com/anastasiyagolunova/rslang-data/master/';
 
 let pageValue  = document.querySelector('.page').value;
 let groupValue = document.querySelector('.group').value;
-const cardsWrap = document.querySelector('.cards');
+const cardsWrap = document.querySelector('.cards-game');
 
 const imgTrain = document.querySelector('.default_img');
 const wdTranslate = document.querySelector('.word-translate');
@@ -17,6 +18,7 @@ function change(element) {
         groupValue = element.value;
     }else if (element.class === 'page'){
         pageValue = element.value;
+        console.log('el:' + element.value);
     }
 }
 // function formHandler(){
@@ -24,7 +26,7 @@ function change(element) {
 // }
 
 async function getData (){
-    const url = `${backData}page=${pageValue}&group=${groupValue}`;
+    const url = `${backData}page=${pageValue-1}&group=${groupValue-1}`;
     const res = await fetch(url);
     const data = await res.json();
     data.length = 10;
@@ -34,7 +36,7 @@ async function getData (){
 function app(cards){
     cards.map((item) => {
         const card = document.createElement('div');
-        card.classList = 'card';
+        card.classList = 'card-game';
         let word = item.word;
         const wordTitle = document.createElement('p');
         wordTitle.classList = 'wordTitle';
