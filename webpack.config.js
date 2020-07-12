@@ -25,9 +25,9 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: {english_puzzle: './src/js/english-puzzle.js'},
+  entry: {englishpuzzle: './src/js/english-puzzle.js'},
   output: {
-    path: path.resolve(__dirname, 'english-puzzle'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
   },
   mode: setDMode(),
@@ -121,11 +121,12 @@ const config = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'english_puzzle.css',
+      filename: '[name].css',
     }),
     new HtmlWebPackPlugin({
       template: './src/english-puzzle.html',
-      filename: './english_puzzle.html'
+      chunks: ["englishpuzzle"],
+      filename: './index.html'
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
@@ -134,7 +135,7 @@ const config = {
   ],
 
   devServer: {
-    contentBase: path.join(__dirname, 'english_puzzle'),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 3000,
     overlay: true,

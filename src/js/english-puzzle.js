@@ -1,13 +1,13 @@
-// import '../css/english-puzzle.css';
-// import '../css/index.css'
+import '../css/english-puzzle.css';
+import '../css/index.css';
 import {
   logoWrap,
   gameWrap,
   levelGame,
   pageGame,
   imageContainer,
-} from './constants.js';
-import images from './images.js';
+} from './english-puzzle/constants';
+import images from './english-puzzle/images';
 
 let draggedItem = null;
 let dataElements = null;
@@ -93,13 +93,17 @@ async function createCanvasElements({
             }, 0)
           });
 
-          canvas.addEventListener('dragend', () => {
+          canvas.addEventListener('dragend', (e) => {
             setTimeout(() => {
               draggedItem.style.display = 'inline';
               draggedItem.style.marginRight = `-${Math.round((canvasHeight / 3) / 2)}px`;
               draggedItem = null;
             }, 0);
           });
+
+          canvas.addEventListener('mouseup', (e) => {
+            console.log(e)
+          })
 
           canvas.addEventListener('dblclick', (e) => {
             const parentDiv = imageContainer.querySelector(`.${e.target.parentElement.className.replace(' ', '.')}`);
@@ -372,44 +376,18 @@ document.querySelector('#check').addEventListener('click', () => {
   const puzzles = document.querySelector('.img-puzzle').lastChild.children;
 
   for (let i = 0; i < puzzles.length; i += 1) {
-    const ctx = puzzles[i].getContext('2d');
-    // console.log(ctx.measureText(puzzles[i].getAttribute('data-word')))
-    // console.log(ctx.getImageData(0, 0, puzzles[i].width, puzzles[i].height));
-    /* let imgData = ctx.getImageData(0, 0, puzzles[i].width, puzzles[i].height);
-    for (let i = 0; i < imgData.data.length; i += 4) {
-      if (imgData.data[i] >= 215 && imgData.data[i+1] >= 215 && imgData.data[i+2] >= 215 && imgData.data[i+3] === 255) {
-        imgData.data[i] = 11
-        imgData.data[i + 1] = 156
-        imgData.data[i + 2] = 49
-        imgData.data[i + 3] = 255
-      }
-    }
-    console.log(imgData)
-    ctx.putImageData(imgData, 0, 0) */
-    // console.log(ctx.getFillStyle());
     if (puzzles[i].getAttribute('data-word') === wordsList[i]) {
       setTimeout(() => {
-        puzzles[i].style.backgroundColor = 'green';
-        puzzles[i].style.opacity = '0.9';
+        puzzles[i].style.outline = '4px solid green';
       })
     } else {
-      ctx.fillStyle = 'red';
+      puzzles[i].style.outline = '4px solid red';
       countErrors += 1;
     }
-    ctx.textAlign = 'center';
-    ctx.fillText(puzzles[i].getAttribute('data-word'), puzzles[i].clientWidth / 2, puzzles[i].clientHeight / 3);
   }
   if (countErrors === 0) {
     document.querySelector('#continue').classList.remove('hidden');
     document.querySelector('#check').classList.add('hidden');
-    /* const currentRow = document.querySelector('.img-puzzle').lastChild
-    currentRow.removeEventListener('drop', () => {});
-    currentRow.removeEventListener('dragenter', (e) => {
-      e.preventDefault();
-    });
-    currentRow.removeEventListener('dragover', (e) => {
-      e.preventDefault();
-    }); */
   } else(
     document.querySelector('#dont-know').classList.remove('hidden')
   )
@@ -458,11 +436,6 @@ document.querySelector('#dont-know').addEventListener('click', () => {
   document.querySelector('#continue').classList.remove('hidden');
 });
 /* ----------------------------------------------------------------------------------------------------------- */
-
-
-
-
-
 
 /* ---------------------------------- Смена режима подсказки ПРОИЗНОШЕНИЕ ------------------------------------ */
 document.querySelector('#sound-label').addEventListener('click', (e) => {
