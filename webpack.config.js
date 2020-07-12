@@ -25,7 +25,7 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: {sprint: './src/js/sprint.js'},
+  entry: {about: './src/js/about.js'},
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
@@ -124,13 +124,15 @@ const config = {
       filename: '[name].css',
     }),
     new HtmlWebPackPlugin({
-      template: './src/sprint.html',
-      // chunks: ['sprint'],
+      template: './src/about.html',
+      // chunks: ['about'],
       filename: 'index.html'
     }),
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
-      {from: './src/img', to: './img/'}
+      {from: './src/img', to: './img/'},
+      {from: './src/icons', to: './icons/'},
+      {from: './src/audio', to: './audio/'}
     ]),
   ],
 
