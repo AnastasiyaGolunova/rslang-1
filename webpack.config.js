@@ -23,7 +23,10 @@ function setDMode() {
 
 const config = {
   target: "web",
-  entry: { savannah: "./src/js/savannah.js" },
+  entry: {
+    englishpuzzle: './src/js/english-puzzle.js', 
+    savannah: "./src/js/savannah.js"
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
@@ -138,17 +141,23 @@ const config = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: '[name].css',
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/english-puzzle.html',
+      chunks: ["englishpuzzle"],
+      filename: './index.html'
     }),
     new HtmlWebPackPlugin({
       template: "./src/savannah.html",
       chunks: ["savannah"],
-      filename: "index.html",
+      filename: "savannah.html",
     }),
     new CopyWebpackPlugin([
-      // {from: './src/static', to: './'},
-      { from: "./src/img", to: "./img/" },
-      { from: "./src/audio", to: "./audio/" },
+      {from: './src/img', to: './img/'},
+      {from: './src/icons', to: './icons/'},
+      {from: './src/audio', to: './audio/'}
+
     ]),
   ],
 
