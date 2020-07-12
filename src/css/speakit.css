@@ -1,0 +1,172 @@
+.wrap{
+    width: 100%;
+    height: 43vw;
+    /*height: calc(100% - 10vh);*/
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.title{
+    color: #81A4BB;
+    text-transform: uppercase;
+    padding-bottom: 26px;
+    font-weight: 500;
+}
+.rule{
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.start{
+    text-transform: uppercase;
+    color: white;
+    padding: 10px;
+}
+.block{
+    display: none;
+}
+.wrap_game{
+    display: none;
+}
+.wrap_wrap{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 55px;
+}
+.group-page{
+    display: inline-block;
+}
+label,
+.group,
+.page{
+    font-size: 16px;
+    font-weight: 700;
+}
+.cards-game{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.card-game{
+    width: 200px;
+    height: 60px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+}
+.card:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.mode{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.restart,
+.results,
+.speak{
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 26px;
+    color: white;
+    background-color: hsl(201, 45%, 75%);
+    border-radius: 10px;
+    border: 1px solid hsl(201, 45%, 75%);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.restart:hover,
+.results:hover,
+.speak:hover,
+.start:hover{
+    box-shadow: 0 14px 28px hsl(201, 45%, 75%), 0 10px 10px hsl(201, 45%, 75%);
+}
+.speak{
+    width: 680px;
+}
+.default_img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+.translate{
+    text-align: center;
+    display: inline;
+    padding: 18px;
+    font-size: 25px;
+}
+.fa{
+    float: left;
+    padding: 15px 0 15px 15px;
+    cursor: pointer;
+}
+.text{
+    display: inline-block;
+    padding-top: 10px;
+}
+.line{
+    background-image: url("https://img.icons8.com/wired/28/000000/microphone.png");
+    background-repeat: no-repeat;
+    border-bottom: 2px solid hsl(201, 45%, 75%);
+    width: 200px;
+    margin: 0 auto;
+
+}
+.statistic-wrap{
+    display: none;
+    width: 90vw;
+    height: 53.64vw;
+}
+.statistic{
+    background-color: hsl(201, 45%, 75%);
+}
+@media screen and (min-width: 320px) and (max-width: 446px){
+    .group-page{
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px 0;
+    }
+    .wrap_wrap{
+        padding: 0;
+    }
+    .default_img{
+        width: 250px;
+    }
+    .cards-game{
+        justify-content: center;
+    }
+    .speak{
+        width: 200px;
+    }
+    .mode{
+        justify-content: center;
+    }
+}
+@media screen and (min-width: 447px) and (max-width: 765px){
+    .cards-game{
+        margin: 0 auto;
+    }
+    .speak{
+        width: 200px;
+    }
+    .mode{
+        margin: 0 auto;
+    }
+}
+@media screen and (min-width: 766px) and (max-width: 960px){
+    .speak{
+        width: 300px;
+    }
+}
