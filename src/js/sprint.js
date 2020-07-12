@@ -1,16 +1,16 @@
 import '../css/style.css';
 import '../css/sprint.css';
-import './components/start_page'
-import './components/timer'
-import './components/game_page'
-import './data/get_data'
-import './helpers/show_word'
+import './sprint/components/start_page'
+import './sprint/components/timer'
+import './sprint/components/game_page'
+import './sprint/data/get_data'
+import './sprint/helpers/show_word'
 
 
-import { createTimer } from './components/timer'
+import { createTimer } from './sprint/components/timer'
 
-import { gamePageInit } from './components/game_page'
-import { statisticsPageInit } from './components/statistics_page'
+import { gamePageInit } from './sprint/components/game_page'
+import { statisticsPageInit } from './sprint/components/statistics_page'
 
 document.querySelector('.start-btn').addEventListener('click', ()=>{
   document.querySelector('.start-page').classList.add('hidden');
