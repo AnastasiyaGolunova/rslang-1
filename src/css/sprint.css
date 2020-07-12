@@ -60,6 +60,7 @@
 .button-wrapper {
   height: 10%;
   margin-bottom: 30px;
+  width: 50%;
   min-width: 210px;
   display: flex;
   justify-content: space-between;
@@ -85,10 +86,12 @@
 }
 
 .rules-btn {
+  width: 45%;
   background-color: #76C1F8 ;
 }
 
 .start-btn {
+  width: 45%;
   background-color: #80A63F;
 }
 
