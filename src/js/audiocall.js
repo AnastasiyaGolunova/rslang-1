@@ -1,3 +1,4 @@
+import '../css/style.css'
 import '../css/audiocall.css';
 const urlApi = "https://afternoon-falls-25894.herokuapp.com/words";
 const dataUrl =
