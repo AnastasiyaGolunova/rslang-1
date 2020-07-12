@@ -32,6 +32,8 @@ body {
 }
 .english-puzzle-wrap .logo {
   width: auto;
+  letter-spacing: none;
+  font-size: 1rem;
 }
 .english-puzzle-wrap .logo .img-logo {
   width: 576px;

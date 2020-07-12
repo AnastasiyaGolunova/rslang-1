@@ -28,7 +28,7 @@
 .dictionary-list.filter {
     background-color: #ffffff;
     flex-direction: row;
-    opacity: 0.6;
+    opacity: 65%;
     font-size: 16px;
     font-weight: 700;
     justify-content: center;
@@ -44,18 +44,18 @@
     white-space: nowrap;
 }
 
-.filter-item {
+.filter-item span {
     cursor: pointer;
     color: #000000;
 }
 
-.filter-item:hover{
+.filter-item span:hover{
     cursor: pointer;
     text-decoration: underline;
 }
 .word-list {
     background-color: #ffffff;
-    opacity: 0.6;
+    opacity: 65%;
     border-radius: 4px;
     padding: 0 36px;
 }

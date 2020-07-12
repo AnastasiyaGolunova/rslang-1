@@ -1,13 +1,13 @@
+import '../css/style.css'
 import '../css/english-puzzle.css';
-import '../css/index.css';
-import {
-  logoWrap,
-  gameWrap,
-  levelGame,
-  pageGame,
-  imageContainer,
-} from './english-puzzle/constants';
 import images from './english-puzzle/images';
+
+const startButton = document.querySelector('.button-start');
+const logoWrap = document.querySelector('#logo');
+const gameWrap = document.querySelector('.game');
+const levelGame = document.querySelector('#levels');
+const pageGame = document.querySelector('#page');
+const imageContainer = document.querySelector('.img-puzzle');
 
 let draggedItem = null;
 let dataElements = null;
@@ -89,21 +89,18 @@ async function createCanvasElements({
           canvas.addEventListener('dragstart', () => {
             draggedItem = canvas;
             setTimeout(() => {
-              canvas.style.display = 'none';
+              //canvas.style.display = 'none';
             }, 0)
           });
 
           canvas.addEventListener('dragend', (e) => {
+            e.preventDefault();
             setTimeout(() => {
               draggedItem.style.display = 'inline';
               draggedItem.style.marginRight = `-${Math.round((canvasHeight / 3) / 2)}px`;
               draggedItem = null;
             }, 0);
           });
-
-          canvas.addEventListener('mouseup', (e) => {
-            console.log(e)
-          })
 
           canvas.addEventListener('dblclick', (e) => {
             const parentDiv = imageContainer.querySelector(`.${e.target.parentElement.className.replace(' ', '.')}`);
@@ -113,6 +110,10 @@ async function createCanvasElements({
               document.querySelector('#check').classList.remove('hidden');
               document.querySelector('#dont-know').classList.add('hidden');
             }
+          })
+
+          canvas.addEventListener('drop', (e) => {
+            e.target.parentElement.insertBefore(draggedItem, e.target)
           })
 
           const ctx = canvas.getContext('2d');
