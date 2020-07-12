@@ -1,3 +1,5 @@
+import {change, arr} from "./startPage";
+
 const backData = 'https://afternoon-falls-25894.herokuapp.com/words?';
 const mediaData = 'https://raw.githubusercontent.com/anastasiyagolunova/rslang-data/master/';
 let pageValue  = document.querySelector('.page');
@@ -5,7 +7,6 @@ let groupValue = document.querySelector('.group');
 const cardsWrap = document.querySelector('.cards-game');
 const imgTrain = document.querySelector('.default_img');
 const wdTranslate = document.querySelector('.word-translate');
-let i = 0;
 let words = [];
 
 async function getData (){
@@ -22,6 +23,7 @@ async function getData (){
 }
 
 function app(cards){
+    let i = 0;
     cards.map((item) => {
         const card = document.createElement('div');
         card.classList = 'card-game';
@@ -47,12 +49,27 @@ function app(cards){
         cardsWrap.appendChild(card);
     });
 }
-async function change(){
-    cardsWrap.innerHTML = '';
-    const arr = await getData();
-    app(arr);
+
+function learn (event) {
+    const check = event.target;
+    if (check.matches('.fa')) {
+        const atr = event.target.getAttribute('data-active');
+        console.log(arr);
+        console.log(atr);
+        const {audio, image, wordTranslate} = arr[atr];
+        console.log('audio ' + audio);
+        const sound = document.createElement('audio');
+        sound.src = `${mediaData}${audio}`;
+        sound.play();
+        const pic = `${mediaData}${image}`;
+        imgTrain.src = pic;
+        const wTranslate = wordTranslate;
+        wdTranslate.textContent = wTranslate;
+        console.log(image);
+    }
 }
+cardsWrap.addEventListener('click', learn);
 pageValue.addEventListener('change', change);
 groupValue.addEventListener('change', change);
 
-export {words, getData, cardsWrap, mediaData, imgTrain, wdTranslate, app}
+export {words, getData, cardsWrap, mediaData, imgTrain, wdTranslate, app, learn}

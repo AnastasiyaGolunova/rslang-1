@@ -1,8 +1,8 @@
 import '../../css/style.css';
 import '../../css/speakit.css';
 import '../menu.js';
-import './getData';
 import './startPage';
+import './getData';
 import './learn';
 import './game';
 import './restart';

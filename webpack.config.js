@@ -117,7 +117,7 @@ const config = {
         }]
       },
       {
-        test: /\.wav$/,
+        test: /\.(wav|mp3)$/,
         use: [{
           loader: "file-loader",
           options: {
