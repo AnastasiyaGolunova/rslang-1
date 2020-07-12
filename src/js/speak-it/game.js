@@ -35,11 +35,14 @@ recognizer.onresult = function (event) {
             let mark = document.querySelector(".cards-game").children;
             mark[answer].style.backgroundColor = 'red';
             right.push(elem);
-            //let removeAnswer = arr.splice(answer, 1);
-            // if (arr.length === 0) {
-            //     const win = new Audio('./audio/success.mp3');
-            //     win.play();
-            // }
+            console.log('Вы сказали: ' + result[0].transcript);
+            let removeAnswer = delete words[answer];
+            console.log(removeAnswer, removeAnswer.length);
+            console.log(words, words.length);
+            if (!words) {
+                const win = new Audio('./audio/success.mp3');
+                win.play();
+            }
         }
     }
 };
