@@ -1,6 +1,5 @@
-import {words, mediaData, imgTrain, wdTranslate, cardsWrap, arr} from "./getData";
-import {learn} from "./learn";
-
+import {words, mediaData, imgTrain, wdTranslate, cardsWrap, learn} from "./getData";
+import {arr} from "./startPage";
 
 const strGame = document.querySelector('.speak');
 let right = [];
@@ -36,21 +35,12 @@ recognizer.onresult = function (event) {
             let mark = document.querySelector(".cards-game").children;
             mark[answer].style.backgroundColor = 'red';
             right.push(elem);
-            let removeAnswer = arr.splice(answer, 1);
-            if(arr.length === 0){
-                const win = new Audio('./audio/success.mp3');
-                win.play();
-            }
-            console.log(answer);
-            console.log(removeAnswer, removeAnswer.length);
-            console.log(words, words.length);
-            console.log(right);
-        } else {
-            console.log('wrong');
+            //let removeAnswer = arr.splice(answer, 1);
+            // if (arr.length === 0) {
+            //     const win = new Audio('./audio/success.mp3');
+            //     win.play();
+            // }
         }
-        console.log('Вы сказали: ' + result[0].transcript);
-    } else {
-        console.log('Промежуточный результат: ', result[0].transcript);
     }
 };
 strGame.addEventListener('click', function () {
