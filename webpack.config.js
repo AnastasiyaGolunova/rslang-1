@@ -25,7 +25,8 @@ const config = {
   target: "web",
   entry: {
     englishpuzzle: './src/js/english-puzzle.js', 
-    savannah: "./src/js/savannah.js"
+    savannah: "./src/js/savannah.js",
+    speakit: './src/js/speak-it/speakIt.js'  
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -126,7 +127,7 @@ const config = {
         ],
       },
       {
-        test: /\.mp3$/,
+        test: /\.(wav|mp3)$/,
         use: [
           {
             loader: "file-loader",
@@ -153,11 +154,15 @@ const config = {
       chunks: ["savannah"],
       filename: "savannah.html",
     }),
+    new HtmlWebPackPlugin({
+      template: './src/speak-it.html',
+      chunks: ['speakit'],
+      filename: 'speakit.html'
+      }),
     new CopyWebpackPlugin([
       {from: './src/img', to: './img/'},
       {from: './src/icons', to: './icons/'},
       {from: './src/audio', to: './audio/'}
-
     ]),
   ],
 
