@@ -1,5 +1,4 @@
 import '../css/audiocall.css';
-
 const urlApi = "https://afternoon-falls-25894.herokuapp.com/words";
 const dataUrl =
   "https://raw.githubusercontent.com/natalypoida/rslang-data/master/";
@@ -44,6 +43,9 @@ nextButton.addEventListener('click', changeColor);
 function clearStatusClass(element) {
   element.classList.remove("correct");
   element.classList.remove("wrong");
+}
+studyButton.onclick = () => {
+  window.location.href = './html/main.html';
 }
 function setStatusClass(element, correct) {
   clearStatusClass(element);

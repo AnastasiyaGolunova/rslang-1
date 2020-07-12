@@ -8,6 +8,10 @@
   --hue-wrong: 0;
   --hue-correct: 100;
 }
+.header {
+  padding-top: 1em;
+  width: 38vw;
+}
 body {
   font-family: "Roboto", sans-serif;
   --hue: var(--hue-neutral);
@@ -19,6 +23,9 @@ body {
   justify-content: center;
   align-items: center;
   background-color: hsl(var(--hue), 45%, 75%);
+}
+nav {
+  margin: 0 auto;
 }
 .container {
   --hue: var(--hue-correct);
