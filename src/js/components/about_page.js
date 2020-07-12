@@ -2,7 +2,7 @@ const startPage = document.createElement('div');
 startPage.classList.add('wrapper')
 
 startPage.innerHTML =  `<div class="about-page">
-    <h2 class="game-name">Наша команда</h2>    
+    <h2 class="page-title">Наша команда</h2>    
     <div class="slider">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -59,6 +59,46 @@ startPage.innerHTML =  `<div class="about-page">
         </div>
         <div class="deserts">
           <p>Pазработка игры <span>English puzzle</span>.</p>
+        </div>
+      </div>
+      
+      <div class="swiper-slide">
+        <div class="slide-header">
+          <div class="image"></div>
+          <div class="info">
+            <p class="name">Наталья Пойда</p>
+            <a class="link" href="https://github.com/natalypoida" target="_blank"><i class="fab fa-github"></i>natalypoida</a>
+          </div>
+        </div>
+        <div class="deserts">
+          <p>Pазработка игры <span>Аудиовызов</span>.</p>
+        </div>
+      </div>
+      
+      <div class="swiper-slide">
+        <div class="slide-header">
+          <div class="image"></div>
+          <div class="info">
+            <p class="name">Татьяна Пашинцева</p>
+            <a class="link" href="https://github.com/lisenokfoxy" target="_blank"><i class="fab fa-github"></i>lisenokFoxy</a>
+          </div>
+        </div>
+        <div class="deserts">
+          <p>Pазработка игры <span>Savannah</span>.</p>
+        </div>
+      </div>
+      
+      <div class="swiper-slide">
+        <div class="slide-header">
+          <div class="image"></div>
+          <div class="info">
+            <p class="name">Зарина Панфилова</p>
+            <a class="link" href="https://github.com/zarinapanf" target="_blank"><i class="fab fa-github"></i>zarinaPanf</a>
+          </div>
+        </div>
+        <div class="deserts">
+          <p>Вёрстка приложения.</p>
+          <p>Разработка метода интервальных повторений.</p>
         </div>
       </div>
 

@@ -11,6 +11,8 @@ const mySwiper = new Swiper('.slider', {
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
+    dynamicBullets: true,
+
   },
 
   navigation: {
@@ -25,18 +27,15 @@ const mySwiper = new Swiper('.slider', {
       spaceBetween: 20,
     },
 
-    1014: {
+    1220: {
       slidesPerView: 3,
       spaceBetween: 30,
     },
 
-    1220: {
+    1420: {
       slidesPerView: 4,
       spaceBetween: 20,
     },
   },
 });
 
-// document.addEventListener('DOMNodeInserted', () => {
-//   mySwiper.update();
-// });

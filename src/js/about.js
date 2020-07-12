@@ -1,10 +1,11 @@
+import './components/about_page'
+import './components/swiper';
+
+import '../css/swiper-bundle.min.css';
 import '../css/style.css';
 import '../css/sprint.css';
 import '../css/about.css';
-import '../css/swiper-bundle.min.css';
 
-import './components/about_page'
-import './components/swiper';
 
 
 
