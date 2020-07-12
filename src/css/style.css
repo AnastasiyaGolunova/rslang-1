@@ -343,7 +343,10 @@ input[type="checkbox"]:checked + label:before {
 body {
     overflow-x: hidden;
 }
-    .navigation {
+.navigation {
+    display: none;
+}
+    .navigation-active {
     position: absolute;
     right: 0px;
     height: 92vh;
@@ -354,12 +357,14 @@ body {
     align-items: baseline;
     width: 35%;
     transform: translateX(100%);
+    justify-content: center;
+    z-index: 1;
 }
 .burger {
     display: block;
     width: 10%;
 }
-.navigation li{
+.navigation-active li{
     padding: 1em 2em;
 }
 
@@ -387,8 +392,11 @@ body {
     display: block;
     width: 25%;
     }
+    .navigation {
+        display: none;
+    }
 
-.navigation {
+.navigation-active {
     top: 12vh;
     background-color: #ffffff;
     display: flex;
@@ -396,8 +404,10 @@ body {
     align-items: center;
     width: 100%;
     transform: translateX(100%);
+    justify-content: center;
+    z-index: 1;
 }
-.navigation li{
+.navigation-active li{
     padding: 0.2em 2em;
 }
 .rs-ul a{

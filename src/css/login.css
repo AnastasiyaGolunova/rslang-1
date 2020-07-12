@@ -42,7 +42,7 @@ button {
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
-	padding: 12px 45px;
+	padding: 12px 30px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
     transition: transform 80ms ease-in;
@@ -193,10 +193,11 @@ input {
 
 .container.right-panel-active .overlay-left {
 	transform: translateX(0);
+	left: 35px;
 }
 
 .overlay-right {
-	right: 0;
+	right: 35px;
 	transform: translateX(0);
 }
 
@@ -226,18 +227,19 @@ input {
     margin-right: 70px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 415px) {
 	.signup {
 		font-size: 14px;
 		margin: 0px;
 	}
 	button {
 		font-size: 5px;
-		padding: 7px 15px;
-		width: 108px;
+		padding: 7px 13px;
+		width: 48px;
 	}
 	.left-button {
 		width: 60px !important;
+		margin: 0;
 	}
 	.right-greeting {
 		font-size: 10px;
@@ -250,24 +252,53 @@ input {
 		width: 110px;
 		font-size: 5px;
 	}
+	.overlay-right {
+		right: 40px;
+	}
 	.container {
-		width: 285px;
-		min-height: 275px;
+		width: 280px;
+		min-height: 260px;
 	}
 	.signup-button {
-		width: 60px !important;
+		width: 103px !important;
 	}
 	input {
 		font-size: 7px;
-		padding: 9px 13px;
+		padding: 9px 8px;
 	}
 	.left-greeting {
 		font-size: 9px;
+		padding: 10px 0;
 	}
 	.left {
 		font-size: 7px;
+		margin: 0;
 	}
 	h1 {
 		font-size: 14px;
+	}
+	.signin-error, .signup-error {
+		font-size: 10px;
+	}
+	.container.right-panel-active .overlay-left {
+		left: unset;
+	}
+	p {
+		line-height: 13px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 800px) {
+	
+	.container {
+		width: 500px;
+		min-height: 480px;
+	}
+	h1 {
+		font-size: 18px;
+	}
+	button {
+		font-size: 10px;
+		padding: 12px 20px;
 	}
 }
