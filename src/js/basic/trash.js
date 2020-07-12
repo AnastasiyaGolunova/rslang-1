@@ -11,6 +11,7 @@ import {getStudy} from './study';
 import Cards from '../basic/cards';
 const study = getStudy();
 const cards = new Cards();
+console.log(study)
 
 export default class Trash {
     constructor() {
@@ -36,7 +37,12 @@ export default class Trash {
             console.log('study');
             study.arrayStudy.length = 0;
             study.arrayStudy = this.difficultWords;
-            cards.render(study.arrayStudy[0]);
+            console.log(study.arrayStudy)
+            console.log(this.difficultWords[0])
+            cards.renderGameWrapper();
+            cards.render(this.difficultWords[0]);
+            cards.renderCardCount(1, study.arrayStudy.length)
+            study.findCheckbox();
             study.removeClass('game-wrap', 'none');
             study.addClass('dictionary-wrap', 'none');
         });
@@ -50,6 +56,7 @@ export default class Trash {
         BTN_DIFFICULT.addEventListener('click', (event) => {
             toggleClassMenu(event);
             this.forEachCard(this.difficultWords);
+            console.log(this.difficultWords)
             study.removeClass('dictionary-start', 'none');
         });
 
@@ -70,7 +77,6 @@ export default class Trash {
                 this.recoveryWord(id);
                 const elementWord = event.target.closest('.word');
                 elementWord.remove();
-                console.log()
             }
 
             if (eventContains(event, 'dictionary_voice')) {
@@ -92,8 +98,8 @@ export default class Trash {
             "userId": `${userId}`,
             "wordId": `${_id}`,
             "word": { "difficulty": `${value}`,
-            "optional":{}
-            },
+                    "optional":{"repeat": true}
+                    },
         }
   
         let result = await study.createUserWord(dataRemove);
@@ -104,31 +110,53 @@ export default class Trash {
         console.log(result);
     }
 
-    async recoveryWordInWords(id) {
-        console.log(id)
+    async setOptionalWord(value, arrDataWords) {
+        const {_id} = arrDataWords;
         const userId = localStorage.getItem('userId');
         const data = {
             "userId": `${userId}`,
-            "wordId": `${id}`,
-            "word": { "difficulty": "",
-            "option": {
-                "repeat": true
-            }
+            "wordId": `${_id}`,
+            "word": value
         }
-        }
+
+        console.log(data)
   
-        const result = await study.updateUserWord(data);
+        let result = await study.createUserWord(data);
+        if (result === null) {
+            result = await study.updateUserWord(data);
+        }
+        
         console.log(result);
+    }
+
+    async recoveryWordInWords(id) {	    
+        console.log(id)
+        const userId = localStorage.getItem('userId');	        
+        const data = {	       
+            "userId": `${userId}`,
+            "wordId": `${id}`,
+            "word": { 
+                "difficulty": "string",
+                    "optional": { 
+                        "repeat": true 
+                    } 
+                }
+        }
+  	  
+        const result = await study.updateUserWord(data);
+        console.log(result)
     }
 
     async getDifficultWord(value) {
         const userId = localStorage.getItem('userId');
         const agregateWords = {
           "userId": `${userId}`,
-          "filter": `{"userWord.difficulty":"${value}" }`,
+          "wordsPerPage": 250,
+          "filter": `{"userWord.difficulty": "${value}" }`,
         }
       
         const words = await study.getAgregateWords(agregateWords);
+        console.log(words)
         if (words !== null) {
             const result = words[0].paginatedResults;
             return result;
@@ -195,7 +223,7 @@ export default class Trash {
                 removeWordInArray(this.difficultWords);
                 removeWordInArray(this.allWords);
                 this.recoveryWordInWords(id);
-                console.log(this.difficultWords)
+                console.log(this.difficultWords);
             }
 
             if (text === 'Все') {

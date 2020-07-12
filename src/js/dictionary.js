@@ -20,10 +20,11 @@ const renderDictionary = async() => {
     trash.allWords.forEach(element => {
         trash.renderCard(element);
     });
-    const settings = document.querySelector('#settings');
-    const gameWrap = document.querySelector('.game-wrap');
-    new Menu(settings);
-    new Menu(gameWrap);
+    //const settings = document.querySelector('#settings');
+    //const gameWrap = document.querySelector('.game-wrap');
+    //new Menu(settings);
+    const body = document.querySelector('body');
+    new Menu(body);
 }
 
 renderDictionary();

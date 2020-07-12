@@ -6,7 +6,7 @@ export default class Header {
         const header = `
               <div class="rs-menu">
               <ul class="rs-ul">
-                  <li class="logo">RS Lang</li>
+                  <li data-action="logo" class="logo">RS Lang</li>
                   <div class="navigation">
                       <li class="rs-li menu-dictionary"><a href="#" data-action="dictionary" class="pointer">Словарь</a><img class="sort" src="./icons/sort.png"
                               alt="sort">
@@ -124,7 +124,7 @@ export default class Header {
       `
       
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
-      
+        console.log(555555)
         HEADER_NAVIGATION.innerHTML = header;
       }
       

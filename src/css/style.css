@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 body {
+    position: relative;
     background-color: #81A4BB;
     font-family: "Roboto";
     width: 100%;
@@ -21,6 +22,7 @@ body {
     letter-spacing: 5px;
     align-self: center;
     text-align: center;
+    cursor: pointer;
 }
 
 .rs-menu {
@@ -317,6 +319,7 @@ input[type="checkbox"]:checked + label:before {
 
 .burger {
     display: none;
+    cursor: pointer;
 }
 .burger div {
     width: 25px;

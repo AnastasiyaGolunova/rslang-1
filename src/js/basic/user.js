@@ -1,9 +1,22 @@
 export default class User {
     constructor() {
         this.urlHeroku = 'https://afternoon-falls-25894.herokuapp.com';
+        this.date = null;
     }
 
-    async getSettings(userId) {
+    async response(rawResponse) {
+        if (!rawResponse.ok)  {
+          const data = await rawResponse.text();
+          return null;
+        } else {
+          const content = await rawResponse.json();
+          console.log(content)
+          return content;
+        }
+    }
+
+    async getSettings() {
+        const userId = localStorage.getItem('userId');
         const token = localStorage.getItem('token');
         console.log(token);
         const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/settings`,
@@ -17,8 +30,9 @@ export default class User {
             }
         );
 
-        return await this.response(rawResponse);
-        
+        const data = await this.response(rawResponse);
+
+        return data;        
     }
     
     async putSettings({userId, settings}) {
@@ -38,15 +52,13 @@ export default class User {
            
     }
 
-    async setSettingsData(value) {
+    async setSettingsData(settings) {
+        console.log(settings)
         const userId = localStorage.getItem('userId');
         const data = {
             "userId": `${userId}`,
-            "settings": { "wordsPerDay": `${value}`,
-            "optional":{}
-            },
+            "settings": settings
         }
-
         let result = await this.putSettings(data);
         console.log(result)
     }
