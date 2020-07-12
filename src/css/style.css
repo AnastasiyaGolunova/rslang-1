@@ -1,171 +1,154 @@
 * {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 body {
-  background-color: #81a4bb;
-  font-family: "Roboto";
-  width: 100%;
-  height: 100%;
+    position: relative;
+    background-color: #81A4BB;
+    font-family: "Roboto";
+    width: 100%;
+    height: 100%;
 }
 
-.cards-wrapper {
-  width: 100%;
-  height: 100%;
-  align-items: center;
-}
 .logo {
-  width: 20%;
-  list-style: none;
-  font-size: 26px;
-  text-decoration: none;
-  color: #81a4bb;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  align-self: center;
-  text-align: center;
+    width: 20%;
+    list-style: none;
+    font-size: 26px;
+    text-decoration: none;
+    color: #81A4BB;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    align-self: center;
+    text-align: center;
+    cursor: pointer;
 }
 
 .rs-menu {
-  background-color: white;
-  width: 100%;
-  height: 100%;
-  min-height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
 
 nav {
-  display: flex;
-  height: 100%;
-  justify-content: space-around;
-  list-style: none;
-  align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
 }
 
 .rs-ul {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .rs-li {
-  list-style: none;
-  padding: 0 2em;
+    list-style: none;
+    padding: 0 2em;
 }
 
 .navigation {
-  display: flex;
-  width: 80%;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
 }
 
-.rs-ul a {
-  text-decoration: none;
-  color: #000;
-  font-size: 16px;
-  font-weight: 700;
-  position: relative;
-  margin: 0 auto;
-}
+.rs-ul a{
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    margin: 0 auto;
+   }
 
-.services,
-.exit {
-  height: 30px;
-  width: 30px;
+.services, .exit {
+    height: 30px;
+    width: 30px;
 }
 
 .pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
-.microphone,
-.puzzle,
-.tree,
-.headphones,
-.track,
-.dice,
-.update,
-.ticket,
-.translation,
-.about,
-.document,
-.hangouts,
-.answers,
-.trash,
-.solve,
-.image,
-.bookmark {
-  height: 25px;
-  width: 25px;
-  margin-right: 7px;
+.microphone, .puzzle, .tree, .headphones,
+.track, .dice, .update, .ticket, .translation,
+.about, .document, .hangouts, .answers, .trash,
+.solve, .image, .bookmark {
+    height: 25px;
+    width: 25px;
+    margin-right: 7px;
 }
 
 .forward {
-  height: 15px;
-  width: 15px;
-  padding-left: 7px;
+    height: 15px;
+    width: 15px;
+    padding-left: 7px;
 }
 
 .sort {
-  height: 12px;
-  width: 12px;
+    height: 12px;
+    width: 12px;
 }
 
 .rs-menu li:hover .ul-dropdown .li-dropdown {
-  list-style: none;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 10px;
-  top: 0;
-  display: block;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    top: 0;
+    display: block;
 }
 
 .ul-dropdown {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  padding: 0;
-  border-radius: 4px;
-  z-index: 1;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 0;
+    border-radius: 4px;
+    z-index: 1;
 }
 
 .settings {
-  width: 205px;
+    width: 205px;
 }
 
 .settings li a {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .dictionary {
-  width: 185px;
+    width: 185px;
 }
 
 .games {
-  width: 160px;
+    width: 160px;
 }
 
 .ul-dropdown li {
-  display: none;
-  position: relative;
-  width: 100%;
+   display: none;
+   position: relative;
+   width: 100%;
 }
 
 .ul-dropdown li:hover {
-  background-color: #f4f7f9;
-  margin: 0 auto;
-}
+    background-color: #f4f7f9;
+    margin: 0 auto;
+ }
 
 .rs-li:hover {
-  display: block;
-  background-color: #f4f7f9;
+    display: block;
+    background-color: #f4f7f9;
 }
 
 .words-number, .cards-number {
@@ -204,7 +187,7 @@ nav {
     width: 20em;
     text-align: center;
     border-radius: 20px;
-    background: #ffffff;  
+    background: #ffffff;
     box-shadow: -2px 0px 20px -6px rgba(0,0,0,1.1);
     margin: 0 1em;
     display: flex;
@@ -224,26 +207,22 @@ nav {
 }
 
 .learned {
-  background-color: #80a63f;
+    background-color: #80A63F;
 }
 
 .day {
-  background-color: #ddd060;
+    background-color: #DDD060;
 }
 
 .difficult {
-  background-color: #eb7055;
+    background-color: #EB7055;
 }
 .word-count {
-  color: #939393;
-  font-size: 32px;
-  font-weight: 200;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.words-number {
-  font-size: 24px;
+    color: #939393;
+    font-size: 32px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .cards {
@@ -253,46 +232,46 @@ nav {
 }
 
 .start {
-  border: none;
-  border-radius: 10px;
-  background-color: #ff5757;
-  width: 175px;
-  padding: 5px;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 25px;
-  cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: #FF5757;
+    width: 175px;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    cursor: pointer;
 }
 
 .start:hover {
-  background-color: #ff6b6b;
+    background-color: #ff6b6b;
 }
 
 progress[value] {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 progress[value]::-webkit-progress-bar {
-  width: 250px;
-  height: 20px;
-  background-color: #eee;
-  border-radius: 2px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-  margin: 30px 0 0 35px;
-}
+    width: 250px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    margin: 30px 0 0 35px;
+  }
 
 .balance {
-  font-size: 14px;
-  font-weight: 400;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .progress {
-  margin-bottom: 5px;
+margin-bottom: 5px;
 }
 
 .switcher {
-  display: inline-block;
-  padding-left: 5px;
-}
+    display: inline-block;
+    padding-left: 5px;
+ }
 
 input[type="checkbox"] {
   display: none;
@@ -344,6 +323,7 @@ input[type="checkbox"]:checked + label:before {
 
 .burger {
   display: none;
+    cursor: pointer;
 }
 .burger div {
   width: 25px;

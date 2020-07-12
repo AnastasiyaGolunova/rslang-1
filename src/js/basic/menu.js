@@ -1,9 +1,11 @@
 import {getStudy} from './study'
 import {getTrash} from './trash'
 import {getCard} from './cards';
+import User from './user';
 const study = getStudy();
 const trash = getTrash();
 const card = getCard();
+const user = new User();
 
 
 export default class Menu {
@@ -13,15 +15,40 @@ export default class Menu {
   }
 
   async start() {
-    study.receivedWords.length = 0;
-    study.arrayStudy = await study.getCompareWords();
-    // const result = study.arrayStudy[0].paginatedResults;
+    // const data = await user.setSettingsData({
+    //   "wordsPerDay": this.countCards,
+    //   "optional": { "date": `${new Date().toJSON()}`,
+    //                 "countNew": 8,
+    //                 "countRepeat": 3,
+    //               }
+    // });
+    const data = await user.getSettings();
+    if (data !== null) {
+      if (data.optional !== undefined) {
+        if (data.optional.date !== undefined) {
+          console.log(data);
+          study.receivedWords.length = 0;
+          study.arrayStudy = await study.getCompareWords(data);
+          // const result = study.arrayStudy[0].paginatedResults;
+        }
+      } else {
+        study.receivedWords.length = 0;
+        study.arrayStudy = await study.getCompareWords();
+      }
+    } else {
+      study.receivedWords.length = 0;
+      study.arrayStudy = await study.getCompareWords();
+    }
+
     console.log(study.arrayStudy);
-    if (study.arrayStudy.length !== 0) {
-      card.renderGameWrapper();
-      card.render(study.arrayStudy[study.count]);
-      card.renderCardCount(1, study.arrayStudy.length)
-      study.findCheckbox();
+    if (study.arrayStudy !== undefined) {
+      if (study.arrayStudy.length !== 0) {
+          card.renderGameWrapper();
+          card.render(study.arrayStudy[study.count]);
+          card.renderCardCount(1, study.arrayStudy.length)
+          study.findCheckbox();
+      }
+
     }
   }
 
@@ -50,43 +77,92 @@ export default class Menu {
     study.checked(event);
   }
 
-  answer() { 
+  async sendUserSettings() {
+    const DATA_WORD = study.arrayStudy[study.count];
+    const {word, _id} = DATA_WORD;
+    const dataSetings = await user.getSettings();
+    console.log(dataSetings);
+    // const {wordsPerDay, optional} = dataSetings;
+    // console.log(optional)
+    // const {countNew, countRepeat} = optional;
+    // dataSetings.wordsPerDay -= 1;
+    console.log(dataSetings.wordsPerDay)
+
+    console.log(study.arrayNewWords, study.arrayRepeat)
+    study.arrayNewWords.forEach(element => {
+      if (element._id === _id) {
+        dataSetings.optional.countNew -= 1;
+      }
+    });
+
+    console.log(dataSetings.optional.countNew)
+
+    study.arrayRepeat.forEach(element => {
+      if (element._id === _id) {
+        dataSetings.optional.countRepeat -= 1;
+      }
+    });
+
+    console.log(dataSetings.optional.countRepeat)
+    console.log(dataSetings);
+    const {wordsPerDay, optional} = dataSetings;
+    console.log(wordsPerDay, optional)
+    await user.setSettingsData({wordsPerDay, optional}) 
+  }
+
+  async answer() { 
     study.findCheckbox();
     const ANSWER_INPUT = document.querySelector('.answer-input');
     const {word} = study.arrayStudy[study.count];
     ANSWER_INPUT.value = word;
     ANSWER_INPUT.select();
+    await this.sendUserSettings();
     study.showAnswer();
     study.audioPlayTurn();
-    setTimeout(() => {
-      study.count += 1;
-      const curentWord = study.arrayStudy[study.count];
-      card.render(curentWord);
-      study.findCheckbox();
-    }, 5000);
+    study.count += 1;
+    const curentWord = study.arrayStudy[study.count];
+    card.render(curentWord);
+    study.findCheckbox();
   }
 
-  async send() {
+  async send(event) {
+    event.preventDefault();
     const INPUT_WORD = document.querySelector('.answer-input');
     const wordContainer = document.querySelector('.word-container');
     const DATA_WORD = study.arrayStudy[study.count];
-    const {word} = DATA_WORD;
+    const {word, _id} = DATA_WORD;
+
     if (INPUT_WORD.value === word) {
       INPUT_WORD.select();
       if (study.arrayStudy.length >= study.count) {
         study.audioPlayTurn();
-        setTimeout(() => {
-          study.count += 1;
-          const curentWord = study.arrayStudy[study.count];
-          card.render(curentWord);
-          card.renderCardCount(study.count + 1, study.arrayStudy.length)
-          study.findCheckbox();
-          console.log(study.arrayStudy)
-        }, 5000);
-        } else {
-          console.log('все слова изучены')
-        }
+          setTimeout(async () => {
+            if (study.right === 'right') {
+              console.log('hard');
+              await trash.setOptionalWord({ "difficulty": "hard", "optional":{} }, DATA_WORD);
+            }
+            study.right = 'right';
+            await this.sendUserSettings();
+            study.count += 1;
+            if (study.arrayStudy.length > study.count) {
+              console.log(study.count, study.arrayStudy.length)
+              const curentWord = study.arrayStudy[study.count];
+              card.render(curentWord);
+              card.renderCardCount(study.count + 1, study.arrayStudy.length)
+              study.findCheckbox();
+              console.log(study.arrayStudy);
+            } else {
+              study.removeClass('frame','none');
+              card.renderStartPage();
+              return
+            }
+          }, 3000);
+        } 
     } else {
+      if (study.right !== 'error') {
+        await trash.setOptionalWord({ "optional":{ "repeat": true } }, DATA_WORD); 
+      }
+      study.right = 'error';
       let result = '';
       console.log(wordContainer);
       const letters = word.split('');
@@ -109,8 +185,8 @@ export default class Menu {
   }
 
   answerInput() {
+    console.log('input');
     const container = document.querySelector('.word-container');
-
     container.style.opacity = 0;
     setTimeout(() => {
       container.classList.add('hidden');
@@ -119,31 +195,26 @@ export default class Menu {
   }
 
 
-  next() {
-
-    const DATA_WORD = study.arrayStudy[study.count];
-    study.count += 1;
-    console.log(study.count, study.arrayStudy.length)
-    if (study.arrayStudy.length >= study.count) {
-      card.render(DATA_WORD);
-      study.findCheckbox();
-      study.audioPlayTurn();
-    } else {
-      console.log('все слова изучены')
-    }
-    console.log('next');
-  }
-
   trash() {
     const arrDataWords = study.arrayStudy[study.count];
-    trash.setRemoveWord('delete', arrDataWords);
+    trash.setOptionalWord({ "difficulty": "delete", "optional":{} }, arrDataWords);
     // window.location.href = 'login.html';
     console.log('trash');
+    study.count += 1;
+    card.render(study.arrayStudy[study.count]);
+    card.renderCardCount(study.count + 1, study.arrayStudy.length);
+    this.sendUserSettings().then(response => response) 
+    study.findCheckbox();
   }
 
   difficult() {
     const arrDataWords = study.arrayStudy[study.count];
-    trash.setRemoveWord('difficult', arrDataWords);
+    trash.setOptionalWord({ "difficulty": "difficult", "optional":{} }, arrDataWords);
+    this.sendUserSettings().then(response => response)
+    study.count += 1;
+    card.render(study.arrayStudy[study.count]);
+    card.renderCardCount(study.count + 1, study.arrayStudy.length);
+    study.findCheckbox();
     console.log('difficult');
   }
 
@@ -161,6 +232,11 @@ export default class Menu {
     } else {
       study.addClass('delete-icon', 'none');
     }
+  }
+
+  logo() {
+    console.log('logo');
+    window.location.href = 'index.html'
   }
 
   dictionary() {
@@ -187,6 +263,12 @@ export default class Menu {
     console.log('play');
   }
 
+  popupClose() {
+    study.addClass('frame','none');
+    // const frame = document.querySelector('.frame');
+    // frame.classList.add('none');
+  }
+
   onClick(event) {
     let action = event.target.dataset.action;
     if (action) {
@@ -195,6 +277,20 @@ export default class Menu {
   };
 
   onFocus(event) {
+    let action = event.target.dataset.action;
+    if (action) {
+      this[action](event);
+    }
+  };
+
+  onInput(event) {
+    let action = event.target.dataset.action;
+    if (action) {
+      this[action](event);
+    }
+  };
+
+  onSubmit(event) {
     let action = event.target.dataset.action;
     if (action) {
       this[action](event);

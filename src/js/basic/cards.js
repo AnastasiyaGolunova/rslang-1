@@ -13,10 +13,10 @@ const study = getStudy();
 export default class Cards {
 
   render(words) {
-    // console.log(allCards)
-    const { textExample, textExampleTranslate, textMeaning, textMeaningTranslate, transcription, word, wordTranslate, image } = words;
+    console.log(words);
+    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,image} = words;
     study.currentWord = word;
-    console.log(transcription, word, wordTranslate)
+    console.log(transcription,word,wordTranslate)
     console.log(`${study.urlData}`);
 
     const replaceExample = study.findWordInText(word, textExample);
@@ -25,9 +25,9 @@ export default class Cards {
     let spanLetter = '';
 
     for (let i = 0; i < word.length; i++) {
-      const letter = word[i];
-      const span = `<span index="${i}">${letter}</span>`;
-      spanLetter += span;
+        const letter = word[i];
+        const span = `<span index="${i}">${letter}</span>`;
+        spanLetter += span;
     }
 
     console.log(spanLetter);
@@ -37,8 +37,10 @@ export default class Cards {
                     <div class='word-input'>
                         <span class="word-background hidden">${spanLetter}</span>
                         <span class="word-container hidden">${spanLetter}</span>
-                        <input data-action="answerInput" type='text' class='answer-input input-word' maxlength="50" 
-                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
+                        <form action="#" id="senddata">
+                          <input data-action="answerInput" type='text' class='answer-input input-word' maxlength="50" 
+                          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
+                        </form>
                     </div>
                     <div class='word-example word-translation'>${wordTranslate}</div>
                     <div class='word-example word-transcription'>${transcription}</div>
@@ -63,8 +65,8 @@ export default class Cards {
     console.log(width.offsetWidth)
   };
 
-  renderGameWrapper() {
-    const gameContent = `
+  renderGameWrapper(){
+        const gameContent = `
         <div class="game-close">
             <img class="delete" src="./icons/delete.png" alt="delete">
         </div>
@@ -92,23 +94,36 @@ export default class Cards {
             </div>
             <div class="buttons card-button">
                 <button data-action="answer" class="btn btn-answer">Ответ</button>
-                <button data-action="send" class="btn btn-enter">Enter</button>
-                <button data-action="next" class="btn btn-next">Далее &#8594</button>
+                <button type="submit" data-action="send" form="senddata" class="btn btn-enter">Далее &#8594</button>
             </div>
         </div>
         `
 
-    const GAME_WRAP = document.querySelector('.game-wrap');
+        const GAME_WRAP = document.querySelector('.game-wrap');
 
-    GAME_WRAP.innerHTML = gameContent;
+        GAME_WRAP.innerHTML = gameContent;
   }
 
   renderStartPage() {
     const startPage = `
     <div class="start-wrap">
         <div class="start-description">
+          <h2>Правила изучения слов</h2>
+            <ul>
+              <li>Новые слова - слова которые вы не изучали</li>
+              <li>Слова для повтора - слова в которых вы допустили ошибки при изучений новых слов</li>
+              <li>Выученные слова - слова в которых вы не допустили ошибок</li>
+            </ul>
+          <p>Перед тем как нажать кнопку <b>"Начать обучение"</b>, выберите необходимые настроики в меню.</p>
+          <p>Что бы изучить новые слова вам необходимо в настроиках выбрать количество новых слов и количество карточек, 
+          чем больше новых слов будет выбрано тем меньше слов для повтора.</p>
+          <p>Что бы изучить больше слов для повтора необходимо в настроиках выбрать меньше новых слов, а количество карточек больше.</p>
+          <p>Если вы уже изучали слова сегодня, намжите кнопку "Начать обучение".</p>
+          <p>Количество новых слов и количество карточек можно выбрать один раз в день</p>
         </div>
-        <button data-action="start" class="btn start-btn">Начать обучение</button>
+        <div class="description_btn">
+          <button data-action="start" class="btn start-btn">Начать обучение</button>
+        </div>
     </div>
         `
     const GAME_WRAP = document.querySelector('.game-wrap');

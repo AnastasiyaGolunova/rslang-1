@@ -6,9 +6,18 @@ export default class Header {
         const header = `
               <div class="rs-menu">
               <ul class="rs-ul">
-                  <li class="logo">RS Lang</li>
+                  <li data-action="logo" class="logo">RS Lang</li>
                   <div class="navigation">
-                      <li class="rs-li menu-dictionary"><a href="#" data-action="dictionary" class="pointer">Словарь</a>
+                      <li class="rs-li menu-dictionary"><a href="#" data-action="dictionary" class="pointer">Словарь</a><img class="sort" src="./icons/sort.png"
+                              alt="sort">
+                          <ul class="ul-dropdown dictionary">
+                              <li class="li-dropdown dictionary-learn"><img class="bookmark" src="./icons/bookmark.png" alt="bookmark"><a
+                                      href="#" class="pointer">Изучаемые слова</a></li>
+                              <li class="li-dropdown dictionary-difficult"><img class="answers" src="./icons/answers.png" alt="answers"><a
+                                      href="#" class="pointer">Сложные слова</a></li>
+                              <li class="li-dropdown dictionary-trash"><img class="trash" src="./icons/trash.png" alt="trash"><a href="#"
+                                      class="pointer">Удалённые слова</a></li>
+                          </ul>
                       </li>
                       <li class="rs-li"><a href="#" class="pointer">Мини-игры</a><img class="sort" src="./icons/sort.png"
                               alt="sort">
@@ -115,11 +124,11 @@ export default class Header {
       `
 
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
-
+        console.log(555555)
         HEADER_NAVIGATION.innerHTML = header;
-    }
+      }
 
-    set() {
+      set() {
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
 
         console.log(HEADER_NAVIGATION.innerHTML)
@@ -127,9 +136,9 @@ export default class Header {
         localStorage.setItem('header', HEADER_NAVIGATION.outerHTML);
 
         // HEADER_NAVIGATION.innerHTML = header;
-    }
+      }
 
-    get() {
+      get() {
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
 
         const header = localStorage.getItem('header', HEADER_NAVIGATION);
@@ -142,5 +151,5 @@ export default class Header {
         console.log(header);
 
         //HEADER_NAVIGATION.append(header.strin;
-    }
+      }
 }
