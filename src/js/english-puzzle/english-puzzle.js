@@ -1,6 +1,6 @@
-//import '../css/english-puzzle.css';
+// import '../css/english-puzzle.css';
+// import '../css/index.css'
 import {
-  startButton,
   logoWrap,
   gameWrap,
   levelGame,
@@ -13,6 +13,7 @@ let draggedItem = null;
 let dataElements = null;
 let canvasElements = null;
 let canvasHeight = null;
+let image = null;
 
 async function createCanvasElements({
   src,
@@ -194,9 +195,9 @@ async function createCanvasElements({
   })
 };
 
-function showPuzzle() {
-  logoWrap.className = 'hidden';
-  gameWrap.className = 'game-wrapper';
+function showGame() {
+  logoWrap.classList.add('hidden');
+  gameWrap.classList.remove('hidden');
 };
 
 /* ---------------------------------------------- Рандом данных ---------------------------------------------- */
@@ -208,10 +209,18 @@ function getRandomElement(array) {
 
 /* --------------------------------------- Получение данных с сервера ---------------------------------------- */
 async function getSentense() {
-  const response = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${levelGame.value - 1}&page=${pageGame.value - 1}&wordsPerPage=10`)
+  let currentPage = null;
+  if (pageGame % 2 !== 0) {
+    currentPage = Math.floor(pageGame.value / 2)
+  } else {
+    currentPage = (pageGame.value / 2) - 1;
+  }
+  const response = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${levelGame.value - 1}&page=${currentPage}`)
   const data = await response.json();
-  for (let i = 0; i < 10; i += 1) {
-    data.splice(getRandomElement(data), 1);
+  if (pageGame % 2 !== 0) {
+    data.splice(9, 10);
+  } else {
+    data.splice(0, 10);
   }
   return data;
 };
@@ -248,32 +257,35 @@ function addNewRow(className, len) {
 /* ---------------------------------------- Перемещать элементы пазла ---------------------------------------- */
 function movePuzzles(elements) {
   const container = document.createElement('div');
-      container.className = elements.className;
-      document.querySelector('.elements-puzzle').append(container);
-      for (let i=0; i !== elements.childElementCount; i ) {
-        const index = getRandomElement(elements.children);
-        container.append(elements.children[index])
-        elements.remove(index);
-      };
+  container.className = elements.className;
+  document.querySelector('.elements-puzzle').append(container);
+  for (let i = 0; i !== elements.childElementCount; i) {
+    const index = getRandomElement(elements.children);
+    container.append(elements.children[index]);
+    elements.remove(index);
+  };
 }
 /* ---------------------------------------------------------------------------------------------------------== */
 
+/* --------------------------------------------- Старт новой игры -------------------------------------------- */
+function startNewGame() {
+  if (document.querySelector('#img-puzzle').childElementCount) {
+    for (let i = 0; i !== document.querySelector('#img-puzzle').childElementCount; i) {
+      document.querySelector('#img-puzzle').children[i].remove();
+    };
+  };
+  if (document.querySelector('#elements-puzzle').childElementCount) {
+    for (let i = 0; i !== document.querySelector('#elements-puzzle').childElementCount; i) {
+      document.querySelector('#elements-puzzle').children[i].remove();
+    };
+  };
+  document.querySelector('#continue').classList.add('hidden');
+  document.querySelector('#dont-know').classList.add('hidden');
+  document.querySelector('#check').classList.add('hidden');
+  document.querySelector('#results').classList.add('hidden');
 
-
-
-
-
-
-
-
-
-
-
-
-
-startButton.onclick = () => {
-  const image = getRandomElement(images);
-  document.querySelector('.img-puzzle').style.backgroundImage = `url('${images[image]}')`;
+  image = getRandomElement(images);
+  document.querySelector('#img-puzzle').style.backgroundImage = `url('${images[image]}')`;
   const listSentense = getSentense();
   listSentense.then(data => {
     dataElements = data;
@@ -283,15 +295,71 @@ startButton.onclick = () => {
     })
     canvasElements.then(res => {
       imageContainer.style.backgroundColor = '#0465aa';
-      imageContainer.style.border = '2px solid black';
       imageContainer.style.backgroundImage = 'none';
       addNewRow(res[0].className, res.length);
       movePuzzles(res[0]);
     });
   });
-  showPuzzle();
+  document.querySelector('#dont-know').classList.remove('hidden');
+}
+/* ---------------------------------------------------------------------------------------------------------== */
+
+function changeSoundInput() {
+  if (document.querySelector('#sound-input').checked) {
+    document.querySelector('#sound-label').classList.add('active');
+    document.querySelector('#sound').classList.remove('hidden');
+  } else {
+    document.querySelector('#sound-label').classList.remove('active');
+    document.querySelector('#sound').classList.add('hidden');
+  };
 };
 
+function changeImageInput() {
+  if (document.querySelector('#image-input').checked) {
+    document.querySelector('#image-label').classList.add('active');
+    imageContainer.style.backgroundImage = image;
+
+    console.log('image on');
+  } else {
+    document.querySelector('#image-label').classList.remove('active');
+    imageContainer.style.backgroundImage = 'none';
+  };
+};
+
+function changeInterpretationInput() {
+  if (document.querySelector('#interpretation-input').checked) {
+    document.querySelector('#interpretation-label').classList.add('active');
+    const index = document.querySelector('.img-puzzle').childElementCount - 1;
+    document.querySelector('#translate').innerHTML = dataElements[index].textExampleTranslate;
+  } else {
+    document.querySelector('#interpretation-label').classList.remove('active');
+    document.querySelector('#translate').innerHTML = '';
+  };
+}
+
+
+
+
+/* ------------------------------------------ Смена уровня сложности ----------------------------------------- */
+document.querySelector('#levels').addEventListener('change', () => {
+  startNewGame();
+});
+/* ---------------------------------------------------------------------------------------------------------== */
+
+/* ------------------------------------------- Смена страницы игры ------------------------------------------- */
+document.querySelector('#page').addEventListener('change', () => {
+  startNewGame();
+});
+/* ---------------------------------------------------------------------------------------------------------== */
+
+/* ---------------------------------------- Действие кнопки Start -------------------------------------------- */
+document.querySelector('#button-start').addEventListener('click', () => {
+  startNewGame();
+  showGame();
+});
+/* ----------------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------------- Действие кнопки Check -------------------------------------------- */
 document.querySelector('#check').addEventListener('click', () => {
   const classCount = document.querySelector('.img-puzzle').lastChild.classList;
   let wordsList = null;
@@ -320,13 +388,16 @@ document.querySelector('#check').addEventListener('click', () => {
     ctx.putImageData(imgData, 0, 0) */
     // console.log(ctx.getFillStyle());
     if (puzzles[i].getAttribute('data-word') === wordsList[i]) {
-      ctx.fillStyle = 'green';
+      setTimeout(() => {
+        puzzles[i].style.backgroundColor = 'green';
+        puzzles[i].style.opacity = '0.9';
+      })
     } else {
       ctx.fillStyle = 'red';
       countErrors += 1;
     }
     ctx.textAlign = 'center';
-    ctx['fillText'](puzzles[i].getAttribute('data-word'), puzzles[i].clientWidth / 2, puzzles[i].clientHeight / 3);
+    ctx.fillText(puzzles[i].getAttribute('data-word'), puzzles[i].clientWidth / 2, puzzles[i].clientHeight / 3);
   }
   if (countErrors === 0) {
     document.querySelector('#continue').classList.remove('hidden');
@@ -342,31 +413,31 @@ document.querySelector('#check').addEventListener('click', () => {
   } else(
     document.querySelector('#dont-know').classList.remove('hidden')
   )
-})
-
-
+});
+/* ----------------------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------- Действие кнопки Continue ------------------------------------------ */
 document.querySelector('#continue').addEventListener('click', () => {
   canvasElements.then(res => {
     const index = document.querySelector('.img-puzzle').childElementCount;
-    addNewRow(res[index].className, res.length)
-    movePuzzles(res[index]);
+    if (index < 10) {
+      addNewRow(res[index].className, res.length)
+      movePuzzles(res[index]);
+      document.querySelector('#continue').classList.add('hidden');
+      document.querySelector('#dont-know').classList.remove('hidden');
+    } else if (pageGame.value < 60) {
+      pageGame.value = parseInt(pageGame.value, 10) + 1;
+      startNewGame();
+    } else if (levelGame.value < 6) {
+      levelGame.value = parseInt(levelGame.value, 10) + 1;
+      pageGame.value = 1;
+      startNewGame();
+    } else {
+      console.log('больше нет раундов');
+    }
   });
-  document.querySelector('#continue').classList.add('hidden');
-  document.querySelector('#dont-know').classList.remove('hidden');
-});
-/* ----------------------------------------------------------------------------------------------------------- */
-
-
-/* ------------------------------------ Смена режима подсказки ПЕРЕВОД --------------------------------------- */
-document.querySelector('#interpretation').addEventListener('change', () => {
-  if (document.querySelector('#interpretation').checked) {
-    const index = document.querySelector('.img-puzzle').childElementCount - 1;
-    document.querySelector('#translate').innerHTML = dataElements[index].textExampleTranslate;
-  } else {
-    document.querySelector('#translate').innerHTML = '';
-  };
+  // document.querySelector('#continue').classList.add('hidden');
+  // document.querySelector('#dont-know').classList.remove('hidden');
 });
 /* ----------------------------------------------------------------------------------------------------------- */
 
@@ -377,7 +448,7 @@ document.querySelector('#dont-know').addEventListener('click', () => {
   textExample.forEach((word, index) => {
     const elementsPuzzle = document.querySelector('.elements-puzzle').lastChild.childNodes;
     elementsPuzzle.forEach(element => {
-      if (index === parseInt(element.getAttribute('data-item').split('-')[1], 10) -1 ) {
+      if (index === parseInt(element.getAttribute('data-item').split('-')[1], 10) - 1) {
         element.style.marginRight = `-${Math.round((canvasHeight / 3) / 2)}px`;
         document.querySelector('.img-puzzle').lastChild.append(element);
       }
@@ -385,5 +456,46 @@ document.querySelector('#dont-know').addEventListener('click', () => {
   })
   document.querySelector('#dont-know').classList.add('hidden');
   document.querySelector('#continue').classList.remove('hidden');
+});
+/* ----------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+/* ---------------------------------- Смена режима подсказки ПРОИЗНОШЕНИЕ ------------------------------------ */
+document.querySelector('#sound-label').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (document.querySelector('#sound-input').checked) {
+    document.querySelector('#sound-input').checked = false;
+  } else {
+    document.querySelector('#sound-input').checked = true;
+  };
+  changeSoundInput();
+});
+/* ----------------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------- Смена режима подсказки КАРТИНКА ------------------------------------ */
+document.querySelector('#image-label').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (document.querySelector('#image-input').checked) {
+    document.querySelector('#image-input').checked = false;
+  } else {
+    document.querySelector('#image-input').checked = true;
+  };
+  changeImageInput();
+});
+/* ----------------------------------------------------------------------------------------------------------- */
+
+/* ------------------------------------ Смена режима подсказки ПЕРЕВОД --------------------------------------- */
+document.querySelector('#interpretation-label').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (document.querySelector('#interpretation-input').checked) {
+    document.querySelector('#interpretation-input').checked = false;
+  } else {
+    document.querySelector('#interpretation-input').checked = true;
+  };
+  changeInterpretationInput();
 });
 /* ----------------------------------------------------------------------------------------------------------- */
