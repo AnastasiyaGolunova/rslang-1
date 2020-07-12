@@ -26,7 +26,8 @@ const config = {
   entry: {
     englishpuzzle: './src/js/english-puzzle.js', 
     savannah: "./src/js/savannah.js",
-    speakit: './src/js/speak-it/speakIt.js'  
+    speakit: './src/js/speak-it/speakIt.js',
+    sprint: './src/js/sprint.js'
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -147,7 +148,7 @@ const config = {
     new HtmlWebPackPlugin({
       template: './src/english-puzzle.html',
       chunks: ["englishpuzzle"],
-      filename: './index.html'
+      filename: 'english-puzzle.html'
     }),
     new HtmlWebPackPlugin({
       template: "./src/savannah.html",
@@ -159,6 +160,11 @@ const config = {
       chunks: ['speakit'],
       filename: 'speakit.html'
       }),
+    new HtmlWebPackPlugin({
+      template: './src/sprint.html',
+      chunks: ['sprint'],
+      filename: 'sprint.html'
+    }),
     new CopyWebpackPlugin([
       {from: './src/img', to: './img/'},
       {from: './src/icons', to: './icons/'},
