@@ -27,7 +27,8 @@ const config = {
     englishpuzzle: './src/js/english-puzzle.js', 
     savannah: "./src/js/savannah.js",
     speakit: './src/js/speak-it/speakIt.js',
-    sprint: './src/js/sprint.js'
+    sprint: './src/js/sprint.js',
+    audiocall: './src/js/audiocall.js'
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -164,6 +165,11 @@ const config = {
       template: './src/sprint.html',
       chunks: ['sprint'],
       filename: 'sprint.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/audiocall.html',
+      chunks:['audiocall'],
+      filename: 'audiocall.html'
     }),
     new CopyWebpackPlugin([
       {from: './src/img', to: './img/'},
