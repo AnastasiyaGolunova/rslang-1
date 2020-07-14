@@ -25,7 +25,6 @@ const config = {
   target: "web",
   entry: {
     englishpuzzle: './src/js/english-puzzle.js',
-    savannah: "./src/js/savannah.js",
     speakit: './src/js/speak-it/speakIt.js',
     sprint: './src/js/sprint.js',
     audiocall: './src/js/audiocall.js',
