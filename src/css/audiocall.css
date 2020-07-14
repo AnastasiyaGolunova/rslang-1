@@ -12,22 +12,9 @@
   padding-top: 1em;
   width: 38vw;
 }
-/* body {
-  font-family: "Roboto", sans-serif;
-  --hue: var(--hue-neutral);
-  padding: 0;
-  margin: 0;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background-color: hsl(var(--hue), 45%, 75%);
-}
-nav {
-  margin: 0 auto;
-} */
+
 .container {
+  margin: 50px auto;
   --hue: var(--hue-correct);
   width: 900px;
   max-width: 80%;
@@ -180,9 +167,9 @@ nav {
   font-size: 0.8rem;
 }
 @media (max-width: 770px) {
-  .container {
+  /* .container {
     margin-top: -30px;
-  }
+  } */
   .leo {
     width: 135px;
     height: 135px;

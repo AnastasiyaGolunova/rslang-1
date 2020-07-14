@@ -1,6 +1,17 @@
 import '../css/style.css'
 import '../css/english-puzzle.css';
 import images from './english-puzzle/images';
+import {refreshLogin} from './basic/refresh';
+import Header from './header'
+import Menu from './basic/menu';
+const header = new Header();
+
+(async () => {
+    await refreshLogin();
+    header.render();
+    const body = document.querySelector('body');
+    new Menu(body);  
+})();
 
 const startButton = document.querySelector('.button-start');
 const logoWrap = document.querySelector('#logo');

@@ -1,5 +1,18 @@
 import '../css/style.css'
 import '../css/audiocall.css';
+import {refreshLogin} from './basic/refresh';
+import Header from './header'
+import Menu from './basic/menu';
+const header = new Header();
+
+(async () => {
+    await refreshLogin();
+    header.render();
+    const body = document.querySelector('body');
+    new Menu(body);  
+})();
+
+
 const urlApi = "https://afternoon-falls-25894.herokuapp.com/words";
 const dataUrl =
   "https://raw.githubusercontent.com/natalypoida/rslang-data/master/";
@@ -46,7 +59,7 @@ function clearStatusClass(element) {
   element.classList.remove("wrong");
 }
 studyButton.onclick = () => {
-  window.location.href = './html/main.html';
+  window.location.href = './index.html';
 }
 function setStatusClass(element, correct) {
   clearStatusClass(element);

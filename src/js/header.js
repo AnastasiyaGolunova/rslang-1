@@ -8,37 +8,28 @@ export default class Header {
               <ul class="rs-ul">
                   <li data-action="logo" class="logo">RS Lang</li>
                   <div class="navigation">
-                      <li class="rs-li menu-dictionary"><a href="#" data-action="dictionary" class="pointer">Словарь</a><img class="sort" src="./icons/sort.png"
-                              alt="sort">
-                          <ul class="ul-dropdown dictionary">
-                              <li class="li-dropdown dictionary-learn"><img class="bookmark" src="./icons/bookmark.png" alt="bookmark"><a
-                                      href="#" class="pointer">Изучаемые слова</a></li>
-                              <li class="li-dropdown dictionary-difficult"><img class="answers" src="./icons/answers.png" alt="answers"><a
-                                      href="#" class="pointer">Сложные слова</a></li>
-                              <li class="li-dropdown dictionary-trash"><img class="trash" src="./icons/trash.png" alt="trash"><a href="#"
-                                      class="pointer">Удалённые слова</a></li>
-                          </ul>
+                      <li class="rs-li menu-dictionary"><a href="#" data-action="dictionary" class="pointer">Словарь</a>
                       </li>
                       <li class="rs-li"><a href="#" class="pointer">Мини-игры</a><img class="sort" src="./icons/sort.png"
                               alt="sort">
                           <ul class="ul-dropdown games">
                               <li class="li-dropdown"><img class="microphone" src="./icons/microphone.png"
-                                      alt="microphone"><a href="#" class="pointer">SpeakIt</a></li>
-                              <li class="li-dropdown"><img class="puzzle" src="./icons/puzzle.png" alt="puzzle"><a
-                                      href="#" class="pointer">English Puzzle</a></li>
-                              <li class="li-dropdown"><img class="tree" src="./icons/tree.png" alt="tree"><a href="#"
-                                      class="pointer">Саванна</a></li>
-                              <li class="li-dropdown"><img class="headphones" src="./icons/headphones.png"
-                                      alt="headphones"><a href="#" class="pointer">Аудиовызов</a></li>
+                                      alt="microphone"><a href="#" data-action="speak" class="pointer">SpeakIt</a></li>
+                              <li class="li-dropdown"><img class="puzzle" src="./icons/puzzle.png" alt="puzzle"><a href="#" 
+                                data-action="puzzle" class="pointer">English Puzzle</a></li>
+                              <li class="li-dropdown"><img class="tree" src="./icons/tree.png" alt="tree"><a href="#" 
+                                data-action="savannah" class="pointer">Саванна</a></li>
+                              <li class="li-dropdown"><img class="headphones" src="./icons/headphones.png" alt="headphones"><a href="#"
+                                data-action="audiocall" class="pointer">Аудиовызов</a></li>
                               <li class="li-dropdown"><img class="track" src="./icons/track.png" alt="track"><a href="#"
-                                      class="pointer">Спринт</a></li>
+                                data-action="sprint" class="pointer">Спринт</a></li>
                               <li class="li-dropdown"><img class="dice" src="./icons/dice.png" alt="dice"><a href="#"
                                       class="pointer">Своя игра</a></li>
                           </ul>
                       </li>
                       <li class="rs-li"><a href="#" class="pointer">Мой прогресс</a></li>
                       <li class="rs-li"><a href="#" class="pointer">О приложении</a></li>
-                      <li class="rs-li"><a href="#" class="pointer about-team">О команде</a></li>
+                      <li class="rs-li"><a href="#" data-action="about" class="pointer about-team">О команде</a></li>
                       <li class="rs-li"><a href="#" class="pointer"><img class="services" src="./icons/services.png"
                                   alt="services"></a>
                           <ul class="ul-dropdown settings" id="settings">
@@ -124,7 +115,6 @@ export default class Header {
       `
 
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
-        console.log(555555)
         HEADER_NAVIGATION.innerHTML = header;
       }
 

@@ -6,8 +6,8 @@ startPage.innerHTML =  `<div class="start-page">
     <img class="game-icon" src="img/sprint-icon.svg"></img>
     <p class="game-rules hidden"> Перед Вами слово на английском языке и перевод. Ваша задача определить принадлежит ли перевод этому слову. И помните, что у Вас в распоряжении всего 60 секунд. Наслаждайтесь...</p>
     <div class="button-wrapper">
-      <button class="rules-btn btn">Правила</button>
-      <button class="start-btn btn">Выбор режима</button>
+      <button class="rules-btn btn">rules</button>
+      <button class="start-btn btn">start</button>
     </div>
   </div>`
 

@@ -13,7 +13,7 @@ export default class Menu {
     this._elem = elem;
     elem.onclick = this.onClick.bind(this);
   }
-
+  
   async start() {
     // const data = await user.setSettingsData({
     //   "wordsPerDay": this.countCards,
@@ -198,7 +198,6 @@ export default class Menu {
   trash() {
     const arrDataWords = study.arrayStudy[study.count];
     trash.setOptionalWord({ "difficulty": "delete", "optional":{} }, arrDataWords);
-    // window.location.href = 'login.html';
     console.log('trash');
     study.count += 1;
     card.render(study.arrayStudy[study.count]);
@@ -265,8 +264,30 @@ export default class Menu {
 
   popupClose() {
     study.addClass('frame','none');
-    // const frame = document.querySelector('.frame');
-    // frame.classList.add('none');
+  }
+
+  speak() {
+    window.location.href = "speakit.html";
+  }
+
+  puzzle() {
+    window.location.href = "english-puzzle.html";
+  }
+
+  savannah() {
+    window.location.href = "savannah.html";
+  }
+
+  audiocall() {
+    window.location.href = "audiocall.html";
+  }
+
+  sprint() {
+    window.location.href = "sprint.html";
+  }
+
+  about() {
+    window.location.href = "about.html"
   }
 
   onClick(event) {
