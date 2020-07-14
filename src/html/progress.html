@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
     <title>RS Lang</title>
 </head>
 
@@ -14,17 +13,7 @@
             <ul class="rs-ul">
                 <li class="logo">RS Lang</li>
                 <div class="navigation">
-                    <li class="rs-li"><a href="#" class="pointer">Словарь</a><img class="sort" src="../icons/sort.png"
-                            alt="sort">
-                        <ul class="ul-dropdown dictionary">
-                            <li class="li-dropdown"><img class="bookmark" src="../icons/bookmark.png" alt="bookmark"><a
-                                    href="#" class="pointer">Изучаемые слова</a></li>
-                            <li class="li-dropdown"><img class="answers" src="../icons/answers.png" alt="answers"><a
-                                    href="#" class="pointer">Сложные слова</a></li>
-                            <li class="li-dropdown"><img class="trash" src="../icons/trash.png" alt="trash"><a href="#"
-                                    class="pointer">Удалённые слова</a></li>
-                        </ul>
-                    </li>
+                    <li class="rs-li"><a href="#" class="pointer">Словарь</a></li>
                     <li class="rs-li"><a href="#" class="pointer">Мини-игры</a><img class="sort" src="../icons/sort.png"
                             alt="sort">
                         <ul class="ul-dropdown games">
@@ -42,7 +31,7 @@
                                     class="pointer">Своя игра</a></li>
                         </ul>
                     </li>
-                    <li class="rs-li"><a href="#" class="pointer">Мой прогресс</a></li>
+                    <li class="rs-li"><a href="#" class="pointer" data-action="my-progress">Мой прогресс</a></li>
                     <li class="rs-li"><a href="#" class="pointer">О приложении</a></li>
                     <li class="rs-li"><a href="#" class="pointer">О команде</a></li>
                     <li class="rs-li"><a href="#" class="pointer"><img class="services" src="../icons/services.png"
@@ -50,33 +39,11 @@
                         <ul class="ul-dropdown settings">
                             <li class="li-dropdown words"><img class="update" src="../icons/update.png" alt="update"><a
                                     href="#" class="pointer">Слова в день</a>
-                                <select id="number" name="number">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="35">35</option>
-                                    <option value="40">40</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                </select>
+                                <input type="number" id="number" name="number" min="1" max="100" value="10">
                             </li>
                             <li class="li-dropdown cards-number"><img class="ticket" src="../icons/ticket.png"
                                     alt="ticket"><a href="#" class="pointer">Карточки в день</a>
-                                <select id="number" name="number">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="35">35</option>
-                                    <option value="40">40</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                </select>
+                                <input type="number" id="number" name="number" min="1" max="100" value="10">
                             </li>
                             <li class="li-dropdown"><img class="translation" src="../icons/translation.png"
                                     alt="translation"><a href="#" class="pointer">Перевод слова</a>
@@ -153,11 +120,10 @@
             <div class="card">
                 <div id="card-container">
                     <div class="card-name learned">
-                        <span>Изучено</span>
+                        <span>Мои слова</span>
                     </div>
                     <img class="approval" src="../icons/approval.png" alt="approval">
                     <div class="word-count">
-                        <span>56 слов</span>
                     </div>
                 </div>
             </div>
@@ -168,10 +134,10 @@
                         <span>Слова дня</span>
                     </div>
                     <div class="word-count">
-                        <div class="progress"><progress max="100" value="80"></progress></div>
-                        <span class="balance">Осталось:</span>
+                        <div class="progress"><progress class="dayProgress" max="100"></progress>
+                            <span class="dayWords"></span>
+                        </div>
                     </div>
-                    <button class="start">Начать изучение</button>
                 </div>
             </div>
 
@@ -181,16 +147,15 @@
                         <span>Сложные слова</span>
                     </div>
                     <div class="word-count">
-                        <div class="progress"><progress max="100" value="80"></progress></div>
-                        <span class="balance">Осталось:</span>
+                        <div class="progress"><progress class="difficultProgress" max="100"></progress>
+                            <span class="difficultWords"></span>
+                        </div>
                     </div>
-                    <button class="start">Начать изучение</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../js/menu.js"></script>
 </body>
 
 </html>

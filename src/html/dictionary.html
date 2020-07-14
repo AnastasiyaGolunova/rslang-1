@@ -15,17 +15,7 @@
             <ul class="rs-ul">
                 <li class="logo">RS Lang</li>
                 <div class="navigation">
-                    <li class="rs-li"><a href="#" class="pointer">Словарь</a><img class="sort" src="../icons/sort.png"
-                            alt="sort">
-                        <ul class="ul-dropdown dictionary">
-                            <li class="li-dropdown"><img class="bookmark" src="../icons/bookmark.png" alt="bookmark"><a
-                                    href="#" class="pointer">Изучаемые слова</a></li>
-                            <li class="li-dropdown"><img class="answers" src="../icons/answers.png" alt="answers"><a
-                                    href="#" class="pointer">Сложные слова</a></li>
-                            <li class="li-dropdown"><img class="trash" src="../icons/trash.png" alt="trash"><a href="#"
-                                    class="pointer">Удалённые слова</a></li>
-                        </ul>
-                    </li>
+                    <li class="rs-li"><a href="#" class="pointer">Словарь</a></li>
                     <li class="rs-li"><a href="#" class="pointer">Мини-игры</a><img class="sort" src="../icons/sort.png"
                             alt="sort">
                         <ul class="ul-dropdown games">
@@ -51,33 +41,11 @@
                         <ul class="ul-dropdown settings">
                             <li class="li-dropdown words"><img class="update" src="../icons/update.png" alt="update"><a
                                     href="#" class="pointer">Слова в день</a>
-                                <select id="number" name="number">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="35">35</option>
-                                    <option value="40">40</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                </select>
+                                <input type="number" id="number" name="number" min="1" max="100" value="10">
                             </li>
                             <li class="li-dropdown cards"><img class="ticket" src="../icons/ticket.png" alt="ticket"><a
                                     href="#" class="pointer">Карточки в день</a>
-                                <select id="number" name="number">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="35">35</option>
-                                    <option value="40">40</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                </select>
+                                <input type="number" id="number" name="number" min="1" max="100" value="10">
                             </li>
                             <li class="li-dropdown"><img class="translation" src="../icons/translation.png"
                                     alt="translation"><a href="#" class="pointer">Перевод слова</a>
