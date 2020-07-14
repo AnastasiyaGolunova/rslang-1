@@ -11,27 +11,27 @@ import { getStudy } from './study';
 const study = getStudy();
 
 export default class Cards {
-  
+
   render(words) {
     // console.log(allCards)
-    const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,image} = words;
+    const { textExample, textExampleTranslate, textMeaning, textMeaningTranslate, transcription, word, wordTranslate, image } = words;
     study.currentWord = word;
-    console.log(transcription,word,wordTranslate)
+    console.log(transcription, word, wordTranslate)
     console.log(`${study.urlData}`);
-  
+
     const replaceExample = study.findWordInText(word, textExample);
     const replaceMeaning = study.findWordInText(word, textMeaning);
 
     let spanLetter = '';
 
     for (let i = 0; i < word.length; i++) {
-        const letter = word[i];
-        const span = `<span index="${i}">${letter}</span>`;
-        spanLetter += span;
+      const letter = word[i];
+      const span = `<span index="${i}">${letter}</span>`;
+      spanLetter += span;
     }
 
     console.log(spanLetter);
-  
+
     const card = `<div class='word-example example'>${replaceExample}</div>
                     <div class='word-example example-translation none'>${textExampleTranslate}</div>
                     <div class='word-input'>
@@ -52,9 +52,9 @@ export default class Cards {
                         </div>
                     </div>
       `;
-  
+
     const CARD = document.querySelector('.game-content');
-  
+
     CARD.innerHTML = card;
     const width = document.querySelector('.word-container');
 
@@ -63,8 +63,8 @@ export default class Cards {
     console.log(width.offsetWidth)
   };
 
-  renderGameWrapper(){
-        const gameContent = `
+  renderGameWrapper() {
+    const gameContent = `
         <div class="game-close">
             <img class="delete" src="./icons/delete.png" alt="delete">
         </div>
@@ -97,22 +97,29 @@ export default class Cards {
             </div>
         </div>
         `
-      
-        const GAME_WRAP = document.querySelector('.game-wrap');
-      
-        GAME_WRAP.innerHTML = gameContent;
+
+    const GAME_WRAP = document.querySelector('.game-wrap');
+
+    GAME_WRAP.innerHTML = gameContent;
   }
 
   renderStartPage() {
     const startPage = `
     <div class="start-wrap">
         <div class="start-description">
+        <h3 class="description-title">Изучение новых слов</h3>
+            <ul class="description-list">
+              <li> Укажите количество новых слов в настройках приложения</li>
+              <li> Проверьте правильность набранного слова в тренировке</li>
+              <li> Можно исключить слово из изучения</li>
+              <li> Можно поместить слово в группу "Сложные"</li>
+            </ul>
         </div>
         <button data-action="start" class="btn start-btn">Начать обучение</button>
     </div>
         `
     const GAME_WRAP = document.querySelector('.game-wrap');
-      
+
     GAME_WRAP.innerHTML = startPage;
   }
 
