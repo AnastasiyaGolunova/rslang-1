@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <title>RS Lang</title>
+</head>
+
+<body>
+  <nav class="header-navigation">
+  </nav>
+
+  <div class="english-puzzle-wrap">
+    <div id="logo" class="logo">
+      <div>
+        <img class='img-logo' src="./img/english-puzzle/643x858.jpg" alt="logo.jpg">
+      </div>
+      <div class="starts">
+        <button id='button-start' class='button-start'>start</button>
+        <p class='description-text'>Click on words, collect phrases.</p>
+        <p class='description-text'>Words can be drag and drop. Select tooltips in the menu</p>
+      </div>
+    </div>
+    <div class="game hidden">
+      <div class="controls">
+        <div class="level-page">
+          <select name="levels" id="levels" class="browser-default custom-select">
+            <option value="1" disabled selected>Выберите уровень сложности</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <select name="page" id="page" class="browser-default custom-select">
+            <option value="1" disabled selected>Выберите страницу</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+            <option value="32">32</option>
+            <option value="33">33</option>
+            <option value="34">34</option>
+            <option value="35">35</option>
+            <option value="36">36</option>
+            <option value="37">37</option>
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+            <option value="41">41</option>
+            <option value="42">42</option>
+            <option value="43">43</option>
+            <option value="44">44</option>
+            <option value="45">45</option>
+            <option value="46">46</option>
+            <option value="47">47</option>
+            <option value="48">48</option>
+            <option value="49">49</option>
+            <option value="50">50</option>
+            <option value="51">51</option>
+            <option value="52">52</option>
+            <option value="53">53</option>
+            <option value="54">54</option>
+            <option value="55">55</option>
+            <option value="56">56</option>
+            <option value="57">57</option>
+            <option value="58">58</option>
+            <option value="59">59</option>
+            <option value="60">60</option>
+          </select>
+        </div>
+        <div class="hints-button">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label id="sound-label" for="sound-input" class="btn btn-primary">
+              <input id="sound-input" type="checkbox" autocomplete="off">
+              <svg id="sound-svg" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play-fill"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+              </svg>
+            </label>
+            <label id="image-label" for="image-input" class="btn btn-primary">
+              <input id="image-input" type="checkbox" autocomplete="off">
+              <svg id="image-svg" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-puzzle-fill"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M3.112 3.645A1.5 1.5 0 0 1 4.605 2H7a.5.5 0 0 1 .5.5v.382c0 .696-.497 1.182-.872 1.469a.459.459 0 0 0-.115.118.113.113 0 0 0-.012.025L6.5 4.5v.003l.003.01c.004.01.014.028.036.053a.86.86 0 0 0 .27.194C7.09 4.9 7.51 5 8 5c.492 0 .912-.1 1.19-.24a.86.86 0 0 0 .271-.194.213.213 0 0 0 .036-.054l.003-.01v-.008a.112.112 0 0 0-.012-.025.459.459 0 0 0-.115-.118c-.375-.287-.872-.773-.872-1.469V2.5A.5.5 0 0 1 9 2h2.395a1.5 1.5 0 0 1 1.493 1.645L12.645 6.5h.237c.195 0 .42-.147.675-.48.21-.274.528-.52.943-.52.568 0 .947.447 1.154.862C15.877 6.807 16 7.387 16 8s-.123 1.193-.346 1.638c-.207.415-.586.862-1.154.862-.415 0-.733-.246-.943-.52-.255-.333-.48-.48-.675-.48h-.237l.243 2.855A1.5 1.5 0 0 1 11.395 14H9a.5.5 0 0 1-.5-.5v-.382c0-.696.497-1.182.872-1.469a.459.459 0 0 0 .115-.118.113.113 0 0 0 .012-.025L9.5 11.5v-.003l-.003-.01a.214.214 0 0 0-.036-.053.859.859 0 0 0-.27-.194C8.91 11.1 8.49 11 8 11c-.491 0-.912.1-1.19.24a.859.859 0 0 0-.271.194.214.214 0 0 0-.036.054l-.003.01v.002l.001.006a.113.113 0 0 0 .012.025c.016.027.05.068.115.118.375.287.872.773.872 1.469v.382a.5.5 0 0 1-.5.5H4.605a1.5 1.5 0 0 1-1.493-1.645L3.356 9.5h-.238c-.195 0-.42.147-.675.48-.21.274-.528.52-.943.52-.568 0-.947-.447-1.154-.862C.123 9.193 0 8.613 0 8s.123-1.193.346-1.638C.553 5.947.932 5.5 1.5 5.5c.415 0 .733.246.943.52.255.333.48.48.675.48h.238l-.244-2.855z" />
+              </svg>
+            </label>
+            <label id="interpretation-label" for="interpretation-input" class="btn btn-primary">
+              <input id="interpretation-input" type="checkbox" autocomplete="off">
+              <svg id="interpretation-svg" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-text-center"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M4 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+              </svg>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="hints">
+        <div class="img-sound-div">
+          <a id="sound" class="hidden" href="#"><img class="img-sound" src="./img/english-puzzle/sound.png"
+              alt="play sound"></a></div>
+        <div class="translate-div">
+          <p id="translate" class=translate></p>
+        </div>
+      </div>
+      <div class="img-puzzle" id="img-puzzle">
+      </div>
+      <div class="buttons">
+        <button id="dont-know">I don't know</button>
+        <button id="check" class='hidden'>Check</button>
+        <button id="continue" class='hidden'>Continue</button>
+        <button id="results" class='hidden'>Results</button>
+      </div>
+      <div class="elements-puzzle" id="elements-puzzle"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>

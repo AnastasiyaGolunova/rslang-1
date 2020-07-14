@@ -17,7 +17,6 @@ const getRefreshToken = async (id) => {
         return content;
       } else {
         window.location.href = "./login.html";
-        console.log(3)
       }
 }
 
@@ -27,12 +26,13 @@ const refreshLogin = async () => {
     console.log(id);
     const data = await getRefreshToken(id);
     if (data) {
+        console.log(data);
         const {refreshToken, token} = data;
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('token', token);
+        return true;
     }
-    console.log(1)
-    // console.log(window.atob(token));
+    
 }
 
 export {getRefreshToken, refreshLogin}

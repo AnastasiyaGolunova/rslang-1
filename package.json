@@ -51,6 +51,7 @@
   "dependencies": {
     "core-js": "^3.4.7",
     "regenerator-runtime": "^0.13.3",
-    "ssr-window": "^1.0.1"
+    "ssr-window": "^1.0.1",
+    "swiper": "^6.0.2"
   }
 }

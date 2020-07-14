@@ -27,7 +27,13 @@ const config = {
   entry: {
     index: './src/js/index.js', 
     login: './src/js/login.js',
-    dictionary: './src/js/dictionary.js'
+    dictionary: './src/js/dictionary.js',
+    savannah: "./src/js/savannah.js",
+    sprint: "./src/js/sprint.js",
+    englishpuzzle: './src/js/english-puzzle.js',
+    speakit: './src/js/speakIt.js',
+    audiocall: './src/js/audiocall.js',
+    about: './src/js/about.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -149,6 +155,36 @@ const config = {
       template: './src/dictionary.html',
       chunks: ['dictionary'],
       filename: 'dictionary.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/savannah.html",
+      chunks: ["savannah"],
+      filename: "savannah.html",
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/english-puzzle.html",
+      chunks: ["englishpuzzle"],
+      filename: "english-puzzle.html",
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/speak-it.html',
+      chunks: ['speakit'],
+      filename: 'speakit.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/sprint.html",
+      chunks: ["sprint"],
+      filename: "sprint.html",
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/audiocall.html",
+      chunks: ["audiocall"],
+      filename: "audiocall.html",
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/about.html',
+      chunks: ['about'],
+      filename: 'about.html'
     }),
     new CopyWebpackPlugin([
       {from: './src/img', to: './img/'},

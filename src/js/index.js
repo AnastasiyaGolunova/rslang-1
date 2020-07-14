@@ -19,23 +19,13 @@ const user = new User();
 
 
 (async () => {
-  await refreshLogin();
-  console.log('2')
-  header.render();
-  const body = document.querySelector('body');
-  new Menu(body);
-  card.renderStartPage();
+  const isOk = await refreshLogin();
+    if (isOk) {
+      header.render();
+      const body = document.querySelector('body');
+      new Menu(body);
+      card.renderStartPage();  
+    }
 })();
-
-
-// async function init() {
-//   await refreshLogin();
-//   header.render();
-//   const body = document.querySelector('body');
-//   new Menu(body);
-//   card.renderStartPage();
-// }
-
-// init();
 
 export {study, card, header, trash, user}

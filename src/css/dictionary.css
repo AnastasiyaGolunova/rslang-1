@@ -5,6 +5,7 @@
     text-align: center;
     align-items: center;
     width: 100%;
+    height: 100%;
 }
 
 .header {
@@ -22,7 +23,6 @@
     padding: 1em 8em 0 0;
 }
 .dictionary-list.name {
-    width: 35%;
     white-space: nowrap;
 }
 .dictionary-list.filter {
@@ -103,14 +103,22 @@
     align-content: center;
 }
 
+@media screen and (max-width: 776px) {
+    .dictionary-list.filter {
+        justify-content: flex-start;
+        width: 40vw;
+    }
+}
+
 @media screen and (max-width: 320px) {
 
 .dictionary-list.filter {
     font-size: 8px;
     padding: 4px;
-    width: 30%;
+    width: 40vw;
     flex-direction: column;
     text-align: start;
+    justify-content: flex-start;
 }
 .voice, .trash {
     height: 15px;

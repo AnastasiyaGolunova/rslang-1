@@ -39,4 +39,21 @@
     background: #1ab856;
     color: #000;
     margin: 15px 25px;
+    width: 150px;
+}
+
+
+@media screen and (max-width: 720px) {
+    .start-description {
+        font-size: 14px;
+    }
+
+    .start-description p {
+        line-height: 1rem;
+    }
+
+    .start-btn {
+        width: 150px;
+    }
+
 }

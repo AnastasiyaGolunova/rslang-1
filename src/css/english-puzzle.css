@@ -1,0 +1,137 @@
+.english-puzzle-wrap .game .buttons button, .english-puzzle-wrap .game .hints .img-sound-div .img-sound, .english-puzzle-wrap .game .controls .level-page select, .english-puzzle-wrap .logo #button-start {
+  height: 2.5rem;
+  color: #e1ffff;
+  text-transform: uppercase;
+  background-color: #0465aa;
+  border: 2px solid #020c97;
+  border-radius: 2rem;
+  align-items: center;
+  padding: 0.1rem 1.5rem;
+}
+
+.english-puzzle-wrap .game .buttons button:hover, .english-puzzle-wrap .game .hints .img-sound-div .img-sound:hover, .english-puzzle-wrap .game .controls .level-page select:hover, .english-puzzle-wrap .logo #button-start:hover {
+  cursor: pointer;
+}
+
+body {
+  background-color: #0465aa;
+  color: #e1ffff;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+.english-puzzle-wrap {
+  margin: 0 auto;
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.english-puzzle-wrap .logo {
+  width: auto;
+  letter-spacing: none;
+  font-size: 1rem;
+}
+.english-puzzle-wrap .logo .img-logo {
+  width: 576px;
+}
+.english-puzzle-wrap .logo #button-start {
+  width: 140px;
+  height: 40px;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.english-puzzle-wrap .game {
+  width: inherit;
+  height: inherit;
+  margin-top: 2rem;
+}
+.english-puzzle-wrap .game .controls {
+  width: inherit;
+  display: flex;
+  flex-wrap: wrap;
+}
+.english-puzzle-wrap .game .controls .level-page {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.english-puzzle-wrap .game .controls .level-page select {
+  border: unset;
+  margin: 0 10px 5px 5px;
+  width: 45%;
+}
+.english-puzzle-wrap .game .controls .hints-button {
+  width: 30%;
+}
+.english-puzzle-wrap .game .controls .hints-button label {
+  margin: 0;
+  padding: 0.3rem 2rem;
+}
+.english-puzzle-wrap .game .hints {
+  width: inherit;
+  height: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.english-puzzle-wrap .game .hints .img-sound-div {
+  width: 20%;
+}
+.english-puzzle-wrap .game .hints .img-sound-div .img-sound {
+  border: unset;
+  margin: 0 10px 0 5px;
+}
+.english-puzzle-wrap .game .hints .translate-div {
+  width: 80%;
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+.english-puzzle-wrap .game .hints .translate-div .translate {
+  margin: 0;
+}
+.english-puzzle-wrap .game .img-puzzle {
+  margin: 0 auto;
+  width: 1000px;
+  height: 596px;
+  outline: 2px solid black;
+}
+.english-puzzle-wrap .game .buttons {
+  width: inherit;
+  margin-top: 1rem;
+}
+.english-puzzle-wrap .game .buttons button {
+  margin: 0 10px 0 10px;
+}
+.english-puzzle-wrap .game .elements-puzzle {
+  margin-top: 1rem;
+  width: inherit;
+  height: 60px;
+  background-color: #020c97;
+}
+.english-puzzle-wrap .game .elements-puzzle div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .english-puzzle-wrap .logo .img-logo {
+    width: 90%;
+  }
+
+  .game .img-puzzle {
+    width: 500px;
+    height: 298px;
+  }
+}
+
+/*# sourceMappingURL=english-puzzle.css.map */
