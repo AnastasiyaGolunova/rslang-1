@@ -211,6 +211,10 @@ nav {
   margin-bottom: 40px;
 }
 
+.words-number {
+  font-size: 24px;
+}
+
 .cards {
   display: flex;
   flex-direction: row;

@@ -5,3 +5,4 @@ import "../css/game.css";
 import "../css/login.css";
 
 import "./login.js";
+import "./main.js";
