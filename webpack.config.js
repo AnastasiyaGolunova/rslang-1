@@ -24,7 +24,8 @@ function setDMode() {
 const config = {
   target: "web",
   entry: {
-    englishpuzzle: './src/js/english-puzzle.js', 
+    main: "./src/js/progress.js",
+    englishpuzzle: './src/js/english-puzzle.js',
     savannah: "./src/js/savannah.js"
   },
   output: {
@@ -144,6 +145,11 @@ const config = {
       filename: '[name].css',
     }),
     new HtmlWebPackPlugin({
+      template: "./src/html/progress.html",
+      chunks: ["progress"],
+      filename: "progress.html",
+    }),
+    new HtmlWebPackPlugin({
       template: './src/english-puzzle.html',
       chunks: ["englishpuzzle"],
       filename: './index.html'
@@ -154,9 +160,9 @@ const config = {
       filename: "savannah.html",
     }),
     new CopyWebpackPlugin([
-      {from: './src/img', to: './img/'},
-      {from: './src/icons', to: './icons/'},
-      {from: './src/audio', to: './audio/'}
+      { from: './src/img', to: './img/' },
+      { from: './src/icons', to: './icons/' },
+      { from: './src/audio', to: './audio/' }
 
     ]),
   ],
