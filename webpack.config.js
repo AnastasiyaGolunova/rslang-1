@@ -24,9 +24,13 @@ function setDMode() {
 const config = {
   target: "web",
   entry: {
-    main: "./src/js/progress.js",
+    progress: "./src/js/progress.js",
     englishpuzzle: './src/js/english-puzzle.js',
-    savannah: "./src/js/savannah.js"
+    savannah: "./src/js/savannah.js",
+    savannah: "./src/js/savannah.js",
+    speakit: './src/js/speak-it/speakIt.js',
+    sprint: './src/js/sprint.js',
+    audiocall: './src/js/audiocall.js'
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -127,7 +131,7 @@ const config = {
         ],
       },
       {
-        test: /\.mp3$/,
+        test: /\.(wav|mp3)$/,
         use: [
           {
             loader: "file-loader",
@@ -152,12 +156,27 @@ const config = {
     new HtmlWebPackPlugin({
       template: './src/english-puzzle.html',
       chunks: ["englishpuzzle"],
-      filename: './index.html'
+      filename: 'english-puzzle.html'
     }),
     new HtmlWebPackPlugin({
       template: "./src/savannah.html",
       chunks: ["savannah"],
       filename: "savannah.html",
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/speak-it.html',
+      chunks: ['speakit'],
+      filename: 'speakit.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/sprint.html',
+      chunks: ['sprint'],
+      filename: 'sprint.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/audiocall.html',
+      chunks: ['audiocall'],
+      filename: 'audiocall.html'
     }),
     new CopyWebpackPlugin([
       { from: './src/img', to: './img/' },
