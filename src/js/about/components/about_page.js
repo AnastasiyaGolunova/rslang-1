@@ -1,7 +1,7 @@
 const startPage = document.createElement('div');
 startPage.classList.add('wrapper')
 
-startPage.innerHTML =  `<div class="about-page">
+startPage.innerHTML = `<div class="about-page">
     <h2 class="page-title">Наша команда</h2>    
     <div class="slider">
     <div class="swiper-wrapper">
@@ -99,6 +99,7 @@ startPage.innerHTML =  `<div class="about-page">
         <div class="deserts">
           <p>Вёрстка приложения.</p>
           <p>Разработка метода интервальных повторений.</p>
+          <p>Разработка статистики <span>Мой прогресс</span>.</p>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import '../css/style.css';
-import {refreshLogin} from './basic/refresh';
+import { refreshLogin } from './basic/refresh';
 import Header from './header'
 import Menu from './basic/menu';
 const header = new Header();
@@ -19,47 +19,68 @@ const wordCount = document.querySelector('.word-count');
 const difficultWords = document.querySelector('.difficultWords');
 const dayWords = document.querySelector('.dayWords');
 const userID = localStorage.getItem('userId');
-console.log(userID)
+const token = localStorage.getItem('token');
 const URL = `https://afternoon-falls-25894.herokuapp.com/users/${userID}/words`;
 const settingsURL = `https://afternoon-falls-25894.herokuapp.com/users/${userID}/settings`;
 
 export default function getStatistic() {
 
-    function getWordsStatisctic() {
-        fetch(URL)
-            .then((result) => result.json())
-            .then((statistic) => {
-                let statisticTotal = Object.keys(statistic).length;
-                wordCount.innerHTML = `<span>${statisticTotal}/600</span>`
-            })
-    }
+    async function getWordsStatisctic() {
 
-    function getDayWordsStatisctic() {
-        fetch(settingsURL)
-            .then((result) => result.json())
-            .then((statistic) => {
-                dayWords.innerHTML = `<span class="balance">Осталось: ${statistic.optional.countNew}</span>`;
-                let progressValue = Number((`${statistic.optional.countNew}` / `${statistic.wordsPerDay}`) * 100);
-                dayProgress.setAttribute("value", progressValue);
-            })
-    }
+        const rawResponse = await fetch(URL,
+            {
+                method: "GET",
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/json",
+                },
+            });
+        const content = await rawResponse.json();
+        let statisticTotal = Object.keys(content).length;
+        wordCount.innerHTML = `<span>${statisticTotal}/600</span>`;
+    };
 
-    function getDifficultWordsStatisctic() {
-        fetch(URL)
-            .then((result) => result.json())
-            .then((statistic) => {
-                let statisticDifficultTotal = Object.keys(statistic).length;
-                let statisticDifficult = 0;
-                for (let word in statistic) {
-                    if (statistic[word].difficulty === "difficult") {
-                        statisticDifficult++;
-                    }
-                }
-                difficultWords.innerHTML = `<span class="balance">Осталось: ${statisticDifficult}</span>`;
-                let progressValue = Number((`${statisticDifficult}` / `${statisticDifficultTotal}`) * 100);
-                difficultProgress.setAttribute("value", progressValue);
-            })
-    }
+    async function getDayWordsStatisctic() {
+
+        const rawResponse = await fetch(settingsURL,
+            {
+                method: "GET",
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/json",
+                },
+            });
+        const content = await rawResponse.json();
+        dayWords.innerHTML = `<span class="balance">Осталось: ${content.optional.countNew}</span>`;
+        let progressValue = Number((`${content.optional.countNew}` / `${content.wordsPerDay}`) * 100);
+        dayProgress.setAttribute("value", progressValue);
+    };
+
+    async function getDifficultWordsStatisctic() {
+
+        const rawResponse = await fetch(URL,
+            {
+                method: "GET",
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/json",
+                },
+            });
+        const content = await rawResponse.json();
+        let statisticDifficultTotal = Object.keys(content).length;
+        let statisticDifficult = 0;
+        for (let word in content) {
+            if (content[word].difficulty === "difficult") {
+                statisticDifficult++;
+            }
+        }
+        difficultWords.innerHTML = `<span class="balance">Осталось: ${statisticDifficult}</span>`;
+        let progressValue = Number((`${statisticDifficult}` / `${statisticDifficultTotal}`) * 100);
+        difficultProgress.setAttribute("value", progressValue);
+    };
 
     getWordsStatisctic();
     getDayWordsStatisctic();
