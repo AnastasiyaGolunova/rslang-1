@@ -82,10 +82,6 @@ export default class Menu {
     const {word, _id} = DATA_WORD;
     const dataSetings = await user.getSettings();
     console.log(dataSetings);
-    // const {wordsPerDay, optional} = dataSetings;
-    // console.log(optional)
-    // const {countNew, countRepeat} = optional;
-    // dataSetings.wordsPerDay -= 1;
     console.log(dataSetings.wordsPerDay)
 
     console.log(study.arrayNewWords, study.arrayRepeat)
@@ -111,18 +107,28 @@ export default class Menu {
   }
 
   async answer() { 
+    const DATA_WORD = study.arrayStudy[study.count];
     study.findCheckbox();
     const ANSWER_INPUT = document.querySelector('.answer-input');
     const {word} = study.arrayStudy[study.count];
     ANSWER_INPUT.value = word;
     ANSWER_INPUT.select();
+    await trash.setOptionalWord({ "optional":{ "repeat": true } }, DATA_WORD);
     await this.sendUserSettings();
     study.showAnswer();
     study.audioPlayTurn();
     study.count += 1;
-    const curentWord = study.arrayStudy[study.count];
-    card.render(curentWord);
-    study.findCheckbox();
+    if (study.arrayStudy.length > study.count) {
+      setTimeout(async () => {
+        card.renderCardCount(study.count + 1, study.arrayStudy.length)
+        const curentWord = study.arrayStudy[study.count];
+        card.render(curentWord);
+        study.findCheckbox();
+      }, 1000)
+    } else {
+        card.renderStartPage();
+        study.removeClass('frame','none');
+    }
   }
 
   async send(event) {
@@ -144,7 +150,7 @@ export default class Menu {
             study.right = 'right';
             await this.sendUserSettings();
             study.count += 1;
-            if (study.arrayStudy.length > study.count) {
+            if (study.arrayStudy.length >= study.count) {
               console.log(study.count, study.arrayStudy.length)
               const curentWord = study.arrayStudy[study.count];
               card.render(curentWord);
@@ -156,7 +162,7 @@ export default class Menu {
               card.renderStartPage();
               return
             }
-          }, 3000);
+          }, 1000);
         } 
     } else {
       if (study.right !== 'error') {
@@ -200,21 +206,33 @@ export default class Menu {
     trash.setOptionalWord({ "difficulty": "delete", "optional":{} }, arrDataWords);
     console.log('trash');
     study.count += 1;
-    card.render(study.arrayStudy[study.count]);
-    card.renderCardCount(study.count + 1, study.arrayStudy.length);
-    this.sendUserSettings().then(response => response) 
-    study.findCheckbox();
+    if (study.arrayStudy.length >= study.count) {
+      card.render(study.arrayStudy[study.count]);
+      card.renderCardCount(study.count + 1, study.arrayStudy.length);
+      this.sendUserSettings().then(response => response) 
+      study.findCheckbox(); 
+    } else {
+      card.renderStartPage();
+      study.removeClass('frame','none');
+    }
   }
 
   difficult() {
     const arrDataWords = study.arrayStudy[study.count];
     trash.setOptionalWord({ "difficulty": "difficult", "optional":{} }, arrDataWords);
     this.sendUserSettings().then(response => response)
+    console.log(study.arrayStudy.length, study.count)
     study.count += 1;
-    card.render(study.arrayStudy[study.count]);
-    card.renderCardCount(study.count + 1, study.arrayStudy.length);
-    study.findCheckbox();
-    console.log('difficult');
+    if (study.arrayStudy.length >= study.count) {
+      card.render(study.arrayStudy[study.count]);
+      card.renderCardCount(study.count + 1, study.arrayStudy.length);
+      study.findCheckbox();
+      console.log('difficult');
+    } else {
+      card.renderStartPage();
+      study.removeClass('frame','none');
+    }
+     
   }
 
   answerCheckbox(event) {
