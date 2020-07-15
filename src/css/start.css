@@ -1,0 +1,59 @@
+.start-wrap {
+    margin: 0 auto;
+}
+
+.start-description {
+    color: #000;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background:#b4d2e8;
+}
+
+.start-description h2{
+    text-align: center;
+}
+
+.start-description ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    margin-top: 10px;
+}
+
+.start-description p {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.start-description h3 {
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.description_btn {
+    text-align: center;
+}
+
+.start-btn {
+    background: #1ab856;
+    color: #000;
+    margin: 15px 25px;
+    width: 150px;
+}
+
+
+@media screen and (max-width: 720px) {
+    .start-description {
+        font-size: 14px;
+    }
+
+    .start-description p {
+        line-height: 1rem;
+    }
+
+    .start-btn {
+        width: 150px;
+    }
+
+}

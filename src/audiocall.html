@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <title>Audiocall</title>
+</head>
+<body>
+    <nav class="header-navigation">
+    </nav>
+    <main id="main" class="container">
+        <div class="description" id="description">
+            <h3>АУДИОВЫЗОВ</h3>
+            <p>Эта игра поможет тебе в тренировке навыков аудирования - восприятия на слух английских слов.</p>
+            <p>Выбери уровень английского языка:</p>
+            <select id="select">
+                <option value="0" selected>Уровень 1 - Начальный</option>
+                <option value="1">Уровень 2 - Базовый</option>
+                <option value="2">Уровень 3 - Средий</option>
+                <option value="3">Уровень 4 - Выше среднего</option>
+                <option value="4">Уровень 5 - Продвинутый</option>
+                <option value="5">Уровень 6 - Опытный</option>
+            </select>
+        </div>
+        <div class="statistics hide" id="statistics">
+            <h3 class="great" id="great"></h3>
+            <p class="score" id="score"></p>
+            <div class="statistics-buttons">
+            <button class="restart button hide" id="restart">Играть еще раз</button>
+            <button class="study button hide" id="study">Перейти к обучению</button>
+        </div>
+        </div>
+        <div class="audio" >
+            <h2 class="correct-answer hide" id="correct-answer"></h2>
+            <img src="img/leo.png" alt="leo" class="leo" id="leo">
+            <img src="" alt="correct word" class="image hide" id="correct-image">
+            <img src="img/green.png" alt="sound" class="sound hide" id="sound">
+            <audio id="audio" class="audiocall hide" src="" preload="auto">
+              </audio>
+        </div>
+        <div  id="answer-buttons" class="button-grid hide" ></div>
+        <div class="controls">
+            <button id="start-button" class="start-button button">Начать игру</button>
+            <button id="next-button" class="next-button button hide">&#10148</button>
+            <button id="dont-know-button" class="dont-know-button button hide">Я не знаю</button>
+          </div>
+    </main>
+</body>
+</html>
