@@ -34,6 +34,7 @@ const config = {
     speakit: './src/js/speakIt.js',
     audiocall: './src/js/audiocall.js',
     about: './src/js/about.js',
+    progress: './src/js/progress.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -185,6 +186,11 @@ const config = {
       template: './src/about.html',
       chunks: ['about'],
       filename: 'about.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/progress.html',
+      chunks: ['progress'],
+      filename: 'progress.html'
     }),
     new CopyWebpackPlugin([
       {from: './src/img', to: './img/'},
