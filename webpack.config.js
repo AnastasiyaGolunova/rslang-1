@@ -31,7 +31,8 @@ const config = {
     savannah: "./src/js/savannah.js",
     speakit: './src/js/speak-it/speakIt.js',
     sprint: './src/js/sprint.js',
-    audiocall: './src/js/audiocall.js'
+    audiocall: './src/js/audiocall.js',
+    progress: "./src/js/progress.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -163,6 +164,11 @@ const config = {
       template: './src/dictionary.html',
       chunks: ['dictionary'],
       filename: 'dictionary.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/html/progress.html",
+      chunks: ["progress"],
+      filename: "progress.html",
     }),
     new HtmlWebPackPlugin({
       template: './src/english-puzzle.html',

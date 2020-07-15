@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
     <title>RS Lang</title>
 </head>
 
@@ -14,120 +13,88 @@
             <ul class="rs-ul">
                 <li class="logo">RS Lang</li>
                 <div class="navigation">
-                    <li class="rs-li"><a href="#" class="pointer">Словарь</a><img class="sort" src="../icons/sort.png"
-                            alt="sort">
-                        <ul class="ul-dropdown dictionary">
-                            <li class="li-dropdown"><img class="bookmark" src="../icons/bookmark.png" alt="bookmark"><a
-                                    href="#" class="pointer">Изучаемые слова</a></li>
-                            <li class="li-dropdown"><img class="answers" src="../icons/answers.png" alt="answers"><a
-                                    href="#" class="pointer">Сложные слова</a></li>
-                            <li class="li-dropdown"><img class="trash" src="../icons/trash.png" alt="trash"><a href="#"
-                                    class="pointer">Удалённые слова</a></li>
-                        </ul>
-                    </li>
+                    <li class="rs-li"><a href="#" class="pointer">Словарь</a></li>
                     <li class="rs-li"><a href="#" class="pointer">Мини-игры</a><img class="sort" src="../icons/sort.png"
                             alt="sort">
                         <ul class="ul-dropdown games">
-                            <li class="li-dropdown"><img class="microphone" src="../icons/microphone.png"
+                            <li class="li-dropdown"><img class="microphone" src="./icons/microphone.png"
                                     alt="microphone"><a href="#" class="pointer">SpeakIt</a></li>
-                            <li class="li-dropdown"><img class="puzzle" src="../icons/puzzle.png" alt="puzzle"><a
+                            <li class="li-dropdown"><img class="puzzle" src="./icons/puzzle.png" alt="puzzle"><a
                                     href="#" class="pointer">English Puzzle</a></li>
-                            <li class="li-dropdown"><img class="tree" src="../icons/tree.png" alt="tree"><a href="#"
+                            <li class="li-dropdown"><img class="tree" src="./icons/tree.png" alt="tree"><a href="#"
                                     class="pointer">Саванна</a></li>
-                            <li class="li-dropdown"><img class="headphones" src="../icons/headphones.png"
+                            <li class="li-dropdown"><img class="headphones" src="./icons/headphones.png"
                                     alt="headphones"><a href="#" class="pointer">Аудиовызов</a></li>
-                            <li class="li-dropdown"><img class="track" src="../icons/track.png" alt="track"><a href="#"
+                            <li class="li-dropdown"><img class="track" src="./icons/track.png" alt="track"><a href="#"
                                     class="pointer">Спринт</a></li>
-                            <li class="li-dropdown"><img class="dice" src="../icons/dice.png" alt="dice"><a href="#"
+                            <li class="li-dropdown"><img class="dice" src="./icons/dice.png" alt="dice"><a href="#"
                                     class="pointer">Своя игра</a></li>
                         </ul>
                     </li>
-                    <li class="rs-li"><a href="#" class="pointer">Мой прогресс</a></li>
+                    <li class="rs-li"><a href="#" class="pointer" data-action="my-progress">Мой прогресс</a></li>
                     <li class="rs-li"><a href="#" class="pointer">О приложении</a></li>
                     <li class="rs-li"><a href="#" class="pointer">О команде</a></li>
-                    <li class="rs-li"><a href="#" class="pointer"><img class="services" src="../icons/services.png"
+                    <li class="rs-li"><a href="#" class="pointer"><img class="services" src="./icons/services.png"
                                 alt="services"></a>
                         <ul class="ul-dropdown settings">
-                            <li class="li-dropdown words"><img class="update" src="../icons/update.png" alt="update"><a
+                            <li class="li-dropdown words"><img class="update" src="./icons/update.png" alt="update"><a
                                     href="#" class="pointer">Слова в день</a>
-                                <select id="number" name="number">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="35">35</option>
-                                    <option value="40">40</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                </select>
+                                <input type="number" id="number" name="number" min="1" max="100" value="10">
                             </li>
-                            <li class="li-dropdown cards-number"><img class="ticket" src="../icons/ticket.png"
+                            <li class="li-dropdown cards-number"><img class="ticket" src="./icons/ticket.png"
                                     alt="ticket"><a href="#" class="pointer">Карточки в день</a>
-                                <select id="number" name="number">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="35">35</option>
-                                    <option value="40">40</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                </select>
+                                <input type="number" id="number" name="number" min="1" max="100" value="10">
                             </li>
-                            <li class="li-dropdown"><img class="translation" src="../icons/translation.png"
+                            <li class="li-dropdown"><img class="translation" src="./icons/translation.png"
                                     alt="translation"><a href="#" class="pointer">Перевод слова</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-1" />
                                     <label for="switch-1"></label>
                                 </div>
                             </li>
-                            <li class="li-dropdown"><img class="about" src="../icons/about.png" alt="about"><a href="#"
+                            <li class="li-dropdown"><img class="about" src="./icons/about.png" alt="about"><a href="#"
                                     class="pointer">Значение слова</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-2" />
                                     <label for="switch-2"></label>
                                 </div>
                             </li>
-                            <li class="li-dropdown"><img class="hangouts" src="../icons/hangouts.png" alt="hangouts"><a
+                            <li class="li-dropdown"><img class="hangouts" src="./icons/hangouts.png" alt="hangouts"><a
                                     href="#" class="pointer">Транскрипция</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-3" />
                                     <label for="switch-3"></label>
                                 </div>
                             </li>
-                            <li class="li-dropdown"><img class="image" src="../icons/picture.png" alt="picture"><a
+                            <li class="li-dropdown"><img class="image" src="./icons/picture.png" alt="picture"><a
                                     href="#" class="pointer">Ассоциация</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-4" />
                                     <label for="switch-4"></label>
                                 </div>
                             </li>
-                            <li class="li-dropdown"><img class="document" src="../icons/document.png" alt="document"><a
+                            <li class="li-dropdown"><img class="document" src="./icons/document.png" alt="document"><a
                                     href="#" class="pointer">Пример</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-5" />
                                     <label for="switch-5"></label>
                                 </div>
                             </li>
-                            <li class="li-dropdown"><img class="solve" src="../icons/solve.png" alt="solve"><a href="#"
+                            <li class="li-dropdown"><img class="solve" src="./icons/solve.png" alt="solve"><a href="#"
                                     class="pointer">Показать ответ</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-6" />
                                     <label for="switch-6"></label>
                                 </div>
                             </li>
-                            <li class="li-dropdown"><img class="answers" src="../icons/answers.png" alt="answers"><a
+                            <li class="li-dropdown"><img class="answers" src="./icons/answers.png" alt="answers"><a
                                     href="#" class="pointer">Сложные слова</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-7" />
                                     <label for="switch-7"></label>
                                 </div>
                             </li>
-                            <li class="li-dropdown"><img class="trash" src="../icons/trash.png" alt="trash"><a href="#"
+                            <li class="li-dropdown"><img class="trash" src="./icons/trash.png" alt="trash"><a href="#"
                                     class="pointer">Удаление слова</a>
                                 <div class="switcher">
                                     <input type="checkbox" id="switch-8" />
@@ -136,7 +103,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="rs-li"><a href="#" class="pointer"><img class="exit" src="../icons/exit.png"
+                    <li class="rs-li"><a href="#" class="pointer"><img class="exit" src="./icons/exit.png"
                                 alt="exit"></a>
                     </li>
                 </div>
@@ -148,16 +115,16 @@
             </div>
         </div>
     </nav>
+
     <div class="cards-wrapper">
         <div class="cards">
             <div class="card">
                 <div id="card-container">
                     <div class="card-name learned">
-                        <span>Изучено</span>
+                        <span>Мои слова</span>
                     </div>
                     <img class="approval" src="../icons/approval.png" alt="approval">
                     <div class="word-count">
-                        <span>56 слов</span>
                     </div>
                 </div>
             </div>
@@ -168,10 +135,10 @@
                         <span>Слова дня</span>
                     </div>
                     <div class="word-count">
-                        <div class="progress"><progress max="100" value="80"></progress></div>
-                        <span class="balance">Осталось:</span>
+                        <div class="progress"><progress class="dayProgress" max="100"></progress>
+                            <span class="dayWords"></span>
+                        </div>
                     </div>
-                    <button class="start">Начать изучение</button>
                 </div>
             </div>
 
@@ -181,16 +148,15 @@
                         <span>Сложные слова</span>
                     </div>
                     <div class="word-count">
-                        <div class="progress"><progress max="100" value="80"></progress></div>
-                        <span class="balance">Осталось:</span>
+                        <div class="progress"><progress class="difficultProgress" max="100"></progress>
+                            <span class="difficultWords"></span>
+                        </div>
                     </div>
-                    <button class="start">Начать изучение</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../js/menu.js"></script>
 </body>
 
 </html>

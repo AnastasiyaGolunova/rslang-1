@@ -28,3 +28,5 @@ async function init() {
 init();
 
 export { study, card, header, trash, user }
+import "./login.js";
+import "./main.js";
