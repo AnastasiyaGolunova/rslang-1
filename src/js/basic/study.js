@@ -156,8 +156,9 @@ export default class Study {
       }
 
       console.log(this.countNewWords, this.countCards);
-  
+      console.log('hello')
       if (this.countNewWords > this.countCards) {
+        console.log('5555+++++')
         const text = document.querySelector('.mb-4');
         text.textContent = 'Выберите больше карточек или меньше новых слов';
         this.removeClass('frame', 'none');
