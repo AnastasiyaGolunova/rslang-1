@@ -7,6 +7,9 @@ export const getStudy = () => {
   return studyInstance;
 }
 
+import User from './user';
+const user = new User();
+
 export default class Study {
   constructor() {
     this.urlData = 'https://raw.githubusercontent.com/omirbeck/rslang-data/master/';
@@ -18,26 +21,22 @@ export default class Study {
     this.minWordsCards = 0;
     this.page = 0;
     this.group = 0;
+    this.countNewWords = 0;
+    this.countRepeat= 0;
+    this.countCards = 0;
     this.arrayNewWords = [];
-    this.arrayLearnWords = [];
+    this.arrayRepeat = [];
     this.arrayStudy = [];
     this.allCards = [];
     this.wordsData = [];
     this.receivedWords = [];
     this.currentWord = '';
-  }
-
-  init() {
-
+    this.right = 'right';
   }
 
   async response(rawResponse) {
     if (!rawResponse.ok)  {
-      // if (rawResponse.status === 401) {
-      //   console.log()
-      // }
       const data = await rawResponse.text();
-      console.log(data);
       return null;
     } else {
       const content = await rawResponse.json();
@@ -48,8 +47,7 @@ export default class Study {
   async getAgregateWords({ userId, group, wordsPerPage, filter }){
     const filterUrl = `${encodeURIComponent(filter)}`;
     const token = localStorage.getItem('token');
-    const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/aggregatedWords?
-    wordsPerPage=${wordsPerPage}&filter=${filterUrl}`,
+    const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/aggregatedWords?wordsPerPage=${wordsPerPage}&filter=${filterUrl}`,
         {
             method: "GET",
             withCredentials: true,
@@ -65,7 +63,6 @@ export default class Study {
 
   async getUserWord({ userId, wordId }){
     const token = localStorage.getItem('token');
-    console.log(token);
     const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`,
         {
             method: "GET",
@@ -82,7 +79,7 @@ export default class Study {
   };
 
   async createUserWord({userId, wordId, word}) {
-    console.log(word)
+    
     const token = localStorage.getItem('token');
     const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`, {
       method: 'POST',
@@ -99,7 +96,7 @@ export default class Study {
   };
 
   async updateUserWord({userId, wordId, word}) {
-    console.log(word)
+    
     const token = localStorage.getItem('token');
     const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`, {
       method: 'PUT',
@@ -115,6 +112,133 @@ export default class Study {
     return await this.response(rawResponse);
   };
 
+
+  async getCompareWords(data) {
+    const quantityWords = document.querySelector('.quantity-words');
+    const quantityCards = document.querySelector('.quantity-cards');
+    this.countNewWords = Number(quantityWords.value);
+    this.countCards = Number(quantityCards.value);
+    let dataWords = null;
+    let dataRepeat = null;
+    let arrayStudy = [];
+    let repeatLength = 0;
+    const curentDate = new Date();
+    this.countRepeat = this.countCards - this.countNewWords;
+
+    const getRepeatWords = async (count) => {
+      dataRepeat = await this.getLearnWords(count);
+      this.arrayRepeat = dataRepeat[0].paginatedResults;
+      repeatLength = this.arrayRepeat.length;
+    }
+
+    const getNewWords = async (count) => {
+      dataWords = await this.getNewWords(count);
+      this.arrayNewWords = dataWords[0].paginatedResults;
+    }
+
+
+    const getNewUserData = async () => { 
+      if (quantityWords > this.maxWordsCards || quantityWords < this.minWordsCards) {
+        return false
+      }
+  
+      if (quantityCards > this.maxWordsCards || quantityCards < this.minWordsCards) {
+        return false
+      }
+
+     
+      if (this.countNewWords > this.countCards) {
+        const text = document.querySelector('.mb-4');
+        text.textContent = 'Выберите больше карточек или меньше новых слов';
+        this.removeClass('frame', 'none');
+        return false
+      } 
+      
+      if (this.countNewWords < this.countCards) {
+        await getRepeatWords(this.countRepeat);
+        if (repeatLength !== 0) {
+          await getNewWords(this.countNewWords);
+          arrayStudy = this.arrayNewWords.concat(this.arrayRepeat);
+        } else {
+     
+          await getNewWords(this.countNewWords );
+          arrayStudy = this.arrayNewWords;
+      
+        }
+      }
+
+      if (this.countNewWords === this.countCards) {
+        this.countRepeat = Math.round(this.countNewWords / 3);
+        await getRepeatWords(this.countRepeat);
+        this.countNewWords = this.countNewWords - this.countRepeat;
+        if (repeatLength !== 0) {
+          await getNewWords(this.countNewWords);
+          arrayStudy = this.arrayNewWords.concat(this.arrayRepeat);
+        } else {
+          await getNewWords(countNew);
+          arrayStudy = this.arrayNewWords;
+        } 
+      }
+
+      return true
+    }
+
+
+    if (data) {
+      
+      const {wordsPerDay, optional, id} = data;
+      const {date, countNew, countRepeat} = optional;
+      const saveDate = new Date(date);
+      
+      if (curentDate.getDate() ===  saveDate.getDate()) {
+        const {optional} = data;
+        const {countNew, countRepeat} = optional;
+        if (countNew === 0 && countRepeat === 0) {
+            this.removeClass('frame','none');
+           
+            return
+        }
+
+        this.countNewWords = countNew;
+        this.countCards = wordsPerDay;
+        this.countRepeat = countRepeat
+       
+        if (countNew !== 0) {
+          await getNewWords(countNew);
+        }
+        if (countRepeat !== 0) {
+          await getRepeatWords(countRepeat);
+        }
+        arrayStudy = this.arrayNewWords.concat(this.arrayRepeat);
+      } else {
+        const getData = await getNewUserData();
+        
+        if (getData) {
+          await user.setSettingsData({
+            "wordsPerDay": this.countCards,
+            "optional": { "date": `${curentDate.toJSON()}`,
+                          "countNew": this.countNewWords,
+                          "countRepeat": this.countRepeat,
+                        }
+          });
+        }
+      }
+    } else {
+      const getData = await getNewUserData();
+      if (getData) {
+        await user.setSettingsData({
+          "wordsPerDay": this.countCards,
+          "optional": { "date": `${curentDate.toJSON()}`,
+                        "countNew": this.countNewWords,
+                        "countRepeat": this.countRepeat,
+                      }
+        });
+      }
+    }
+    return arrayStudy
+ 
+  }
+
   quantityCards() {
     const QUANTITY_WORDS = document.querySelector('.quantity-words');
     const QUANTITY_CARDS = document.querySelector('.quantity-cards');
@@ -122,7 +246,6 @@ export default class Study {
     const quantityNewWords = QUANTITY_WORDS.value;
   
     if (quantityNewWords > countCards) {
-      console.log(quantityNewWords, countCards);
       const arrayCards = this.arrayNewWords.concat(this.arrayLearnWords);
       this.allCards = arrayCards.filter((word, item) => item < countCards);
     } else {
@@ -135,8 +258,8 @@ export default class Study {
     const agregateWords = {
       "userId": `${userId}`,
       "group": "",
-      "wordsPerPage": `${value}`,
-      "filter": `{"$and":[{"userWord.optional.repeat":{"$ne":true}}]}`,
+      "wordsPerPage": value,
+      "filter": `{"$and":[{"userWord.optional.repeat":{"$ne":true}},{"userWord":null}]}`,
     }
   
     const newWords = await this.getAgregateWords(agregateWords);
@@ -144,7 +267,6 @@ export default class Study {
     if (newWords === null) {
       return null;
     }
-    console.log('getNewWords' + newWords);
     return newWords;
   }
 
@@ -153,119 +275,20 @@ export default class Study {
     const agregateWords = {
       "userId": `${userId}`,
       "group": "",
-      "wordsPerPage": `${value}`,
+      "wordsPerPage": value,
       "filter": `{"userWord.optional.repeat":true}`,
     }
   
     const newWords = await this.getAgregateWords(agregateWords);
-    console.log('getLearnWords' + newWords);
     return newWords;
-  }
-
-  async getCompareWords() {
-    const quantityWords = document.querySelector('.quantity-words');
-    const quantityCards = document.querySelector('.quantity-cards');
-    let countNew = quantityWords.value;
-    let countCards = quantityCards.value;
-    let dataWords = null;
-    let dataRepeat = null;
-    let arrayWords = [];
-    let arrayRepeat = [];
-    let arrayStudy = [];
-    let countRepeat = 0;
-
-    const getRepeatWords = async (count) => {
-      dataRepeat = await this.getLearnWords(count);
-      arrayRepeat = dataRepeat[0].paginatedResults;
-      repeatLength = arrayRepeat.length;
-    }
-
-    const getNewWords = async () => {
-      dataWords = await this.getNewWords(countNew);
-      arrayWords = dataWords[0].paginatedResults;
-    }
-
-    if (quantityWords > this.maxWordsCards || quantityWords < this.minWordsCards) {
-      return
-    }
-
-    if (quantityCards > this.maxWordsCards || quantityCards < this.minWordsCards) {
-      return
-    }
-
-    if (countNew > countCards) {
-      console.log('Выберете больше карточек или меньше новых слов');
-      return 
-    }
-
-    const countMinRepeat = Math.round(countNew / 2);
-    countRepeat = countCards - countNew;
-    let repeatLength = 0;
-
-    if (countCards < (countNew + countMinRepeat)) {
-      console.log('Нужно добавить количество карточек');
-      return
-    }
-
-    if (countNew < countCards && countRepeat >= countMinRepeat) {
-      await getRepeatWords(countRepeat);
-      console.log(arrayRepeat, repeatLength)
-      if (repeatLength !== 0) {
-        console.log('if 1 = not 0')
-        await getNewWords();
-        arrayStudy = arrayWords.concat(arrayRepeat);
-        console.log(arrayWords)
-      } else {
-        await getNewWords();
-        arrayStudy = arrayWords;
-      }
-    } 
-    
-    if (countNew < countCards && countRepeat < countMinRepeat) {
-      await getRepeatWords(countMinRepeat);
-      if (repeatLength !== 0) {
-        await getNewWords();
-        arrayStudy = arrayWords.concat(arrayRepeat);
-      } else {
-        await getNewWords();
-        arrayStudy = arrayWords;
-      }
-    }
-
-    //const countRepeat = Math.round(quantityWords.value / 3);
-    //const countNew = quantityCards.value - countRepeat;
-    
-    
-    // const newWords = study.arrayNewWords[0].paginatedResults;
-    // const learnWords = study.arrayLearnWords[0].paginatedResults;
-
-    // this.arrayStudy = newWords.concat(learnWords);
-    // console.log(this.arrayStudy);
-    // console.log(study.arrayNewWords[0].paginatedResults);
-    // console.log(study.arrayLearnWords[0].paginatedResults.length);
-    // card.render(result[study.count]);
-    console.log(arrayStudy)
-    return arrayStudy
   }
 
   findWordInText(word, text) {
     const re = new RegExp(word, 'mi');
     const wordReplace = text.replace(re, '[...]');
-    console.log(wordReplace);
     return wordReplace;
   };
 
-
-  checkWord() {
-    const INPUT_WORD = document.querySelector('.input-word');
-    const wordCheck = INPUT_WORD.value.toLowerCase();
-    console.log(wordCheck, this.currentWord);
-    if (wordCheck === this.currentWord) {
-      console.log('good');
-    } else {
-      console.log('bad');
-    }
-  };
   
   audioPlay(src) {
     const audio = new Audio();
@@ -317,11 +340,10 @@ export default class Study {
     const WORD_EXAMPLE = document.querySelectorAll('.word-example');
     let eventClass = event.target.classList[1];
     eventClass = eventClass.replace(/checkbox-/im, '');
-    console.log(eventClass);
   
     if (event.target.checked) {
       WORD_EXAMPLE.forEach((element) => {
-        console.log(element);
+
         if (element.classList.contains(`${eventClass}`)) {
           element.classList.remove('none');
         }
@@ -339,12 +361,10 @@ export default class Study {
     const WORD_EXAMPLE = document.querySelectorAll('.word-example');
     const CHECKBOX_ALL = document.querySelectorAll('.checkbox');
   
-    console.log(CHECKBOX_ALL[0].checked);
-  
     CHECKBOX_ALL.forEach((checkbox) => {
       let checkboxClass = checkbox.classList[1];
       checkboxClass = checkboxClass.replace(/checkbox-/im, '');
-      console.log(checkboxClass);
+      
       if (checkbox.checked) {
         WORD_EXAMPLE.forEach((element) => {
           if (element.classList.contains(`${checkboxClass}`)) {
@@ -366,7 +386,9 @@ export default class Study {
     if (elementClass && removeClass) {
       if ((typeof elementClass === 'string') && (typeof removeClass === 'string')) {
         const div = document.querySelector(`.${elementClass}`);
-        div.classList.remove(`${removeClass}`);
+        if (div !== null) {
+          div.classList.remove(`${removeClass}`);
+        }
       }
     }
   }
@@ -375,7 +397,9 @@ export default class Study {
     if (elementClass && addClass) {
       if ((typeof elementClass === 'string') && (typeof addClass === 'string')) {
         const div = document.querySelector(`.${elementClass}`);
-        div.classList.add(`${addClass}`);
+        if (div !== null) {
+          div.classList.add(`${addClass}`);
+        }
       }
     }
   }
@@ -387,7 +411,6 @@ export default class Study {
     const CHECKBOX_EXAMPLE = document.querySelector('.checkbox-example');
     const CHECKBOX_MEANING = document.querySelector('.checkbox-mean');
     const {textExample, textMeaning} = this.arrayStudy[this.count];
-    console.log(this.arrayStudy[this.count])
 
     if (CHECKBOX_EXAMPLE.checked) {
       EXAMPLE.innerHTML = textExample;
@@ -399,86 +422,4 @@ export default class Study {
       this.removeClass('mean-translation', 'none');
     };
   }
-
-
-  async getWordssssss(page, group) {
-    try {
-      const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      // console.log(data);
-
-      return data;
-    } catch (e) {
-      // console.log(e);
-      return false;
-    }
-  };
-
-  async getQuantityWordssssss(countPage, countGroup) {
-    const arrayWords = [];
-    console.log(`countGroup=${countGroup}`);
-  
-    for (let j = 0; j < countGroup; j += 1) {
-      console.log(j);
-      for (let i = 0; i < countPage; i += 1) {
-        const data = await this.getWords(i, this.group);
-        data.forEach((word) => {
-          arrayWords.push(word);
-        });
-      }
-    }
-    console.log(countPage);
-    console.log(arrayWords);
-
-    return arrayWords;
-    // const data = await getWords(page, group);
-  };
-
-  async getNewWordssss() {
-    const QUANTITY_WORDS = document.querySelector('.quantity-words');
-    this.arrayNewWords.length = 0;
-    this.arrayLearnWords.length = 0;
-    const quantityNewWords = QUANTITY_WORDS.value;
-
-    if (quantityNewWords > this.maxWordsCards || quantityNewWords < this.minWordsCards) {
-      console.log('MAX 100 and MIN 0');
-      return
-    }
-
-    let countPage = Math.ceil(Number(quantityNewWords) / 20);
-    let countGroup = Math.ceil(Number(countPage / 600));
-  
-    const findNewWords = async () => {
-      const quantityWords = await this.getQuantityWords(countPage, countGroup);
-  
-      quantityWords.forEach((word) => {
-        if (this.arrayId.indexOf(word.id) === -1) {
-          this.arrayNewWords.push(word);
-        } else {
-          this.arrayLearnWords.push(word);
-        }
-      });
-  
-      if (this.arrayNewWords.length < quantityNewWords) {
-        if (countPage < MAX_PAGE) {
-          countPage += 1;
-        } else {
-          countPage = 0;
-          countGroup += 1;
-        }
-        console.log('if <');
-        findNewWords();
-      } else {
-        console.log('else');
-        while (this.arrayNewWords.length > quantityNewWords) {
-          console.log('while');
-          this.arrayNewWords.pop();
-        }
-      }
-      console.log(this.arrayNewWords, this.arrayLearnWords);
-    };
-  
-    return findNewWords();
-  };
 } 

@@ -1,6 +1,17 @@
 import '../css/style.css'
 import '../css/english-puzzle.css';
 import images from './english-puzzle/images';
+import {refreshLogin} from './basic/refresh';
+import Header from './header'
+import Menu from './basic/menu';
+const header = new Header();
+
+(async () => {
+    await refreshLogin();
+    header.render();
+    const body = document.querySelector('body');
+    new Menu(body);  
+})();
 
 const startButton = document.querySelector('.button-start');
 const logoWrap = document.querySelector('#logo');
@@ -89,7 +100,7 @@ async function createCanvasElements({
           canvas.addEventListener('dragstart', () => {
             draggedItem = canvas;
             setTimeout(() => {
-              //canvas.style.display = 'none';
+              canvas.style.display = 'none';
             }, 0)
           });
 
@@ -261,14 +272,31 @@ function addNewRow(className, len) {
 
 /* ---------------------------------------- Перемещать элементы пазла ---------------------------------------- */
 function movePuzzles(elements) {
+  if (document.querySelector('.elements-puzzle').childElementCount) {
+    document.querySelector('.elements-puzzle').lastChild.remove();
+  };
   const container = document.createElement('div');
   container.className = elements.className;
+  container.style.height = '100%';
+  container.style.width = '100%'
   document.querySelector('.elements-puzzle').append(container);
   for (let i = 0; i !== elements.childElementCount; i) {
     const index = getRandomElement(elements.children);
     container.append(elements.children[index]);
     elements.remove(index);
   };
+
+  container.addEventListener('dragover', (e) => {
+    e.preventDefault();
+  });
+
+  container.addEventListener('dragenter', (e) => {
+    e.preventDefault();
+  });
+
+  container.addEventListener('drop', (e) => {
+    e.target.append(draggedItem);
+  });
 }
 /* ---------------------------------------------------------------------------------------------------------== */
 
@@ -342,9 +370,6 @@ function changeInterpretationInput() {
   };
 }
 
-
-
-
 /* ------------------------------------------ Смена уровня сложности ----------------------------------------- */
 document.querySelector('#levels').addEventListener('change', () => {
   startNewGame();
@@ -380,24 +405,30 @@ document.querySelector('#check').addEventListener('click', () => {
     if (puzzles[i].getAttribute('data-word') === wordsList[i]) {
       setTimeout(() => {
         puzzles[i].style.outline = '4px solid green';
+        puzzles[i].setAttribute('data-check', 'checked');
       })
     } else {
       puzzles[i].style.outline = '4px solid red';
+      puzzles[i].setAttribute('data-check', 'checked');
       countErrors += 1;
     }
   }
   if (countErrors === 0) {
     document.querySelector('#continue').classList.remove('hidden');
     document.querySelector('#check').classList.add('hidden');
-  } else(
-    document.querySelector('#dont-know').classList.remove('hidden')
-  )
+  } else {
+    document.querySelector('#dont-know').classList.remove('hidden');
+    document.querySelector('#check').classList.add('hidden');
+  }
 });
 /* ----------------------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------- Действие кнопки Continue ------------------------------------------ */
 document.querySelector('#continue').addEventListener('click', () => {
   canvasElements.then(res => {
+    for (let i = 0; i < document.querySelector('.img-puzzle').lastChild.childElementCount; i += 1) {
+      document.querySelector('.img-puzzle').lastChild.children[i].setAttribute('draggable', false);
+    }
     const index = document.querySelector('.img-puzzle').childElementCount;
     if (index < 10) {
       addNewRow(res[index].className, res.length)
@@ -415,8 +446,6 @@ document.querySelector('#continue').addEventListener('click', () => {
       console.log('больше нет раундов');
     }
   });
-  // document.querySelector('#continue').classList.add('hidden');
-  // document.querySelector('#dont-know').classList.remove('hidden');
 });
 /* ----------------------------------------------------------------------------------------------------------- */
 
@@ -424,10 +453,19 @@ document.querySelector('#continue').addEventListener('click', () => {
 document.querySelector('#dont-know').addEventListener('click', () => {
   const index = document.querySelector('.img-puzzle').childElementCount - 1;
   const textExample = dataElements[index].textExample.replace(/<[^>]*>/g, '').split(' ');
+  if (document.querySelector('.img-puzzle').lastChild.childElementCount) {
+    for (let i = 0; i < document.querySelector('.img-puzzle').lastChild.childElementCount; i) {
+      document.querySelector('.elements-puzzle').lastChild.append(document.querySelector('.img-puzzle').lastChild.lastChild);
+    }
+  }
   textExample.forEach((word, index) => {
     const elementsPuzzle = document.querySelector('.elements-puzzle').lastChild.childNodes;
     elementsPuzzle.forEach(element => {
       if (index === parseInt(element.getAttribute('data-item').split('-')[1], 10) - 1) {
+        if (element.getAttribute('data-check')  === 'checked') {
+          element.setAttribute('data-check', '');
+          element.style.outline = 'none';
+        }
         element.style.marginRight = `-${Math.round((canvasHeight / 3) / 2)}px`;
         document.querySelector('.img-puzzle').lastChild.append(element);
       }
@@ -435,6 +473,9 @@ document.querySelector('#dont-know').addEventListener('click', () => {
   })
   document.querySelector('#dont-know').classList.add('hidden');
   document.querySelector('#continue').classList.remove('hidden');
+  for (let i = 0; i < document.querySelector('.img-puzzle').lastChild.childElementCount; i += 1) {
+    document.querySelector('.img-puzzle').lastChild.children[i].setAttribute('draggable', false);
+  }
 });
 /* ----------------------------------------------------------------------------------------------------------- */
 

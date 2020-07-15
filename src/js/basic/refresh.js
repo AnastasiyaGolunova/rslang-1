@@ -10,10 +10,10 @@ const getRefreshToken = async (id) => {
             Accept: "application/json",
         },
     });
-    console.log(rawResponse);
+    
       if (rawResponse.ok) {
         const content = await rawResponse.json();
-        console.log(content);
+        
         return content;
       } else {
         window.location.href = "./login.html";
@@ -23,15 +23,16 @@ const getRefreshToken = async (id) => {
 
 const refreshLogin = async () => {
     const id = localStorage.getItem('userId');
-    console.log(id);
+    
     const data = await getRefreshToken(id);
     if (data) {
+       
         const {refreshToken, token} = data;
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('token', token);
+        return true;
     }
     
-    // console.log(window.atob(token));
 }
 
 export {getRefreshToken, refreshLogin}

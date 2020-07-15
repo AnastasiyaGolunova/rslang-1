@@ -6,7 +6,7 @@ export default class Header {
         const header = `
               <div class="rs-menu">
               <ul class="rs-ul">
-                  <li class="logo">RS Lang</li>
+                  <li data-action="logo" class="logo">RS Lang</li>
                   <div class="navigation">
                       <li class="rs-li menu-dictionary"><a href="#" data-action="dictionary" class="pointer">Словарь</a>
                       </li>
@@ -14,22 +14,22 @@ export default class Header {
                               alt="sort">
                           <ul class="ul-dropdown games">
                               <li class="li-dropdown"><img class="microphone" src="./icons/microphone.png"
-                                      alt="microphone"><a href="#" class="pointer">SpeakIt</a></li>
-                              <li class="li-dropdown"><img class="puzzle" src="./icons/puzzle.png" alt="puzzle"><a
-                                      href="#" class="pointer">English Puzzle</a></li>
-                              <li class="li-dropdown"><img class="tree" src="./icons/tree.png" alt="tree"><a href="#"
-                                      class="pointer">Саванна</a></li>
-                              <li class="li-dropdown"><img class="headphones" src="./icons/headphones.png"
-                                      alt="headphones"><a href="#" class="pointer">Аудиовызов</a></li>
+                                      alt="microphone"><a href="#" data-action="speak" class="pointer">SpeakIt</a></li>
+                              <li class="li-dropdown"><img class="puzzle" src="./icons/puzzle.png" alt="puzzle"><a href="#" 
+                                data-action="puzzle" class="pointer">English Puzzle</a></li>
+                              <li class="li-dropdown"><img class="tree" src="./icons/tree.png" alt="tree"><a href="#" 
+                                data-action="savannah" class="pointer">Саванна</a></li>
+                              <li class="li-dropdown"><img class="headphones" src="./icons/headphones.png" alt="headphones"><a href="#"
+                                data-action="audiocall" class="pointer">Аудиовызов</a></li>
                               <li class="li-dropdown"><img class="track" src="./icons/track.png" alt="track"><a href="#"
-                                      class="pointer">Спринт</a></li>
+                                data-action="sprint" class="pointer">Спринт</a></li>
                               <li class="li-dropdown"><img class="dice" src="./icons/dice.png" alt="dice"><a href="#"
                                       class="pointer">Своя игра</a></li>
                           </ul>
                       </li>
                       <li class="rs-li"><a href="#" class="pointer">Мой прогресс</a></li>
                       <li class="rs-li"><a href="#" class="pointer">О приложении</a></li>
-                      <li class="rs-li"><a href="#" class="pointer about-team">О команде</a></li>
+                      <li class="rs-li"><a href="#" data-action="about" class="pointer about-team">О команде</a></li>
                       <li class="rs-li"><a href="#" class="pointer"><img class="services" src="./icons/services.png"
                                   alt="services"></a>
                           <ul class="ul-dropdown settings" id="settings">
@@ -115,11 +115,10 @@ export default class Header {
       `
 
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
-
         HEADER_NAVIGATION.innerHTML = header;
-    }
+      }
 
-    set() {
+      set() {
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
 
         console.log(HEADER_NAVIGATION.innerHTML)
@@ -127,9 +126,9 @@ export default class Header {
         localStorage.setItem('header', HEADER_NAVIGATION.outerHTML);
 
         // HEADER_NAVIGATION.innerHTML = header;
-    }
+      }
 
-    get() {
+      get() {
         const HEADER_NAVIGATION = document.querySelector('.header-navigation');
 
         const header = localStorage.getItem('header', HEADER_NAVIGATION);
@@ -142,5 +141,5 @@ export default class Header {
         console.log(header);
 
         //HEADER_NAVIGATION.append(header.strin;
-    }
+      }
 }

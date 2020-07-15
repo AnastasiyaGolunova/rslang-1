@@ -12,7 +12,6 @@
     cursor: pointer;
 }
 .game-icon {
-    /* width: 70%; */
     flex-grow: 4;
 }
 .game-header {
@@ -25,7 +24,6 @@
     flex-grow: 1;
     display: flex;
     flex-direction: row;
-    /* width: 20%; */
 }
 .spelling-text {
     font-size: 14px;
@@ -66,7 +64,6 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    /* width: 85%; */
 }
 
 .word-input {
@@ -76,8 +73,6 @@
 }
 
 .word-background {
-    /* display: inline;
-    position: absolute; */
     left: 0;
     top: 0;
     user-select: none;
@@ -108,7 +103,6 @@
     top: 0;
     background: rgba(44, 135, 172, 0.1);
     width: 100%;
-    /* border: 1px solid #81A4BB; */
     border: none;
     border-radius: 3px;
     color: #5094c2;
@@ -121,6 +115,7 @@
     font-size: 34px;
     font-weight: 700;
     color: #000000;
+    margin-top: 5px;
 }
 .word-transcription {
     font-size: 34px;
@@ -159,7 +154,6 @@
 .meaning {
     display: flex;
     flex-direction: row;
-    /* width: 100%; */
     padding: 20px;
 }
 .meaning-text {
@@ -250,35 +244,73 @@ background-color: #85b82d;
 
 @media screen and (max-width: 1024px) {
 
+    .card-number, .word-input, .answer-input, .word-example {
+        font-size: 22px;
+    }
+
+    .word-translation {
+        font-size: 22px;
+    }
+    .word-transcription {
+        font-size: 22px;
+    }
+    #picture img {
+        height: 40px;
+        width: 80px;
+    }
+    #picture {
+        width: 107px;
+        height: 50px;
+    }
+    .difficult, .trash, .answers, .voice  {
+        height: 40px !important;
+        width: 40px !important;
+    }
+    .meaning {
+        padding: 20px 0;
+    }
+    .footer {
+        padding: 0;
+    }
+
+    .btn {
+        width: 120px;
+        font-size: 14px;
+        margin:  0 15px 5px 15px;
+    }
+    .buttons {
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+
+    .game-wrap {
+        width: 85%;
+        margin: 5% 7%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
 .game-wrap {
     width: 85%;
     margin: 5% 7%;
 }
 
-.game-header {
-    flex-direction: column;
-    align-items: baseline;
-    padding: 20px;
+.answer-input, .word-input, .card-number {
+    font-size: 20px;
 }
-.card-number {
-    font-size: 24px;
-}
-.voice {
-    height: 20px;
-    width: 20px;
-}
+
 .word-example {
     font-size: 12px;
 }
-.answer-input {
-    width: 14em;
-    height: 2em;
-}
+
 .word-translation {
-    font-size: 22px;
+    font-size: 20px;
 }
 .word-transcription {
-    font-size: 22px;
+    font-size: 20px;
 }
 #picture img {
     height: 40px;
@@ -288,9 +320,9 @@ background-color: #85b82d;
     width: 107px;
     height: 50px;
 }
-.difficult, .trash {
-    height: 20px !important;
-    width: 20px !important;
+.difficult, .trash, .answers, .voice  {
+    height: 30px !important;
+    width: 30px !important;
 }
 .meaning {
     padding: 20px 0;
@@ -299,12 +331,70 @@ background-color: #85b82d;
     padding: 0;
 }
 .buttons {
-    padding: 0 !important;
-    flex-direction: column;
+    padding: 0;
 }
 .btn {
     width: 95px;
     font-size: 12px;
     margin:  0 15px 5px 15px;
 }
+
+.difficult-icon:hover::after { 
+    top: 50px;
+    left: 10px;
+}
+
+.delete-icon:hover::after { 
+    top: 50px;
+    left: 10px;
+}
+
+}
+
+@media screen and (max-width: 430px) {
+
+    .game-wrap {
+        width: 80%;
+    }
+
+    .game-header {
+        padding: 20px 20px;
+    }
+    
+    .game-footer {
+        padding: 20px 20px;
+    }
+
+    .difficult, .trash, .answers, .voice  {
+        height: 25px !important;
+        width: 25px !important;
+    }
+
+    .spelling-text {
+        font-size: 12px;
+    }
+
+    .card-number {
+        font-size: 18px;
+    }
+
+    .buttons{
+        width: 70%;
+    }
+    .btn {
+        width: 80px;
+        margin:  0 5px 5px;
+    }
+
+    .difficult-icon:hover::after { 
+        top: 30px;
+        left: 10px;
+    }
+    
+    .delete-icon:hover::after { 
+        top: 30px;
+        left: 10px;
+    }
+
+
 }

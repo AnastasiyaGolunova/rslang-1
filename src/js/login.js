@@ -41,7 +41,6 @@ const createUser = async (user) => {
     }
   } catch (error) {}
 
-  // createUser({ "email": "hello@user.com", "password": "Gfhjkm_123" });
 };
 
 const loginUser = async (user) => {
@@ -57,7 +56,6 @@ const loginUser = async (user) => {
         body: JSON.stringify(user),
       }
     );
-
     
     if (rawResponse.ok) {
       const content = await rawResponse.json();
@@ -73,6 +71,9 @@ const loginUser = async (user) => {
         SIGNIN_ERROR.textContent = "Пользователь не найден";
         return null
       }
+
+      SIGNIN_ERROR.textContent = "Не верный логин или пароль";
+      return null
     }
   } catch (error) {}
 };
@@ -115,7 +116,7 @@ SIGNIN_BTN.addEventListener("click", async (event) => {
     };
     
     userLogin = await loginUser(user);
-
+    
     if (userLogin !== null) {
       localStorage.setItem('token', userLogin.token);
       localStorage.setItem('refreshToken', userLogin.refreshToken)
