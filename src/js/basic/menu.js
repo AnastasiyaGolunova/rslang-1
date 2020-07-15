@@ -301,7 +301,11 @@ export default class Menu {
   }
 
   about() {
-    window.location.href = "about.html"
+    window.location.href = "about.html";
+  }
+
+  progress() {
+    window.location.href = "progress.html"
   }
 
   onClick(event) {

@@ -27,7 +27,7 @@ export default class Header {
                                       class="pointer">Своя игра</a></li>
                           </ul>
                       </li>
-                      <li class="rs-li"><a href="#" class="pointer">Мой прогресс</a></li>
+                      <li class="rs-li"><a data-action="progress" href="#" class="pointer">Мой прогресс</a></li>
                       <li class="rs-li"><a href="#" class="pointer">О приложении</a></li>
                       <li class="rs-li"><a href="#" data-action="about" class="pointer about-team">О команде</a></li>
                       <li class="rs-li"><a href="#" class="pointer"><img class="services" src="./icons/services.png"

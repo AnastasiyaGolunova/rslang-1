@@ -4,8 +4,6 @@ const btn = document.querySelector('.start');
 let arr = [];
 
 btn.addEventListener('click', async () => {
-    console.log(await getData());
-    console.log(arr);
     arr = await getData();
     app(arr);
     document.querySelector('.wrap').classList.add('block');
@@ -14,7 +12,6 @@ btn.addEventListener('click', async () => {
 })
 
 async function change(){
-    console.log(arr);
     cardsWrap.innerHTML = '';
     arr = await getData();
     app(arr);

@@ -2,6 +2,8 @@ import {words, mediaData, imgTrain, wdTranslate, cardsWrap, learn} from "./getDa
 import {arr} from "./startPage";
 
 const strGame = document.querySelector('.speak');
+const wrongAnswer = document.querySelector('.wrong');
+const rightAnswer = document.querySelector('.correct');
 let right = [];
 
 let MySpeechRecognition = window.nSpeechRecognition || webkitSpeechRecognition;
@@ -35,11 +37,11 @@ recognizer.onresult = function (event) {
             let mark = document.querySelector(".cards-game").children;
             mark[answer].style.backgroundColor = 'red';
             right.push(elem);
-            //let removeAnswer = arr.splice(answer, 1);
-            // if (arr.length === 0) {
-            //     const win = new Audio('./audio/success.mp3');
-            //     win.play();
-            // }
+            if (!words) {
+                const win = new Audio('./audio/success.mp3');
+                win.play();
+                recognizer.stop();
+            }
         }
     }
 };
@@ -47,5 +49,4 @@ strGame.addEventListener('click', function () {
     cardsWrap.removeEventListener('click', learn);
     recognizer.start();
     wdTranslate.classList.add('line');
-    console.log('game');
 });

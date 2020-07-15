@@ -15,18 +15,11 @@ const header = new Header();
       new Menu(body); 
       import('./speak-it/startPage');
       import ('./speak-it/getData');
-      import ('./speak-it/learn');
       import ('./speak-it/game');
       import ('./speak-it/restart'); 
   }
 })();
 
 
-// (async () => {
-//     await refreshLogin();
-//       header.render();
-//       const body = document.querySelector('body');
-//       new Menu(body);  
-// })();
 
 
