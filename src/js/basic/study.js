@@ -21,8 +21,6 @@ export default class Study {
     this.minWordsCards = 0;
     this.page = 0;
     this.group = 0;
-    // this.arrayNewWords = [];
-    // this.arrayLearnWords = [];
     this.countNewWords = 0;
     this.countRepeat= 0;
     this.countCards = 0;
@@ -38,11 +36,7 @@ export default class Study {
 
   async response(rawResponse) {
     if (!rawResponse.ok)  {
-      // if (rawResponse.status === 401) {
-      //   console.log()
-      // }
       const data = await rawResponse.text();
-      console.log(data);
       return null;
     } else {
       const content = await rawResponse.json();
@@ -69,7 +63,6 @@ export default class Study {
 
   async getUserWord({ userId, wordId }){
     const token = localStorage.getItem('token');
-    console.log(token);
     const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`,
         {
             method: "GET",
@@ -86,7 +79,7 @@ export default class Study {
   };
 
   async createUserWord({userId, wordId, word}) {
-    console.log(word)
+    
     const token = localStorage.getItem('token');
     const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`, {
       method: 'POST',
@@ -103,7 +96,7 @@ export default class Study {
   };
 
   async updateUserWord({userId, wordId, word}) {
-    console.log(word)
+    
     const token = localStorage.getItem('token');
     const rawResponse = await fetch(`${this.urlHeroku}/users/${userId}/words/${wordId}`, {
       method: 'PUT',
@@ -123,12 +116,10 @@ export default class Study {
   async getCompareWords(data) {
     const quantityWords = document.querySelector('.quantity-words');
     const quantityCards = document.querySelector('.quantity-cards');
-    this.countNewWords = quantityWords.value;
-    this.countCards = quantityCards.value;
+    this.countNewWords = Number(quantityWords.value);
+    this.countCards = Number(quantityCards.value);
     let dataWords = null;
     let dataRepeat = null;
-    // let arrayWords = [];
-    // let arrayRepeat = [];
     let arrayStudy = [];
     let repeatLength = 0;
     const curentDate = new Date();
@@ -142,41 +133,37 @@ export default class Study {
 
     const getNewWords = async (count) => {
       dataWords = await this.getNewWords(count);
-      console.log(dataWords[0])
       this.arrayNewWords = dataWords[0].paginatedResults;
     }
 
+
     const getNewUserData = async () => { 
       if (quantityWords > this.maxWordsCards || quantityWords < this.minWordsCards) {
-        return
+        return false
       }
   
       if (quantityCards > this.maxWordsCards || quantityCards < this.minWordsCards) {
-        return
+        return false
       }
 
-      console.log(this.countNewWords, this.countCards);
-      console.log('hello')
+     
       if (this.countNewWords > this.countCards) {
-        console.log('5555+++++')
         const text = document.querySelector('.mb-4');
         text.textContent = 'Выберите больше карточек или меньше новых слов';
         this.removeClass('frame', 'none');
-        console.log('Выберите больше карточек или меньше новых слов');
-        return 
-      }
-
-      if (this.countNewWords < this.countCards ) {
+        return false
+      } 
+      
+      if (this.countNewWords < this.countCards) {
         await getRepeatWords(this.countRepeat);
         if (repeatLength !== 0) {
-          console.log('if 1 = not 0')
           await getNewWords(this.countNewWords);
           arrayStudy = this.arrayNewWords.concat(this.arrayRepeat);
-          console.log(arrayStudy)
         } else {
+     
           await getNewWords(this.countNewWords );
           arrayStudy = this.arrayNewWords;
-          console.log(arrayStudy)
+      
         }
       }
 
@@ -192,11 +179,13 @@ export default class Study {
           arrayStudy = this.arrayNewWords;
         } 
       }
+
+      return true
     }
 
 
     if (data) {
-      console.log(data);
+      
       const {wordsPerDay, optional, id} = data;
       const {date, countNew, countRepeat} = optional;
       const saveDate = new Date(date);
@@ -206,13 +195,14 @@ export default class Study {
         const {countNew, countRepeat} = optional;
         if (countNew === 0 && countRepeat === 0) {
             this.removeClass('frame','none');
-            console.log('game over')
+           
             return
         }
 
         this.countNewWords = countNew;
         this.countCards = wordsPerDay;
         this.countRepeat = countRepeat
+       
         if (countNew !== 0) {
           await getNewWords(countNew);
         }
@@ -221,7 +211,21 @@ export default class Study {
         }
         arrayStudy = this.arrayNewWords.concat(this.arrayRepeat);
       } else {
-        await getNewUserData();
+        const getData = await getNewUserData();
+        
+        if (getData) {
+          await user.setSettingsData({
+            "wordsPerDay": this.countCards,
+            "optional": { "date": `${curentDate.toJSON()}`,
+                          "countNew": this.countNewWords,
+                          "countRepeat": this.countRepeat,
+                        }
+          });
+        }
+      }
+    } else {
+      const getData = await getNewUserData();
+      if (getData) {
         await user.setSettingsData({
           "wordsPerDay": this.countCards,
           "optional": { "date": `${curentDate.toJSON()}`,
@@ -230,22 +234,7 @@ export default class Study {
                       }
         });
       }
-    } else {
-      await getNewUserData();
-      await user.setSettingsData({
-        "wordsPerDay": this.countCards,
-        "optional": { "date": `${curentDate.toJSON()}`,
-                      "countNew": this.countNewWords,
-                      "countRepeat": this.countRepeat,
-                    }
-      });
     }
-
-
-    console.log(this.arrayNewWords)
-    console.log(this.arrayRepeat)
-
-    console.log(arrayStudy)
     return arrayStudy
  
   }
@@ -257,7 +246,6 @@ export default class Study {
     const quantityNewWords = QUANTITY_WORDS.value;
   
     if (quantityNewWords > countCards) {
-      console.log(quantityNewWords, countCards);
       const arrayCards = this.arrayNewWords.concat(this.arrayLearnWords);
       this.allCards = arrayCards.filter((word, item) => item < countCards);
     } else {
@@ -273,15 +261,12 @@ export default class Study {
       "wordsPerPage": value,
       "filter": `{"$and":[{"userWord.optional.repeat":{"$ne":true}},{"userWord":null}]}`,
     }
-
-    console.log(value);
   
     const newWords = await this.getAgregateWords(agregateWords);
 
     if (newWords === null) {
       return null;
     }
-    console.log('getNewWords' + newWords);
     return newWords;
   }
 
@@ -295,28 +280,15 @@ export default class Study {
     }
   
     const newWords = await this.getAgregateWords(agregateWords);
-    console.log('getLearnWords' + newWords);
     return newWords;
   }
 
   findWordInText(word, text) {
     const re = new RegExp(word, 'mi');
     const wordReplace = text.replace(re, '[...]');
-    console.log(wordReplace);
     return wordReplace;
   };
 
-
-  checkWord() {
-    const INPUT_WORD = document.querySelector('.input-word');
-    const wordCheck = INPUT_WORD.value.toLowerCase();
-    console.log(wordCheck, this.currentWord);
-    if (wordCheck === this.currentWord) {
-      console.log('good');
-    } else {
-      console.log('bad');
-    }
-  };
   
   audioPlay(src) {
     const audio = new Audio();
@@ -368,11 +340,10 @@ export default class Study {
     const WORD_EXAMPLE = document.querySelectorAll('.word-example');
     let eventClass = event.target.classList[1];
     eventClass = eventClass.replace(/checkbox-/im, '');
-    console.log(eventClass);
   
     if (event.target.checked) {
       WORD_EXAMPLE.forEach((element) => {
-        console.log(element);
+
         if (element.classList.contains(`${eventClass}`)) {
           element.classList.remove('none');
         }
@@ -390,12 +361,10 @@ export default class Study {
     const WORD_EXAMPLE = document.querySelectorAll('.word-example');
     const CHECKBOX_ALL = document.querySelectorAll('.checkbox');
   
-    console.log(CHECKBOX_ALL[0].checked);
-  
     CHECKBOX_ALL.forEach((checkbox) => {
       let checkboxClass = checkbox.classList[1];
       checkboxClass = checkboxClass.replace(/checkbox-/im, '');
-      console.log(checkboxClass);
+      
       if (checkbox.checked) {
         WORD_EXAMPLE.forEach((element) => {
           if (element.classList.contains(`${checkboxClass}`)) {
@@ -442,7 +411,6 @@ export default class Study {
     const CHECKBOX_EXAMPLE = document.querySelector('.checkbox-example');
     const CHECKBOX_MEANING = document.querySelector('.checkbox-mean');
     const {textExample, textMeaning} = this.arrayStudy[this.count];
-    console.log(this.arrayStudy[this.count])
 
     if (CHECKBOX_EXAMPLE.checked) {
       EXAMPLE.innerHTML = textExample;

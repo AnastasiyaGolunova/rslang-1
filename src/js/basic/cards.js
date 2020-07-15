@@ -11,14 +11,14 @@ import { getStudy } from './study';
 const study = getStudy();
 
 export default class Cards {
-
+  
   render(words) {
     console.log(words);
     const {textExample,textExampleTranslate,textMeaning,textMeaningTranslate,transcription,word,wordTranslate,image} = words;
     study.currentWord = word;
     console.log(transcription,word,wordTranslate)
     console.log(`${study.urlData}`);
-
+  
     const replaceExample = study.findWordInText(word, textExample);
     const replaceMeaning = study.findWordInText(word, textMeaning);
 
@@ -31,7 +31,7 @@ export default class Cards {
     }
 
     console.log(spanLetter);
-
+  
     const card = `<div class='word-example example'>${replaceExample}</div>
                     <div class='word-example example-translation none'>${textExampleTranslate}</div>
                     <div class='word-input'>
@@ -54,9 +54,9 @@ export default class Cards {
                         </div>
                     </div>
       `;
-
+  
     const CARD = document.querySelector('.game-content');
-
+  
     CARD.innerHTML = card;
     const width = document.querySelector('.word-container');
 
@@ -98,9 +98,9 @@ export default class Cards {
             </div>
         </div>
         `
-
+      
         const GAME_WRAP = document.querySelector('.game-wrap');
-
+      
         GAME_WRAP.innerHTML = gameContent;
   }
 
@@ -118,9 +118,9 @@ export default class Cards {
           <p>Что бы изучить новые слова вам необходимо в настроиках выбрать количество новых слов и количество карточек, 
           чем больше новых слов будет выбрано тем меньше слов для повтора.</p>
           <p>Что бы изучить больше слов для повтора необходимо в настроиках выбрать меньше новых слов, а количество карточек больше.</p>
-          <p>Если вы уже изучали слова сегодня, намжите кнопку "Начать обучение".</p>
+          <p>Если вы уже изучали слова сегодня и не закончили изучение, намжите кнопку "Начать обучение".</p>
           <p>Количество новых слов и количество карточек можно выбрать один раз в день</p>
-          <a href="https://github.com/omirbeck/rslang">Репозиторий проекта</a>
+          <p><a href="https://github.com/omirbeck/rslang">Репозиторий проекта</a></p>
         </div>
         <div class="description_btn">
           <button data-action="start" class="btn start-btn">Начать обучение</button>
@@ -128,7 +128,7 @@ export default class Cards {
     </div>
         `
     const GAME_WRAP = document.querySelector('.game-wrap');
-
+      
     GAME_WRAP.innerHTML = startPage;
   }
 
@@ -139,5 +139,10 @@ export default class Cards {
     const CARD_NUMBER = document.querySelector('.card-number');
 
     CARD_NUMBER.innerHTML = cardCount;
+  }
+
+  renderWarning() {
+    const text = document.querySelector('.mb-4');
+    text.textContent = 'Ура. На сегодня все. Дневной лимит исчерпан. Можете поиграть в наши игры.';
   }
 }
