@@ -8,7 +8,7 @@ import { getStudy } from './basic/study';
 import Cards from './basic/cards';
 import Menu from './basic/menu';
 import { getTrash } from './basic/trash';
-import {refreshLogin} from './basic/refresh';
+import { refreshLogin } from './basic/refresh';
 import User from './basic/user';
 const study = getStudy();
 const card = new Cards();
@@ -27,4 +27,4 @@ async function init() {
 
 init();
 
-export {study, card, header, trash, user}
+export { study, card, header, trash, user }
