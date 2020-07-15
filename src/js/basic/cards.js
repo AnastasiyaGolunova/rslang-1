@@ -107,13 +107,6 @@ export default class Cards {
     const startPage = `
     <div class="start-wrap">
         <div class="start-description">
-        <h3 class="description-title">Изучение новых слов</h3>
-            <ul class="description-list">
-              <li> Укажите количество новых слов в настройках приложения</li>
-              <li> Проверьте правильность набранного слова в тренировке</li>
-              <li> Можно исключить слово из изучения</li>
-              <li> Можно поместить слово в группу "Сложные"</li>
-            </ul>
         </div>
         <button data-action="start" class="btn start-btn">Начать обучение</button>
     </div>
