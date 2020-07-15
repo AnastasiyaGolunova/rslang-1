@@ -24,12 +24,15 @@ function setDMode() {
 const config = {
   target: "web",
   entry: {
+    index: './src/js/index.js',
+    login: './src/js/login.js',
+    dictionary: './src/js/dictionary.js',
     englishpuzzle: './src/js/english-puzzle.js',
+    savannah: "./src/js/savannah.js",
     speakit: './src/js/speak-it/speakIt.js',
     sprint: './src/js/sprint.js',
     audiocall: './src/js/audiocall.js',
-    progress: "./src/js/progress.js",
-    savannah: "./src/js/savannah.js"
+    progress: "./src/js/progress.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -148,6 +151,21 @@ const config = {
       filename: '[name].css',
     }),
     new HtmlWebPackPlugin({
+      template: './src/index.html',
+      chunks: ['index'],
+      filename: 'index.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/login.html',
+      chunks: ['login'],
+      filename: 'login.html'
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/dictionary.html',
+      chunks: ['dictionary'],
+      filename: 'dictionary.html'
+    }),
+    new HtmlWebPackPlugin({
       template: "./src/html/progress.html",
       chunks: ["progress"],
       filename: "progress.html",
@@ -181,7 +199,6 @@ const config = {
       { from: './src/img', to: './img/' },
       { from: './src/icons', to: './icons/' },
       { from: './src/audio', to: './audio/' }
-
     ]),
   ],
 

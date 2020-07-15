@@ -9,4 +9,21 @@
 .start-btn {
     background: #1ab856;
     color: #000;
+    margin: 0 10em 2em;
 }
+h3 {
+    font-size: 2em;
+    margin: 0.5em;
+    text-align: center;
+}
+.description-list {
+    list-style-type: "→ ";
+    padding: 1em;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Roboto";
+  }
+
+  .description-list li {
+    padding:5% 0%;
+  }

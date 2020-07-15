@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS Lang</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Создать аккаунт</h1>
+                <!-- <input class="signup-name" type="text" placeholder="Имя" /> -->
+                <input class="signup-email" type="email" placeholder="Email" />
+                <input class="signup-password" type="password" placeholder="Пароль" />
+                <button class="signup-button">Зарегистрироваться</button>
+                <div class="signup-error"></div>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1 class="signup">Войти</h1>
+                <input class="signin-email" type="email" placeholder="Email" />
+                <input class="signin-password" type="password" placeholder="Пароль" />
+                <button class="signin-button">Войти</button>
+                <div class="signin-error"></div>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1 class="left-greeting">С Возвращением!</h1>
+                    <p class="left">Чтобы оставаться на связи с нами пожалуйста войдите в систему с вашей личной
+                        информацией</p>
+                    <button class="ghost left-button" id="signIn">Войти</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1 class="right-greeting">Привет!</h1>
+                    <p class="right">Введите свои данные и начните путешествие с нами!</p>
+                    <button class="ghost right-button" id="signUp">Зарегистрироваться</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
