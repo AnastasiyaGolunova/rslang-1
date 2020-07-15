@@ -118,9 +118,9 @@ export default class Cards {
           <p>Что бы изучить новые слова вам необходимо в настроиках выбрать количество новых слов и количество карточек, 
           чем больше новых слов будет выбрано тем меньше слов для повтора.</p>
           <p>Что бы изучить больше слов для повтора необходимо в настроиках выбрать меньше новых слов, а количество карточек больше.</p>
-          <p>Если вы уже изучали слова сегодня, намжите кнопку "Начать обучение".</p>
+          <p>Если вы уже изучали слова сегодня и не закончили изучение, намжите кнопку "Начать обучение".</p>
           <p>Количество новых слов и количество карточек можно выбрать один раз в день</p>
-          <a href="https://github.com/omirbeck/rslang">Репозиторий проекта</a>
+          <p><a href="https://github.com/omirbeck/rslang">Репозиторий проекта</a></p>
         </div>
         <div class="description_btn">
           <button data-action="start" class="btn start-btn">Начать обучение</button>
@@ -139,5 +139,10 @@ export default class Cards {
     const CARD_NUMBER = document.querySelector('.card-number');
 
     CARD_NUMBER.innerHTML = cardCount;
+  }
+
+  renderWarning() {
+    const text = document.querySelector('.mb-4');
+    text.textContent = 'Ура. На сегодня все. Дневной лимит исчерпан. Можете поиграть в наши игры.';
   }
 }

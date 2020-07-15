@@ -15,13 +15,6 @@ export default class Menu {
   }
   
   async start() {
-    // const data = await user.setSettingsData({
-    //   "wordsPerDay": this.countCards,
-    //   "optional": { "date": `${new Date().toJSON()}`,
-    //                 "countNew": 8,
-    //                 "countRepeat": 3,
-    //               }
-    // });
     const data = await user.getSettings();
     if (data !== null) {
       if (data.optional !== undefined) {
@@ -29,7 +22,6 @@ export default class Menu {
           console.log(data);
           study.receivedWords.length = 0;
           study.arrayStudy = await study.getCompareWords(data);
-          // const result = study.arrayStudy[0].paginatedResults;
         }
       } else {
         study.receivedWords.length = 0;
@@ -126,6 +118,7 @@ export default class Menu {
         study.findCheckbox();
       }, 1000)
     } else {
+        card.renderWarning();
         card.renderStartPage();
         study.removeClass('frame','none');
     }
@@ -150,7 +143,7 @@ export default class Menu {
             study.right = 'right';
             await this.sendUserSettings();
             study.count += 1;
-            if (study.arrayStudy.length >= study.count) {
+            if (study.arrayStudy.length > study.count) {
               console.log(study.count, study.arrayStudy.length)
               const curentWord = study.arrayStudy[study.count];
               card.render(curentWord);
@@ -158,6 +151,7 @@ export default class Menu {
               study.findCheckbox();
               console.log(study.arrayStudy);
             } else {
+              card.renderWarning();
               study.removeClass('frame','none');
               card.renderStartPage();
               return
@@ -212,6 +206,7 @@ export default class Menu {
       this.sendUserSettings().then(response => response) 
       study.findCheckbox(); 
     } else {
+      card.renderWarning();
       card.renderStartPage();
       study.removeClass('frame','none');
     }
@@ -229,6 +224,7 @@ export default class Menu {
       study.findCheckbox();
       console.log('difficult');
     } else {
+      card.renderWarning();
       card.renderStartPage();
       study.removeClass('frame','none');
     }

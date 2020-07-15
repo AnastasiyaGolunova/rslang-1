@@ -57,8 +57,6 @@ const loginUser = async (user) => {
       }
     );
     
-    console.log(rawResponse);
-    
     if (rawResponse.ok) {
       const content = await rawResponse.json();
       SIGNIN_ERROR.textContent = "Вы успешно вошли";
@@ -118,7 +116,7 @@ SIGNIN_BTN.addEventListener("click", async (event) => {
     };
     
     userLogin = await loginUser(user);
-    console.log(userLogin)
+    
     if (userLogin !== null) {
       localStorage.setItem('token', userLogin.token);
       localStorage.setItem('refreshToken', userLogin.refreshToken)
